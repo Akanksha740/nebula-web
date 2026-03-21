@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = '/api';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
 
 // API returns snake_case, so we match that
 export interface Market {
@@ -52,7 +52,49 @@ export interface MarketWithSnapshotsResponse {
   offset: number;
 }
 
+export interface AuthResponse {
+  success: boolean;
+  data: {
+    accessToken: string;
+    tokenType: string;
+    expiresIn: number;
+    customer: {
+      id: string;
+      email: string;
+      companyName: string | null;
+      tier: string;
+      isActive: boolean;
+      emailVerified: boolean;
+      createdAt: string;
+    };
+  };
+  message: string;
+  timestamp: string;
+}
+
 export const api = {
+  register: async (params: {
+    email: string;
+    password: string;
+    companyName?: string;
+  }): Promise<AuthResponse> => {
+    const { data } = await axios.post(`${API_BASE}/auth/register`, params);
+    return data;
+  },
+
+  login: async (params: {
+    email: string;
+    password: string;
+  }): Promise<AuthResponse> => {
+    const { data } = await axios.post(`${API_BASE}/auth/login`, params);
+    return data;
+  },
+
+  googleAuth: async (credential: string): Promise<AuthResponse> => {
+    const { data } = await axios.post(`${API_BASE}/auth/google`, { credential });
+    return data;
+  },
+
   getMarkets: async (params: {
     coin: string;
     limit?: number;

@@ -19,7 +19,7 @@ const plans = [
       { text: 'Priority support', included: false },
     ],
     cta: 'Get Started',
-    ctaLink: '/markets',
+    ctaLink: '/signup',
     popular: false,
   },
   {
@@ -216,7 +216,7 @@ export function Pricing() {
             Start with our free tier and upgrade as you grow.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/markets" className="btn-primary inline-flex items-center gap-2 justify-center">
+            <Link to="/signup" className="btn-primary inline-flex items-center gap-2 justify-center">
               Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>

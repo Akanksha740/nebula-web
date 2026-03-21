@@ -133,7 +133,7 @@ export function Features() {
               with real historical Polymarket data.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/markets" className="btn-primary inline-flex items-center gap-2">
+              <Link to="/signup" className="btn-primary inline-flex items-center gap-2">
                 Explore Markets
                 <ArrowRight className="w-4 h-4" />
               </Link>
@@ -265,7 +265,7 @@ export function Features() {
             Start exploring markets and building your strategies today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/markets" className="btn-primary inline-flex items-center gap-2 justify-center">
+            <Link to="/signup" className="btn-primary inline-flex items-center gap-2 justify-center">
               Explore Markets
               <ArrowRight className="w-4 h-4" />
             </Link>

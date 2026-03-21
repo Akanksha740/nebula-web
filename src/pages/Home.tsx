@@ -157,7 +157,7 @@ export function Home() {
             </p>
 
             <div className="flex flex-row flex-wrap gap-3 justify-center">
-              <Link to="/markets" className="btn-primary">
+              <Link to="/signup" className="btn-primary">
                 Start Exploring
                 <ArrowRight className="w-4 h-4" />
               </Link>
@@ -424,7 +424,7 @@ export function Home() {
             with real historical Polymarket data.
           </p>
           <div className="flex flex-row flex-wrap gap-3 justify-center">
-            <Link to="/markets" className="btn-primary">
+            <Link to="/signup" className="btn-primary">
               Explore Markets
               <ArrowRight className="w-4 h-4" />
             </Link>

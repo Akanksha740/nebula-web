@@ -44,8 +44,8 @@ export function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <button className="btn-secondary text-sm py-2 px-4">Login</button>
-            <button className="btn-primary text-sm py-2 px-4">Get Started</button>
+            <Link to="/login" className="btn-secondary text-sm py-2 px-4">Login</Link>
+            <Link to="/signup" className="btn-primary text-sm py-2 px-4">Get Started</Link>
           </div>
 
           {/* Mobile menu button */}
@@ -77,8 +77,8 @@ export function Navbar() {
               </Link>
             ))}
             <div className="flex gap-2 pt-4">
-              <button className="btn-secondary text-sm py-2 px-4 flex-1">Login</button>
-              <button className="btn-primary text-sm py-2 px-4 flex-1">Get Started</button>
+              <Link to="/login" className="btn-secondary text-sm py-2 px-4 flex-1 justify-center" onClick={() => setMobileMenuOpen(false)}>Login</Link>
+              <Link to="/signup" className="btn-primary text-sm py-2 px-4 flex-1 justify-center" onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
             </div>
           </div>
         </div>
