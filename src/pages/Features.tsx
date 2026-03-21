@@ -27,11 +27,11 @@ const features = [
     icon: Clock,
     title: 'Sub-second Snapshots',
     description:
-      'Capture market conditions at sub-second intervals. Every snapshot includes BTC, ETH & SOL reference prices for accurate backtesting.',
+      'Capture market conditions at sub-second intervals. Every snapshot includes BTC reference prices for accurate backtesting.',
     details: [
       'Sub-second time resolution',
       'Precise timestamps',
-      'BTC/ETH/SOL prices included',
+      'BTC prices included',
       'Chainlink & Binance data',
     ],
   },
@@ -115,9 +115,7 @@ const timeframes = [
 ];
 
 const coins = [
-  { symbol: 'BTC', name: 'Bitcoin', color: 'text-orange-400' },
-  { symbol: 'ETH', name: 'Ethereum', color: 'text-blue-400' },
-  { symbol: 'SOL', name: 'Solana', color: 'text-purple-400' },
+  { symbol: 'BTC', name: 'Bitcoin', color: 'text-accent-orange' },
 ];
 
 export function Features() {
@@ -130,7 +128,7 @@ export function Features() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Complete Market <span className="gradient-text">Visibility</span>
             </h1>
-            <p className="text-lg text-slate-400 mb-8">
+            <p className="text-lg text-text-muted mb-8">
               Everything you need to backtest and create winning trading strategies
               with real historical Polymarket data.
             </p>
@@ -160,7 +158,7 @@ export function Features() {
                 {coins.map((coin) => (
                   <div key={coin.symbol} className="flex items-center gap-3">
                     <span className={`font-mono font-bold ${coin.color}`}>{coin.symbol}</span>
-                    <span className="text-slate-400">{coin.name}</span>
+                    <span className="text-text-muted">{coin.name}</span>
                   </div>
                 ))}
               </div>
@@ -173,13 +171,13 @@ export function Features() {
                 {timeframes.map((tf) => (
                   <span
                     key={tf.label}
-                    className="px-3 py-1.5 bg-indigo-500/20 text-indigo-400 rounded-lg text-sm font-medium"
+                    className="px-3 py-1.5 bg-primary/10 text-primary rounded-lg text-sm font-medium"
                   >
                     {tf.label}
                   </span>
                 ))}
               </div>
-              <p className="text-slate-400 text-sm mt-4">
+              <p className="text-text-muted text-sm mt-4">
                 All major Polymarket Up/Down market durations
               </p>
             </div>
@@ -189,19 +187,19 @@ export function Features() {
               <h3 className="font-semibold mb-4">Data Points</h3>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-green-400" />
+                  <Check className="w-4 h-4 text-accent-green" />
                   <span>Order book depth (bids & asks)</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-green-400" />
+                  <Check className="w-4 h-4 text-accent-green" />
                   <span>Price UP / Price DOWN</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-green-400" />
-                  <span>BTC/ETH/SOL reference prices</span>
+                  <Check className="w-4 h-4 text-accent-green" />
+                  <span>BTC reference prices</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-green-400" />
+                  <Check className="w-4 h-4 text-accent-green" />
                   <span>Market metadata & status</span>
                 </li>
               </ul>
@@ -211,22 +209,22 @@ export function Features() {
       </section>
 
       {/* Features Grid */}
-      <section className="py-16 bg-slate-900/50">
+      <section className="py-16 bg-surface-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">Platform Features</h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature) => (
               <div key={feature.title} className="card p-6">
-                <div className="w-12 h-12 rounded-lg bg-indigo-500/20 flex items-center justify-center mb-4">
-                  <feature.icon className="w-6 h-6 text-indigo-400" />
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <feature.icon className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-slate-400 mb-4">{feature.description}</p>
+                <p className="text-text-muted mb-4">{feature.description}</p>
                 <ul className="space-y-2">
                   {feature.details.map((detail) => (
                     <li key={detail} className="flex items-center gap-2 text-sm">
-                      <Check className="w-4 h-4 text-green-400" />
+                      <Check className="w-4 h-4 text-accent-green" />
                       <span>{detail}</span>
                     </li>
                   ))}
@@ -241,18 +239,18 @@ export function Features() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-4">What You Can Build</h2>
-          <p className="text-slate-400 text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-text-muted text-center mb-12 max-w-2xl mx-auto">
             Powerful applications built on historical Polymarket data
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">
             {useCases.map((useCase) => (
               <div key={useCase.title} className="card p-6">
-                <div className="w-12 h-12 rounded-lg bg-indigo-500/20 flex items-center justify-center mb-4">
-                  <useCase.icon className="w-6 h-6 text-indigo-400" />
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <useCase.icon className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{useCase.title}</h3>
-                <p className="text-slate-400">{useCase.description}</p>
+                <p className="text-text-muted">{useCase.description}</p>
               </div>
             ))}
           </div>
@@ -263,7 +261,7 @@ export function Features() {
       <section className="py-16 border-t border-white/5">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to get started?</h2>
-          <p className="text-slate-400 mb-8">
+          <p className="text-text-muted mb-8">
             Start exploring markets and building your strategies today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

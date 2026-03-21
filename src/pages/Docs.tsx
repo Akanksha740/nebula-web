@@ -51,8 +51,8 @@ export function Docs() {
                       onClick={() => setActiveSection(section.id)}
                       className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${
                         activeSection === section.id
-                          ? 'bg-indigo-500/20 text-indigo-400'
-                          : 'text-slate-400 hover:text-white hover:bg-white/5'
+                          ? 'bg-primary/10 text-primary'
+                          : 'text-text-muted hover:text-white hover:bg-white/5'
                       }`}
                     >
                       <section.icon className="w-4 h-4" />
@@ -69,28 +69,28 @@ export function Docs() {
             {/* Getting Started */}
             <section id="getting-started" className="mb-16">
               <h1 className="text-3xl font-bold mb-4">Getting Started</h1>
-              <p className="text-slate-400 mb-6">
+              <p className="text-text-muted mb-6">
                 Welcome to the PolyHistorical API documentation. This guide will help you get started
                 with accessing historical Polymarket data for your backtesting and analysis needs.
               </p>
 
               <div className="card p-6 mb-6">
                 <h3 className="font-semibold mb-4">Quick Start</h3>
-                <ol className="space-y-4 text-slate-300">
+                <ol className="space-y-4 text-text-primary">
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500 text-white text-sm flex items-center justify-center">1</span>
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-white text-sm flex items-center justify-center">1</span>
                     <span>Register an account and get your JWT token</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500 text-white text-sm flex items-center justify-center">2</span>
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-white text-sm flex items-center justify-center">2</span>
                     <span>Create an API key for programmatic access</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500 text-white text-sm flex items-center justify-center">3</span>
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-white text-sm flex items-center justify-center">3</span>
                     <span>Make your first API request to list available markets</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500 text-white text-sm flex items-center justify-center">4</span>
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-white text-sm flex items-center justify-center">4</span>
                     <span>Fetch snapshots for a specific market to get historical order book data</span>
                   </li>
                 </ol>
@@ -110,7 +110,7 @@ export function Docs() {
             {/* Authentication */}
             <section id="authentication" className="mb-16">
               <h2 className="text-2xl font-bold mb-4">Authentication</h2>
-              <p className="text-slate-400 mb-6">
+              <p className="text-text-muted mb-6">
                 The API supports two authentication methods: JWT Bearer tokens (obtained via login) and API keys.
                 The free tier doesn't require authentication for market endpoints. For Pro and Enterprise plans,
                 include your credentials in the request header.
@@ -118,7 +118,7 @@ export function Docs() {
 
               <div className="card p-6 mb-6">
                 <h3 className="font-semibold mb-4">JWT Bearer Token</h3>
-                <p className="text-slate-400 mb-4">
+                <p className="text-text-muted mb-4">
                   Obtain a token by registering or logging in, then include it in the Authorization header.
                 </p>
                 <CodeBlock
@@ -132,7 +132,7 @@ export function Docs() {
 
               <div className="card p-6">
                 <h3 className="font-semibold mb-4">API Key</h3>
-                <p className="text-slate-400 mb-4">
+                <p className="text-text-muted mb-4">
                   Create an API key from your account, then include it in the Authorization header.
                 </p>
                 <CodeBlock
@@ -148,7 +148,7 @@ export function Docs() {
             {/* API Reference */}
             <section id="api" className="mb-16">
               <h2 className="text-2xl font-bold mb-4">API Reference</h2>
-              <p className="text-slate-400 mb-6">
+              <p className="text-text-muted mb-6">
                 All API responses are in JSON format. Timestamps are in ISO 8601 format (UTC).
                 Authenticated endpoints wrap responses in a standard envelope.
               </p>
@@ -156,7 +156,7 @@ export function Docs() {
               <div className="space-y-4">
                 <div className="card p-6">
                   <h3 className="font-semibold mb-2">Standard Response Format</h3>
-                  <p className="text-slate-400 mb-4">
+                  <p className="text-text-muted mb-4">
                     Auth and account endpoints return responses wrapped in a standard envelope with success status, data, and timestamp.
                   </p>
                   <CodeBlock
@@ -197,10 +197,10 @@ export function Docs() {
 
               <div className="card p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded">GET</span>
-                  <code className="text-indigo-400">/v1/health</code>
+                  <span className="px-2 py-1 bg-accent-green/20 text-accent-green text-xs font-semibold rounded">GET</span>
+                  <code className="text-primary">/v1/health</code>
                 </div>
-                <p className="text-slate-400 mb-4">
+                <p className="text-text-muted mb-4">
                   Check API health status. No authentication required.
                 </p>
 
@@ -237,10 +237,10 @@ export function Docs() {
               {/* Register */}
               <div className="card p-6 mb-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs font-semibold rounded">POST</span>
-                  <code className="text-indigo-400">/v1/auth/register</code>
+                  <span className="px-2 py-1 bg-accent-yellow/20 text-accent-yellow text-xs font-semibold rounded">POST</span>
+                  <code className="text-primary">/v1/auth/register</code>
                 </div>
-                <p className="text-slate-400 mb-4">
+                <p className="text-text-muted mb-4">
                   Register a new account. Returns a JWT token and user details.
                 </p>
 
@@ -249,10 +249,10 @@ export function Docs() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-white/10">
-                        <th className="text-left py-2 pr-4 text-slate-400">Field</th>
-                        <th className="text-left py-2 pr-4 text-slate-400">Type</th>
-                        <th className="text-left py-2 pr-4 text-slate-400">Required</th>
-                        <th className="text-left py-2 text-slate-400">Description</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Field</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Type</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Required</th>
+                        <th className="text-left py-2 text-text-muted">Description</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -260,19 +260,19 @@ export function Docs() {
                         <td className="py-2 pr-4"><code>email</code></td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">Yes</td>
-                        <td className="py-2 text-slate-400">Valid email address</td>
+                        <td className="py-2 text-text-muted">Valid email address</td>
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-2 pr-4"><code>password</code></td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">Yes</td>
-                        <td className="py-2 text-slate-400">8-100 characters</td>
+                        <td className="py-2 text-text-muted">8-100 characters</td>
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-2 pr-4"><code>companyName</code></td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">No</td>
-                        <td className="py-2 text-slate-400">Company name (max 255 chars)</td>
+                        <td className="py-2 text-text-muted">Company name (max 255 chars)</td>
                       </tr>
                     </tbody>
                   </table>
@@ -322,10 +322,10 @@ export function Docs() {
               {/* Login */}
               <div className="card p-6 mb-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs font-semibold rounded">POST</span>
-                  <code className="text-indigo-400">/v1/auth/login</code>
+                  <span className="px-2 py-1 bg-accent-yellow/20 text-accent-yellow text-xs font-semibold rounded">POST</span>
+                  <code className="text-primary">/v1/auth/login</code>
                 </div>
-                <p className="text-slate-400 mb-4">
+                <p className="text-text-muted mb-4">
                   Login to an existing account. Returns a JWT token and user details.
                 </p>
 
@@ -334,10 +334,10 @@ export function Docs() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-white/10">
-                        <th className="text-left py-2 pr-4 text-slate-400">Field</th>
-                        <th className="text-left py-2 pr-4 text-slate-400">Type</th>
-                        <th className="text-left py-2 pr-4 text-slate-400">Required</th>
-                        <th className="text-left py-2 text-slate-400">Description</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Field</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Type</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Required</th>
+                        <th className="text-left py-2 text-text-muted">Description</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -345,13 +345,13 @@ export function Docs() {
                         <td className="py-2 pr-4"><code>email</code></td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">Yes</td>
-                        <td className="py-2 text-slate-400">Registered email address</td>
+                        <td className="py-2 text-text-muted">Registered email address</td>
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-2 pr-4"><code>password</code></td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">Yes</td>
-                        <td className="py-2 text-slate-400">Account password</td>
+                        <td className="py-2 text-text-muted">Account password</td>
                       </tr>
                     </tbody>
                   </table>
@@ -399,10 +399,10 @@ export function Docs() {
               {/* Get Current User */}
               <div className="card p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded">GET</span>
-                  <code className="text-indigo-400">/v1/auth/me</code>
+                  <span className="px-2 py-1 bg-accent-green/20 text-accent-green text-xs font-semibold rounded">GET</span>
+                  <code className="text-primary">/v1/auth/me</code>
                 </div>
-                <p className="text-slate-400 mb-4">
+                <p className="text-text-muted mb-4">
                   Get the current authenticated user's details. Requires JWT authentication.
                 </p>
 
@@ -440,17 +440,17 @@ export function Docs() {
             {/* Account Endpoints */}
             <section id="account-endpoints" className="mb-16">
               <h2 className="text-2xl font-bold mb-4">Account Endpoints</h2>
-              <p className="text-slate-400 mb-6">
+              <p className="text-text-muted mb-6">
                 All account endpoints require JWT authentication.
               </p>
 
               {/* List API Keys */}
               <div className="card p-6 mb-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded">GET</span>
-                  <code className="text-indigo-400">/v1/account/api-keys</code>
+                  <span className="px-2 py-1 bg-accent-green/20 text-accent-green text-xs font-semibold rounded">GET</span>
+                  <code className="text-primary">/v1/account/api-keys</code>
                 </div>
-                <p className="text-slate-400 mb-4">
+                <p className="text-text-muted mb-4">
                   List all API keys for the authenticated user.
                 </p>
 
@@ -490,10 +490,10 @@ export function Docs() {
               {/* Create API Key */}
               <div className="card p-6 mb-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs font-semibold rounded">POST</span>
-                  <code className="text-indigo-400">/v1/account/api-keys</code>
+                  <span className="px-2 py-1 bg-accent-yellow/20 text-accent-yellow text-xs font-semibold rounded">POST</span>
+                  <code className="text-primary">/v1/account/api-keys</code>
                 </div>
-                <p className="text-slate-400 mb-4">
+                <p className="text-text-muted mb-4">
                   Create a new API key. The full key is only returned once - store it securely.
                 </p>
 
@@ -502,10 +502,10 @@ export function Docs() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-white/10">
-                        <th className="text-left py-2 pr-4 text-slate-400">Field</th>
-                        <th className="text-left py-2 pr-4 text-slate-400">Type</th>
-                        <th className="text-left py-2 pr-4 text-slate-400">Required</th>
-                        <th className="text-left py-2 text-slate-400">Description</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Field</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Type</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Required</th>
+                        <th className="text-left py-2 text-text-muted">Description</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -513,19 +513,19 @@ export function Docs() {
                         <td className="py-2 pr-4"><code>name</code></td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">Yes</td>
-                        <td className="py-2 text-slate-400">Key name (max 100 chars)</td>
+                        <td className="py-2 text-text-muted">Key name (max 100 chars)</td>
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-2 pr-4"><code>permissions</code></td>
                         <td className="py-2 pr-4">string[]</td>
                         <td className="py-2 pr-4">No</td>
-                        <td className="py-2 text-slate-400">Set of permissions for the key</td>
+                        <td className="py-2 text-text-muted">Set of permissions for the key</td>
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-2 pr-4"><code>expiresAt</code></td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">No</td>
-                        <td className="py-2 text-slate-400">Expiration time (ISO 8601)</td>
+                        <td className="py-2 text-text-muted">Expiration time (ISO 8601)</td>
                       </tr>
                     </tbody>
                   </table>
@@ -566,10 +566,10 @@ export function Docs() {
               {/* Revoke API Key */}
               <div className="card p-6 mb-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="px-2 py-1 bg-red-500/20 text-red-400 text-xs font-semibold rounded">DELETE</span>
-                  <code className="text-indigo-400">/v1/account/api-keys/{'{keyId}'}</code>
+                  <span className="px-2 py-1 bg-accent-red/20 text-accent-red text-xs font-semibold rounded">DELETE</span>
+                  <code className="text-primary">/v1/account/api-keys/{'{keyId}'}</code>
                 </div>
-                <p className="text-slate-400 mb-4">
+                <p className="text-text-muted mb-4">
                   Revoke an API key by its ID. This action cannot be undone.
                 </p>
 
@@ -578,16 +578,16 @@ export function Docs() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-white/10">
-                        <th className="text-left py-2 pr-4 text-slate-400">Parameter</th>
-                        <th className="text-left py-2 pr-4 text-slate-400">Type</th>
-                        <th className="text-left py-2 text-slate-400">Description</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Parameter</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Type</th>
+                        <th className="text-left py-2 text-text-muted">Description</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr className="border-b border-white/5">
                         <td className="py-2 pr-4"><code>keyId</code></td>
                         <td className="py-2 pr-4">UUID</td>
-                        <td className="py-2 text-slate-400">The API key ID to revoke</td>
+                        <td className="py-2 text-text-muted">The API key ID to revoke</td>
                       </tr>
                     </tbody>
                   </table>
@@ -619,10 +619,10 @@ export function Docs() {
               {/* Get Usage */}
               <div className="card p-6 mb-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded">GET</span>
-                  <code className="text-indigo-400">/v1/account/usage</code>
+                  <span className="px-2 py-1 bg-accent-green/20 text-accent-green text-xs font-semibold rounded">GET</span>
+                  <code className="text-primary">/v1/account/usage</code>
                 </div>
-                <p className="text-slate-400 mb-4">
+                <p className="text-text-muted mb-4">
                   Get API usage statistics for the authenticated user.
                 </p>
 
@@ -665,10 +665,10 @@ export function Docs() {
               {/* Get Subscription */}
               <div className="card p-6 mb-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded">GET</span>
-                  <code className="text-indigo-400">/v1/account/subscription</code>
+                  <span className="px-2 py-1 bg-accent-green/20 text-accent-green text-xs font-semibold rounded">GET</span>
+                  <code className="text-primary">/v1/account/subscription</code>
                 </div>
-                <p className="text-slate-400 mb-4">
+                <p className="text-text-muted mb-4">
                   Get current subscription details for the authenticated user.
                 </p>
 
@@ -685,10 +685,10 @@ export function Docs() {
               {/* Checkout */}
               <div className="card p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs font-semibold rounded">POST</span>
-                  <code className="text-indigo-400">/v1/account/subscription/checkout</code>
+                  <span className="px-2 py-1 bg-accent-yellow/20 text-accent-yellow text-xs font-semibold rounded">POST</span>
+                  <code className="text-primary">/v1/account/subscription/checkout</code>
                 </div>
-                <p className="text-slate-400 mb-4">
+                <p className="text-text-muted mb-4">
                   Create a Stripe checkout session to upgrade your subscription.
                 </p>
 
@@ -697,10 +697,10 @@ export function Docs() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-white/10">
-                        <th className="text-left py-2 pr-4 text-slate-400">Parameter</th>
-                        <th className="text-left py-2 pr-4 text-slate-400">Type</th>
-                        <th className="text-left py-2 pr-4 text-slate-400">Required</th>
-                        <th className="text-left py-2 text-slate-400">Description</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Parameter</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Type</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Required</th>
+                        <th className="text-left py-2 text-text-muted">Description</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -708,7 +708,7 @@ export function Docs() {
                         <td className="py-2 pr-4"><code>tier</code></td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">Yes</td>
-                        <td className="py-2 text-slate-400">Target tier: PRO or ENTERPRISE</td>
+                        <td className="py-2 text-text-muted">Target tier: PRO or ENTERPRISE</td>
                       </tr>
                     </tbody>
                   </table>
@@ -746,10 +746,10 @@ export function Docs() {
               {/* List Markets */}
               <div className="card p-6 mb-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded">GET</span>
-                  <code className="text-indigo-400">/v1/markets</code>
+                  <span className="px-2 py-1 bg-accent-green/20 text-accent-green text-xs font-semibold rounded">GET</span>
+                  <code className="text-primary">/v1/markets</code>
                 </div>
-                <p className="text-slate-400 mb-4">
+                <p className="text-text-muted mb-4">
                   List all markets with pagination and filtering options. Results are sorted by start_time descending (newest first).
                 </p>
 
@@ -758,10 +758,10 @@ export function Docs() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-white/10">
-                        <th className="text-left py-2 pr-4 text-slate-400">Parameter</th>
-                        <th className="text-left py-2 pr-4 text-slate-400">Type</th>
-                        <th className="text-left py-2 pr-4 text-slate-400">Required</th>
-                        <th className="text-left py-2 text-slate-400">Description</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Parameter</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Type</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Required</th>
+                        <th className="text-left py-2 text-text-muted">Description</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -769,43 +769,43 @@ export function Docs() {
                         <td className="py-2 pr-4"><code>coin</code></td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">Yes</td>
-                        <td className="py-2 text-slate-400">btc, eth, or sol</td>
+                        <td className="py-2 text-text-muted">btc</td>
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-2 pr-4"><code>limit</code></td>
                         <td className="py-2 pr-4">integer</td>
                         <td className="py-2 pr-4">No</td>
-                        <td className="py-2 text-slate-400">Max results (default: 50, max: 100)</td>
+                        <td className="py-2 text-text-muted">Max results (default: 50, max: 100)</td>
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-2 pr-4"><code>offset</code></td>
                         <td className="py-2 pr-4">integer</td>
                         <td className="py-2 pr-4">No</td>
-                        <td className="py-2 text-slate-400">Pagination offset (default: 0)</td>
+                        <td className="py-2 text-text-muted">Pagination offset (default: 0)</td>
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-2 pr-4"><code>market_type</code></td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">No</td>
-                        <td className="py-2 text-slate-400">5m, 15m, 1hr, 4hr, or 24hr</td>
+                        <td className="py-2 text-text-muted">5m, 15m, 1hr, 4hr, or 24hr</td>
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-2 pr-4"><code>resolved</code></td>
                         <td className="py-2 pr-4">boolean</td>
                         <td className="py-2 pr-4">No</td>
-                        <td className="py-2 text-slate-400">Filter by resolved status</td>
+                        <td className="py-2 text-text-muted">Filter by resolved status</td>
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-2 pr-4"><code>start_time</code></td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">No</td>
-                        <td className="py-2 text-slate-400">Filter markets starting after this time (ms epoch or ISO 8601)</td>
+                        <td className="py-2 text-text-muted">Filter markets starting after this time (ms epoch or ISO 8601)</td>
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-2 pr-4"><code>end_time</code></td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">No</td>
-                        <td className="py-2 text-slate-400">Filter markets starting before this time (ms epoch or ISO 8601)</td>
+                        <td className="py-2 text-text-muted">Filter markets starting before this time (ms epoch or ISO 8601)</td>
                       </tr>
                     </tbody>
                   </table>
@@ -855,10 +855,10 @@ export function Docs() {
               {/* Get Market */}
               <div className="card p-6 mb-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded">GET</span>
-                  <code className="text-indigo-400">/v1/markets/{'{slug}'}</code>
+                  <span className="px-2 py-1 bg-accent-green/20 text-accent-green text-xs font-semibold rounded">GET</span>
+                  <code className="text-primary">/v1/markets/{'{slug}'}</code>
                 </div>
-                <p className="text-slate-400 mb-4">
+                <p className="text-text-muted mb-4">
                   Get details for a specific market by slug.
                 </p>
 
@@ -867,10 +867,10 @@ export function Docs() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-white/10">
-                        <th className="text-left py-2 pr-4 text-slate-400">Parameter</th>
-                        <th className="text-left py-2 pr-4 text-slate-400">Type</th>
-                        <th className="text-left py-2 pr-4 text-slate-400">Required</th>
-                        <th className="text-left py-2 text-slate-400">Description</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Parameter</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Type</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Required</th>
+                        <th className="text-left py-2 text-text-muted">Description</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -878,7 +878,7 @@ export function Docs() {
                         <td className="py-2 pr-4"><code>coin</code></td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">Yes</td>
-                        <td className="py-2 text-slate-400">btc, eth, or sol</td>
+                        <td className="py-2 text-text-muted">btc</td>
                       </tr>
                     </tbody>
                   </table>
@@ -896,10 +896,10 @@ export function Docs() {
               {/* Get Snapshots */}
               <div className="card p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded">GET</span>
-                  <code className="text-indigo-400">/v1/markets/{'{slug}'}/snapshots</code>
+                  <span className="px-2 py-1 bg-accent-green/20 text-accent-green text-xs font-semibold rounded">GET</span>
+                  <code className="text-primary">/v1/markets/{'{slug}'}/snapshots</code>
                 </div>
-                <p className="text-slate-400 mb-4">
+                <p className="text-text-muted mb-4">
                   Get historical snapshots for a market, including order book data.
                 </p>
 
@@ -908,10 +908,10 @@ export function Docs() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-white/10">
-                        <th className="text-left py-2 pr-4 text-slate-400">Parameter</th>
-                        <th className="text-left py-2 pr-4 text-slate-400">Type</th>
-                        <th className="text-left py-2 pr-4 text-slate-400">Default</th>
-                        <th className="text-left py-2 text-slate-400">Description</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Parameter</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Type</th>
+                        <th className="text-left py-2 pr-4 text-text-muted">Default</th>
+                        <th className="text-left py-2 text-text-muted">Description</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -919,25 +919,25 @@ export function Docs() {
                         <td className="py-2 pr-4"><code>coin</code></td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">-</td>
-                        <td className="py-2 text-slate-400">Required: btc, eth, or sol</td>
+                        <td className="py-2 text-text-muted">Required: btc</td>
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-2 pr-4"><code>include_orderbook</code></td>
                         <td className="py-2 pr-4">boolean</td>
                         <td className="py-2 pr-4">false</td>
-                        <td className="py-2 text-slate-400">Include full orderbook data</td>
+                        <td className="py-2 text-text-muted">Include full orderbook data</td>
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-2 pr-4"><code>limit</code></td>
                         <td className="py-2 pr-4">integer</td>
                         <td className="py-2 pr-4">100</td>
-                        <td className="py-2 text-slate-400">Max snapshots to return</td>
+                        <td className="py-2 text-text-muted">Max snapshots to return</td>
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-2 pr-4"><code>offset</code></td>
                         <td className="py-2 pr-4">integer</td>
                         <td className="py-2 pr-4">0</td>
-                        <td className="py-2 text-slate-400">Pagination offset</td>
+                        <td className="py-2 text-text-muted">Pagination offset</td>
                       </tr>
                     </tbody>
                   </table>
@@ -1151,7 +1151,7 @@ curl "https://api.polyhistorical.com/v1/health"`}
             {/* Rate Limits */}
             <section id="rate-limits" className="mb-16">
               <h2 className="text-2xl font-bold mb-4">Rate Limits</h2>
-              <p className="text-slate-400 mb-6">
+              <p className="text-text-muted mb-6">
                 API rate limits vary by plan. Exceeding limits returns a 429 status code.
               </p>
 
@@ -1159,9 +1159,9 @@ curl "https://api.polyhistorical.com/v1/health"`}
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-white/10">
-                      <th className="text-left py-3 text-slate-400">Plan</th>
-                      <th className="text-left py-3 text-slate-400">Requests/minute</th>
-                      <th className="text-left py-3 text-slate-400">Requests/day</th>
+                      <th className="text-left py-3 text-text-muted">Plan</th>
+                      <th className="text-left py-3 text-text-muted">Requests/minute</th>
+                      <th className="text-left py-3 text-text-muted">Requests/day</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -1203,19 +1203,19 @@ function CodeBlock({
   onCopy: (code: string, id: string) => void;
 }) {
   return (
-    <div className="relative bg-slate-900 rounded-lg overflow-hidden">
+    <div className="relative bg-surface-dark rounded-lg overflow-hidden">
       <button
         onClick={() => onCopy(code, id)}
-        className="absolute top-3 right-3 p-1.5 bg-slate-800 rounded hover:bg-slate-700 transition-colors"
+        className="absolute top-3 right-3 p-1.5 bg-surface-card rounded hover:bg-surface-card-hover transition-colors"
       >
         {copiedCode === id ? (
-          <Check className="w-4 h-4 text-green-400" />
+          <Check className="w-4 h-4 text-accent-green" />
         ) : (
-          <Copy className="w-4 h-4 text-slate-400" />
+          <Copy className="w-4 h-4 text-text-muted" />
         )}
       </button>
       <pre className="p-4 overflow-x-auto text-sm">
-        <code className="text-slate-300">{code}</code>
+        <code className="text-text-primary">{code}</code>
       </pre>
     </div>
   );

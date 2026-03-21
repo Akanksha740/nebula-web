@@ -1,16 +1,25 @@
 @import "tailwindcss";
 
-:root {
-  --primary: #6366f1;
-  --primary-dark: #4f46e5;
-  --bg-dark: #0f172a;
-  --bg-card: #1e293b;
-  --bg-card-hover: #334155;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --green: #22c55e;
-  --red: #ef4444;
-  --yellow: #eab308;
+@theme {
+  --color-primary: #2C5CFF;
+  --color-primary-hover: #1A4AED;
+  --color-primary-light: #5B8AFF;
+  --color-surface-dark: #0D1117;
+  --color-surface-base: #131722;
+  --color-surface-card: #1C2030;
+  --color-surface-card-hover: #242838;
+  --color-text-primary: #E8EAED;
+  --color-text-muted: #8B8FA3;
+  --color-text-dim: #555555;
+  --color-accent-green: #00C853;
+  --color-accent-red: #FF3B30;
+  --color-accent-yellow: #FFB800;
+  --color-accent-orange: #F97316;
+  --color-accent-blue: #3B82F6;
+  --color-accent-purple: #A855F7;
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-hover: rgba(255, 255, 255, 0.12);
+  --color-border-subtle: rgba(255, 255, 255, 0.05);
 }
 
 * {
@@ -19,8 +28,8 @@
 
 body {
   margin: 0;
-  background: var(--bg-dark);
-  color: var(--text-primary);
+  background: var(--color-surface-base);
+  color: var(--color-text-primary);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
 }
@@ -30,53 +39,36 @@ html {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-primary);
 }
 
 .gradient-border {
-  position: relative;
-  background: var(--bg-card);
-  border-radius: 1rem;
-}
-
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 1rem;
-  padding: 1px;
-  background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+  background: var(--color-surface-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
 }
 
 .card {
-  background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1rem;
-  transition: all 0.3s ease;
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  transition: border-color 0.2s ease;
 }
 
 .card:hover {
-  background: var(--bg-card-hover);
-  border-color: rgba(99, 102, 241, 0.5);
-  transform: translateY(-2px);
+  border-color: var(--color-border-hover);
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  background: var(--color-primary);
   color: white;
-  padding: 0.75rem 1.5rem;
+  padding: 0.625rem 1.25rem;
   border-radius: 0.5rem;
   font-weight: 600;
+  font-size: 0.875rem;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.2s ease;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -85,19 +77,19 @@ html {
 }
 
 .btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 40px -10px rgba(99, 102, 241, 0.5);
+  background: var(--color-primary-hover);
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--text-primary);
-  padding: 0.75rem 1.5rem;
+  color: var(--color-text-primary);
+  padding: 0.625rem 1.25rem;
   border-radius: 0.5rem;
   font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.875rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -106,21 +98,12 @@ html {
 }
 
 .btn-secondary:hover {
-  border-color: var(--primary);
-  background: rgba(99, 102, 241, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .glow {
-  box-shadow: 0 0 60px 20px rgba(99, 102, 241, 0.15);
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+  box-shadow: none;
 }
 
 .scrollbar-hide {

@@ -16,8 +16,6 @@ const plans = [
       { text: 'Full order book depth', included: true },
       { text: 'Historical timestamp queries', included: true },
       { text: 'Binance Spot and Futures Data', included: false },
-      { text: 'ETH Markets', included: false },
-      { text: 'SOL Markets', included: false },
       { text: 'Priority support', included: false },
     ],
     cta: 'Get Started',
@@ -33,8 +31,6 @@ const plans = [
       { text: 'BTC 5m & 15m - Unlimited', included: true },
       { text: 'BTC 1h & 4h - Unlimited', included: true },
       { text: 'BTC 24h - Unlimited', included: true },
-      { text: 'ETH 5m, 15m, 1h - Unlimited', included: true },
-      { text: 'SOL 5m, 15m, 1h - Unlimited', included: true },
       { text: 'Binance Spot & Futures data', included: true },
       { text: 'Unlimited Market History', included: true },
       { text: 'Sub-second resolution', included: true },
@@ -95,7 +91,7 @@ export function Pricing() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Transparent <span className="gradient-text">Pricing</span>
             </h1>
-            <p className="text-lg text-slate-400">
+            <p className="text-lg text-text-muted">
               Start for free, upgrade for power. No hidden fees.
             </p>
           </div>
@@ -110,11 +106,11 @@ export function Pricing() {
               <div
                 key={plan.name}
                 className={`card p-6 flex flex-col ${
-                  plan.popular ? 'ring-2 ring-indigo-500 relative' : ''
+                  plan.popular ? 'ring-2 ring-primary relative' : ''
                 }`}
               >
                 {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-indigo-500 text-white text-xs font-semibold rounded-full">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full">
                     Most Popular
                   </div>
                 )}
@@ -124,10 +120,10 @@ export function Pricing() {
                   <div className="flex items-baseline gap-1 mb-2">
                     <span className="text-4xl font-bold">{plan.price}</span>
                     {plan.period && (
-                      <span className="text-slate-400">{plan.period}</span>
+                      <span className="text-text-muted">{plan.period}</span>
                     )}
                   </div>
-                  <p className="text-slate-400 text-sm">{plan.description}</p>
+                  <p className="text-text-muted text-sm">{plan.description}</p>
                 </div>
 
                 <ul className="space-y-3 mb-8 flex-1">
@@ -135,11 +131,11 @@ export function Pricing() {
                     <li
                       key={feature.text}
                       className={`flex items-start gap-2 text-sm ${
-                        feature.included ? '' : 'text-slate-500'
+                        feature.included ? '' : 'text-text-dim'
                       }`}
                     >
                       {feature.included ? (
-                        <Check className="w-4 h-4 text-green-400 mt-0.5 shrink-0" />
+                        <Check className="w-4 h-4 text-accent-green mt-0.5 shrink-0" />
                       ) : (
                         <span className="w-4 h-4 mt-0.5 shrink-0 text-center">—</span>
                       )}
@@ -169,10 +165,10 @@ export function Pricing() {
           <div className="card overflow-hidden">
             <table className="w-full">
               <thead>
-                <tr className="bg-slate-900/50">
-                  <th className="text-left py-4 px-6 text-sm font-medium text-slate-400">Plan</th>
-                  <th className="text-center py-4 px-6 text-sm font-medium text-slate-400">Requests/minute</th>
-                  <th className="text-center py-4 px-6 text-sm font-medium text-slate-400">Requests/day</th>
+                <tr className="bg-surface-dark">
+                  <th className="text-left py-4 px-6 text-sm font-medium text-text-muted">Plan</th>
+                  <th className="text-center py-4 px-6 text-sm font-medium text-text-muted">Requests/minute</th>
+                  <th className="text-center py-4 px-6 text-sm font-medium text-text-muted">Requests/day</th>
                 </tr>
               </thead>
               <tbody>
@@ -198,14 +194,14 @@ export function Pricing() {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 bg-slate-900/50">
+      <section className="py-16 bg-surface-dark">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-center mb-8">Frequently Asked Questions</h2>
           <div className="space-y-4">
             {faqs.map((faq) => (
               <div key={faq.question} className="card p-6">
                 <h3 className="font-semibold mb-2">{faq.question}</h3>
-                <p className="text-slate-400">{faq.answer}</p>
+                <p className="text-text-muted">{faq.answer}</p>
               </div>
             ))}
           </div>
@@ -216,7 +212,7 @@ export function Pricing() {
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to get started?</h2>
-          <p className="text-slate-400 mb-8">
+          <p className="text-text-muted mb-8">
             Start with our free tier and upgrade as you grow.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
