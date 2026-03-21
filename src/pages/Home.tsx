@@ -115,8 +115,8 @@ const pricingPlans = [
 
 const faqs = [
   {
-    question: 'Is Nebula free?',
-    answer: 'Nebula offers a generous free tier for getting started, and a Pro plan for power users who need unlimited access and priority support.',
+    question: 'Is PolyHistorical free?',
+    answer: 'PolyHistorical offers a generous free tier for getting started, and a Pro plan for power users who need unlimited access and priority support.',
   },
   {
     question: 'How often are snapshots taken?',
@@ -124,7 +124,7 @@ const faqs = [
   },
   {
     question: 'Is this affiliated with Polymarket?',
-    answer: 'No, Nebula is an independent project. We are not affiliated with, endorsed by, or connected to Polymarket, Binance, or any other exchange. We simply provide historical data for research and backtesting purposes.',
+    answer: 'No, PolyHistorical is an independent project. We are not affiliated with, endorsed by, or connected to Polymarket, Binance, or any other exchange. We simply provide historical data for research and backtesting purposes.',
   },
   {
     question: 'What markets do you cover?',
@@ -163,12 +163,12 @@ export function Home() {
               backtest fills, spreads, and slippage with price-level context.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/markets" className="btn-primary inline-flex items-center gap-2 justify-center">
+            <div className="flex flex-row flex-wrap gap-4 justify-center">
+              <Link to="/markets" className="btn-primary inline-flex items-center gap-2">
                 Start Exploring
                 <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link to="/docs" className="btn-secondary inline-flex items-center gap-2 justify-center">
+              <Link to="/docs" className="btn-secondary inline-flex items-center gap-2">
                 View Documentation
               </Link>
             </div>
@@ -177,21 +177,21 @@ export function Home() {
           {/* Live Demo Card */}
           <div className="mt-16 max-w-4xl mx-auto">
             <div className="gradient-border p-6 glow">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <span className="text-lg font-semibold">btc-updown-15m-1770138000</span>
-                  <span className="px-2 py-0.5 text-xs bg-indigo-500/20 text-indigo-400 rounded">15m</span>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+                <div className="flex items-center gap-3 min-w-0">
+                  <span className="text-base sm:text-lg font-semibold truncate">bitcoin-up-or-down-on-march-21-2026</span>
+                  <span className="px-2 py-0.5 text-xs bg-indigo-500/20 text-indigo-400 rounded shrink-0">24h</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 shrink-0">
                   <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  <span className="text-sm text-green-400">Nebula API Connected</span>
+                  <span className="text-sm text-green-400">PolyHistorical API Connected</span>
                 </div>
               </div>
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="bg-slate-800/50 rounded-lg p-4">
                   <div className="text-sm text-slate-400 mb-1">BTC Price</div>
-                  <div className="text-xl font-semibold">$84,235.42</div>
+                  <div className="text-xl font-semibold">$69,914</div>
                 </div>
                 <div className="bg-slate-800/50 rounded-lg p-4">
                   <div className="text-sm text-slate-400 mb-1">Price UP</div>
@@ -209,7 +209,7 @@ export function Home() {
                 </div>
                 <div className="bg-slate-800/50 rounded-lg p-4">
                   <div className="text-sm text-slate-400 mb-1">Snapshots</div>
-                  <div className="text-xl font-semibold">1,247</div>
+                  <div className="text-xl font-semibold">67,568</div>
                 </div>
               </div>
             </div>
@@ -306,22 +306,22 @@ export function Home() {
             </div>
             
             <div className="bg-slate-800 rounded-xl overflow-hidden border border-white/10">
-              <div className="flex items-center gap-2 px-4 py-3 bg-slate-900 border-b border-white/10">
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                <div className="w-3 h-3 rounded-full bg-green-500" />
-                <span className="text-sm text-slate-400 ml-2">GET /v1/markets/btc-updown-15m-1770138000</span>
+              <div className="flex items-center gap-2 px-4 py-3 bg-slate-900 border-b border-white/10 overflow-hidden">
+                <div className="w-3 h-3 rounded-full bg-red-500 shrink-0" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500 shrink-0" />
+                <div className="w-3 h-3 rounded-full bg-green-500 shrink-0" />
+                <span className="text-sm text-slate-400 ml-2 truncate">GET /v1/markets/bitcoin-up-or-down-on-march-21-2026</span>
               </div>
               <pre className="p-4 text-sm overflow-x-auto">
                 <code className="text-slate-300">{`{
-  "slug": "btc-updown-15m-1770138000",
+  "slug": "bitcoin-up-or-down-on-march-21-2026",
   "coin": "BTC",
-  "market_type": "15m",
-  "start_time": "2026-02-04T01:00:00Z",
-  "end_time": "2026-02-04T01:15:00Z",
-  "btc_price_start": 76488.08,
-  "winner": "Down",
-  "resolved": true
+  "market_type": "24h",
+  "start_time": "2026-03-21T00:00:00Z",
+  "end_time": "2026-03-21T23:59:59Z",
+  "btc_price_start": 69914,
+  "snapshots": 67568,
+  "resolved": false
 }`}</code>
               </pre>
             </div>
@@ -392,7 +392,7 @@ export function Home() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
-            <p className="text-slate-400">Everything you need to know about Nebula</p>
+            <p className="text-slate-400">Everything you need to know about PolyHistorical</p>
           </div>
 
           <div className="space-y-4">
@@ -427,15 +427,15 @@ export function Home() {
             Ready to start backtesting?
           </h2>
           <p className="text-slate-400 mb-8 max-w-2xl mx-auto">
-            Join traders and researchers using Nebula to build winning strategies 
+            Join traders and researchers using PolyHistorical to build winning strategies 
             with real historical Polymarket data.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/markets" className="btn-primary inline-flex items-center gap-2 justify-center">
+          <div className="flex flex-row flex-wrap gap-4 justify-center">
+            <Link to="/markets" className="btn-primary inline-flex items-center gap-2">
               Explore Markets
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link to="/docs" className="btn-secondary inline-flex items-center gap-2 justify-center">
+            <Link to="/docs" className="btn-secondary inline-flex items-center gap-2">
               Read Documentation
             </Link>
           </div>

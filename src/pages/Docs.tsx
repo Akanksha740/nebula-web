@@ -64,7 +64,7 @@ export function Docs() {
             <section id="getting-started" className="mb-16">
               <h1 className="text-3xl font-bold mb-4">Getting Started</h1>
               <p className="text-slate-400 mb-6">
-                Welcome to the Nebula API documentation. This guide will help you get started
+                Welcome to the PolyHistorical API documentation. This guide will help you get started
                 with accessing historical Polymarket data for your backtesting and analysis needs.
               </p>
 

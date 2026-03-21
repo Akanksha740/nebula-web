@@ -11,7 +11,7 @@ export function Footer() {
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
                 <Activity className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold">Nebula</span>
+              <span className="text-xl font-bold">PolyHistorical</span>
             </Link>
             <p className="text-slate-400 text-sm">
               Professional grade historical market data for backtesting Polymarket strategies.
@@ -47,7 +47,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-white/5 mt-12 pt-8 text-center text-slate-400 text-sm">
-          © {new Date().getFullYear()} Nebula. All rights reserved.
+          © {new Date().getFullYear()} PolyHistorical. All rights reserved.
         </div>
       </div>
     </footer>
