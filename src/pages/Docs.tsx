@@ -8,13 +8,19 @@ import {
   Zap,
   Copy,
   Check,
+  Heart,
+  User,
+  Settings,
 } from 'lucide-react';
 
 const sections = [
   { id: 'getting-started', label: 'Getting Started', icon: Book },
   { id: 'authentication', label: 'Authentication', icon: Key },
   { id: 'api', label: 'API Reference', icon: Server },
-  { id: 'endpoints', label: 'Endpoints', icon: Database },
+  { id: 'health', label: 'Health', icon: Heart },
+  { id: 'auth-endpoints', label: 'Auth Endpoints', icon: User },
+  { id: 'account-endpoints', label: 'Account Endpoints', icon: Settings },
+  { id: 'market-endpoints', label: 'Market Endpoints', icon: Database },
   { id: 'examples', label: 'Code Examples', icon: Code },
   { id: 'rate-limits', label: 'Rate Limits', icon: Zap },
 ];
@@ -73,14 +79,18 @@ export function Docs() {
                 <ol className="space-y-4 text-slate-300">
                   <li className="flex gap-3">
                     <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500 text-white text-sm flex items-center justify-center">1</span>
-                    <span>Sign up for a free account to get your API key</span>
+                    <span>Register an account and get your JWT token</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500 text-white text-sm flex items-center justify-center">2</span>
-                    <span>Make your first API request to list available markets</span>
+                    <span>Create an API key for programmatic access</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500 text-white text-sm flex items-center justify-center">3</span>
+                    <span>Make your first API request to list available markets</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500 text-white text-sm flex items-center justify-center">4</span>
                     <span>Fetch snapshots for a specific market to get historical order book data</span>
                   </li>
                 </ol>
@@ -90,7 +100,7 @@ export function Docs() {
                 <h3 className="font-semibold mb-4">Base URL</h3>
                 <CodeBlock
                   id="base-url"
-                  code="https://api.nebula.io/v1"
+                  code="https://api.polyhistorical.com/v1"
                   copiedCode={copiedCode}
                   onCopy={copyCode}
                 />
@@ -101,16 +111,34 @@ export function Docs() {
             <section id="authentication" className="mb-16">
               <h2 className="text-2xl font-bold mb-4">Authentication</h2>
               <p className="text-slate-400 mb-6">
-                The free tier doesn't require authentication. For Pro and Enterprise plans,
-                include your API key in the request header.
+                The API supports two authentication methods: JWT Bearer tokens (obtained via login) and API keys.
+                The free tier doesn't require authentication for market endpoints. For Pro and Enterprise plans,
+                include your credentials in the request header.
               </p>
 
-              <div className="card p-6">
-                <h3 className="font-semibold mb-4">API Key Header</h3>
+              <div className="card p-6 mb-6">
+                <h3 className="font-semibold mb-4">JWT Bearer Token</h3>
+                <p className="text-slate-400 mb-4">
+                  Obtain a token by registering or logging in, then include it in the Authorization header.
+                </p>
                 <CodeBlock
-                  id="auth-header"
+                  id="auth-jwt"
+                  code={`curl -H "Authorization: Bearer YOUR_JWT_TOKEN" \\
+  https://api.polyhistorical.com/v1/auth/me`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+              </div>
+
+              <div className="card p-6">
+                <h3 className="font-semibold mb-4">API Key</h3>
+                <p className="text-slate-400 mb-4">
+                  Create an API key from your account, then include it in the Authorization header.
+                </p>
+                <CodeBlock
+                  id="auth-apikey"
                   code={`curl -H "Authorization: Bearer YOUR_API_KEY" \\
-  https://api.nebula.io/v1/markets?coin=btc`}
+  https://api.polyhistorical.com/v1/markets?coin=btc`}
                   copiedCode={copiedCode}
                   onCopy={copyCode}
                 />
@@ -122,22 +150,39 @@ export function Docs() {
               <h2 className="text-2xl font-bold mb-4">API Reference</h2>
               <p className="text-slate-400 mb-6">
                 All API responses are in JSON format. Timestamps are in ISO 8601 format (UTC).
+                Authenticated endpoints wrap responses in a standard envelope.
               </p>
 
               <div className="space-y-4">
                 <div className="card p-6">
-                  <h3 className="font-semibold mb-2">Response Format</h3>
+                  <h3 className="font-semibold mb-2">Standard Response Format</h3>
                   <p className="text-slate-400 mb-4">
-                    Successful responses return the requested data directly. Error responses include
-                    an error message and status code.
+                    Auth and account endpoints return responses wrapped in a standard envelope with success status, data, and timestamp.
                   </p>
                   <CodeBlock
                     id="response-format"
                     code={`{
-  "markets": [...],
-  "total": 100,
-  "limit": 20,
-  "offset": 0
+  "success": true,
+  "data": { ... },
+  "message": "Optional message",
+  "timestamp": "2026-03-15T12:00:00Z"
+}`}
+                    copiedCode={copiedCode}
+                    onCopy={copyCode}
+                  />
+                </div>
+
+                <div className="card p-6">
+                  <h3 className="font-semibold mb-2">Error Response Format</h3>
+                  <CodeBlock
+                    id="error-format"
+                    code={`{
+  "success": false,
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Invalid email format"
+  },
+  "timestamp": "2026-03-15T12:00:00Z"
 }`}
                     copiedCode={copiedCode}
                     onCopy={copyCode}
@@ -146,9 +191,557 @@ export function Docs() {
               </div>
             </section>
 
-            {/* Endpoints */}
-            <section id="endpoints" className="mb-16">
-              <h2 className="text-2xl font-bold mb-4">Endpoints</h2>
+            {/* Health */}
+            <section id="health" className="mb-16">
+              <h2 className="text-2xl font-bold mb-4">Health</h2>
+
+              <div className="card p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded">GET</span>
+                  <code className="text-indigo-400">/v1/health</code>
+                </div>
+                <p className="text-slate-400 mb-4">
+                  Check API health status. No authentication required.
+                </p>
+
+                <h4 className="font-semibold mb-2">Example Request</h4>
+                <CodeBlock
+                  id="health-request"
+                  code={`curl "https://api.polyhistorical.com/v1/health"`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+
+                <h4 className="font-semibold mt-4 mb-2">Example Response</h4>
+                <CodeBlock
+                  id="health-response"
+                  code={`{
+  "success": true,
+  "data": {
+    "status": "healthy",
+    "timestamp": "2026-03-15T12:00:00Z",
+    "version": "1.0.0"
+  },
+  "timestamp": "2026-03-15T12:00:00Z"
+}`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+              </div>
+            </section>
+
+            {/* Auth Endpoints */}
+            <section id="auth-endpoints" className="mb-16">
+              <h2 className="text-2xl font-bold mb-4">Auth Endpoints</h2>
+
+              {/* Register */}
+              <div className="card p-6 mb-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs font-semibold rounded">POST</span>
+                  <code className="text-indigo-400">/v1/auth/register</code>
+                </div>
+                <p className="text-slate-400 mb-4">
+                  Register a new account. Returns a JWT token and user details.
+                </p>
+
+                <h4 className="font-semibold mb-2">Request Body</h4>
+                <div className="overflow-x-auto mb-4">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-white/10">
+                        <th className="text-left py-2 pr-4 text-slate-400">Field</th>
+                        <th className="text-left py-2 pr-4 text-slate-400">Type</th>
+                        <th className="text-left py-2 pr-4 text-slate-400">Required</th>
+                        <th className="text-left py-2 text-slate-400">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-white/5">
+                        <td className="py-2 pr-4"><code>email</code></td>
+                        <td className="py-2 pr-4">string</td>
+                        <td className="py-2 pr-4">Yes</td>
+                        <td className="py-2 text-slate-400">Valid email address</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-2 pr-4"><code>password</code></td>
+                        <td className="py-2 pr-4">string</td>
+                        <td className="py-2 pr-4">Yes</td>
+                        <td className="py-2 text-slate-400">8-100 characters</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-2 pr-4"><code>companyName</code></td>
+                        <td className="py-2 pr-4">string</td>
+                        <td className="py-2 pr-4">No</td>
+                        <td className="py-2 text-slate-400">Company name (max 255 chars)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h4 className="font-semibold mb-2">Example Request</h4>
+                <CodeBlock
+                  id="register-request"
+                  code={`curl -X POST "https://api.polyhistorical.com/v1/auth/register" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "email": "user@example.com",
+    "password": "securepassword",
+    "companyName": "Acme Trading"
+  }'`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+
+                <h4 className="font-semibold mt-4 mb-2">Example Response</h4>
+                <CodeBlock
+                  id="register-response"
+                  code={`{
+  "success": true,
+  "data": {
+    "accessToken": "eyJhbGciOiJIUzI1NiIs...",
+    "tokenType": "Bearer",
+    "expiresIn": 86400,
+    "customer": {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "email": "user@example.com",
+      "companyName": "Acme Trading",
+      "tier": "FREE",
+      "isActive": true,
+      "emailVerified": false,
+      "createdAt": "2026-03-15T12:00:00Z"
+    }
+  },
+  "message": "Registration successful",
+  "timestamp": "2026-03-15T12:00:00Z"
+}`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+              </div>
+
+              {/* Login */}
+              <div className="card p-6 mb-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs font-semibold rounded">POST</span>
+                  <code className="text-indigo-400">/v1/auth/login</code>
+                </div>
+                <p className="text-slate-400 mb-4">
+                  Login to an existing account. Returns a JWT token and user details.
+                </p>
+
+                <h4 className="font-semibold mb-2">Request Body</h4>
+                <div className="overflow-x-auto mb-4">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-white/10">
+                        <th className="text-left py-2 pr-4 text-slate-400">Field</th>
+                        <th className="text-left py-2 pr-4 text-slate-400">Type</th>
+                        <th className="text-left py-2 pr-4 text-slate-400">Required</th>
+                        <th className="text-left py-2 text-slate-400">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-white/5">
+                        <td className="py-2 pr-4"><code>email</code></td>
+                        <td className="py-2 pr-4">string</td>
+                        <td className="py-2 pr-4">Yes</td>
+                        <td className="py-2 text-slate-400">Registered email address</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-2 pr-4"><code>password</code></td>
+                        <td className="py-2 pr-4">string</td>
+                        <td className="py-2 pr-4">Yes</td>
+                        <td className="py-2 text-slate-400">Account password</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h4 className="font-semibold mb-2">Example Request</h4>
+                <CodeBlock
+                  id="login-request"
+                  code={`curl -X POST "https://api.polyhistorical.com/v1/auth/login" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "email": "user@example.com",
+    "password": "securepassword"
+  }'`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+
+                <h4 className="font-semibold mt-4 mb-2">Example Response</h4>
+                <CodeBlock
+                  id="login-response"
+                  code={`{
+  "success": true,
+  "data": {
+    "accessToken": "eyJhbGciOiJIUzI1NiIs...",
+    "tokenType": "Bearer",
+    "expiresIn": 86400,
+    "customer": {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "email": "user@example.com",
+      "companyName": "Acme Trading",
+      "tier": "PRO",
+      "isActive": true,
+      "emailVerified": true,
+      "createdAt": "2026-03-01T10:00:00Z"
+    }
+  },
+  "timestamp": "2026-03-15T12:00:00Z"
+}`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+              </div>
+
+              {/* Get Current User */}
+              <div className="card p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded">GET</span>
+                  <code className="text-indigo-400">/v1/auth/me</code>
+                </div>
+                <p className="text-slate-400 mb-4">
+                  Get the current authenticated user's details. Requires JWT authentication.
+                </p>
+
+                <h4 className="font-semibold mb-2">Example Request</h4>
+                <CodeBlock
+                  id="me-request"
+                  code={`curl "https://api.polyhistorical.com/v1/auth/me" \\
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+
+                <h4 className="font-semibold mt-4 mb-2">Example Response</h4>
+                <CodeBlock
+                  id="me-response"
+                  code={`{
+  "success": true,
+  "data": {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "email": "user@example.com",
+    "companyName": "Acme Trading",
+    "tier": "PRO",
+    "isActive": true,
+    "emailVerified": true,
+    "createdAt": "2026-03-01T10:00:00Z"
+  },
+  "timestamp": "2026-03-15T12:00:00Z"
+}`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+              </div>
+            </section>
+
+            {/* Account Endpoints */}
+            <section id="account-endpoints" className="mb-16">
+              <h2 className="text-2xl font-bold mb-4">Account Endpoints</h2>
+              <p className="text-slate-400 mb-6">
+                All account endpoints require JWT authentication.
+              </p>
+
+              {/* List API Keys */}
+              <div className="card p-6 mb-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded">GET</span>
+                  <code className="text-indigo-400">/v1/account/api-keys</code>
+                </div>
+                <p className="text-slate-400 mb-4">
+                  List all API keys for the authenticated user.
+                </p>
+
+                <h4 className="font-semibold mb-2">Example Request</h4>
+                <CodeBlock
+                  id="list-keys-request"
+                  code={`curl "https://api.polyhistorical.com/v1/account/api-keys" \\
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+
+                <h4 className="font-semibold mt-4 mb-2">Example Response</h4>
+                <CodeBlock
+                  id="list-keys-response"
+                  code={`{
+  "success": true,
+  "data": [
+    {
+      "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "keyPrefix": "nb_k_abc1",
+      "name": "Production Key",
+      "permissions": ["READ"],
+      "isActive": true,
+      "lastUsedAt": "2026-03-15T11:30:00Z",
+      "expiresAt": null,
+      "createdAt": "2026-03-01T10:00:00Z"
+    }
+  ],
+  "timestamp": "2026-03-15T12:00:00Z"
+}`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+              </div>
+
+              {/* Create API Key */}
+              <div className="card p-6 mb-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs font-semibold rounded">POST</span>
+                  <code className="text-indigo-400">/v1/account/api-keys</code>
+                </div>
+                <p className="text-slate-400 mb-4">
+                  Create a new API key. The full key is only returned once - store it securely.
+                </p>
+
+                <h4 className="font-semibold mb-2">Request Body</h4>
+                <div className="overflow-x-auto mb-4">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-white/10">
+                        <th className="text-left py-2 pr-4 text-slate-400">Field</th>
+                        <th className="text-left py-2 pr-4 text-slate-400">Type</th>
+                        <th className="text-left py-2 pr-4 text-slate-400">Required</th>
+                        <th className="text-left py-2 text-slate-400">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-white/5">
+                        <td className="py-2 pr-4"><code>name</code></td>
+                        <td className="py-2 pr-4">string</td>
+                        <td className="py-2 pr-4">Yes</td>
+                        <td className="py-2 text-slate-400">Key name (max 100 chars)</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-2 pr-4"><code>permissions</code></td>
+                        <td className="py-2 pr-4">string[]</td>
+                        <td className="py-2 pr-4">No</td>
+                        <td className="py-2 text-slate-400">Set of permissions for the key</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-2 pr-4"><code>expiresAt</code></td>
+                        <td className="py-2 pr-4">string</td>
+                        <td className="py-2 pr-4">No</td>
+                        <td className="py-2 text-slate-400">Expiration time (ISO 8601)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h4 className="font-semibold mb-2">Example Request</h4>
+                <CodeBlock
+                  id="create-key-request"
+                  code={`curl -X POST "https://api.polyhistorical.com/v1/account/api-keys" \\
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "name": "Production Key",
+    "permissions": ["READ"],
+    "expiresAt": "2027-01-01T00:00:00Z"
+  }'`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+
+                <h4 className="font-semibold mt-4 mb-2">Example Response</h4>
+                <CodeBlock
+                  id="create-key-response"
+                  code={`{
+  "success": true,
+  "data": {
+    "apiKey": "nb_k_abc123def456ghi789...",
+    "message": "Store this key securely. It won't be shown again."
+  },
+  "message": "API key created successfully",
+  "timestamp": "2026-03-15T12:00:00Z"
+}`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+              </div>
+
+              {/* Revoke API Key */}
+              <div className="card p-6 mb-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="px-2 py-1 bg-red-500/20 text-red-400 text-xs font-semibold rounded">DELETE</span>
+                  <code className="text-indigo-400">/v1/account/api-keys/{'{keyId}'}</code>
+                </div>
+                <p className="text-slate-400 mb-4">
+                  Revoke an API key by its ID. This action cannot be undone.
+                </p>
+
+                <h4 className="font-semibold mb-2">Path Parameters</h4>
+                <div className="overflow-x-auto mb-4">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-white/10">
+                        <th className="text-left py-2 pr-4 text-slate-400">Parameter</th>
+                        <th className="text-left py-2 pr-4 text-slate-400">Type</th>
+                        <th className="text-left py-2 text-slate-400">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-white/5">
+                        <td className="py-2 pr-4"><code>keyId</code></td>
+                        <td className="py-2 pr-4">UUID</td>
+                        <td className="py-2 text-slate-400">The API key ID to revoke</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h4 className="font-semibold mb-2">Example Request</h4>
+                <CodeBlock
+                  id="revoke-key-request"
+                  code={`curl -X DELETE "https://api.polyhistorical.com/v1/account/api-keys/a1b2c3d4-e5f6-7890-abcd-ef1234567890" \\
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+
+                <h4 className="font-semibold mt-4 mb-2">Example Response</h4>
+                <CodeBlock
+                  id="revoke-key-response"
+                  code={`{
+  "success": true,
+  "data": null,
+  "message": "API key revoked successfully",
+  "timestamp": "2026-03-15T12:00:00Z"
+}`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+              </div>
+
+              {/* Get Usage */}
+              <div className="card p-6 mb-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded">GET</span>
+                  <code className="text-indigo-400">/v1/account/usage</code>
+                </div>
+                <p className="text-slate-400 mb-4">
+                  Get API usage statistics for the authenticated user.
+                </p>
+
+                <h4 className="font-semibold mb-2">Example Request</h4>
+                <CodeBlock
+                  id="usage-request"
+                  code={`curl "https://api.polyhistorical.com/v1/account/usage" \\
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+
+                <h4 className="font-semibold mt-4 mb-2">Example Response</h4>
+                <CodeBlock
+                  id="usage-response"
+                  code={`{
+  "success": true,
+  "data": {
+    "totalRequests": 15234,
+    "requestsToday": 142,
+    "requestsThisMonth": 4521,
+    "dailyLimit": 50000,
+    "monthlyLimit": 1500000,
+    "remainingToday": 49858,
+    "usagePercentage": 0.28,
+    "bytesTransferredToday": 52428800,
+    "bytesTransferredThisMonth": 1073741824,
+    "tier": "PRO",
+    "periodStart": "2026-03-01T00:00:00Z",
+    "periodEnd": "2026-03-31T23:59:59Z",
+    "resetsAt": "2026-03-16T00:00:00Z"
+  },
+  "timestamp": "2026-03-15T12:00:00Z"
+}`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+              </div>
+
+              {/* Get Subscription */}
+              <div className="card p-6 mb-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded">GET</span>
+                  <code className="text-indigo-400">/v1/account/subscription</code>
+                </div>
+                <p className="text-slate-400 mb-4">
+                  Get current subscription details for the authenticated user.
+                </p>
+
+                <h4 className="font-semibold mb-2">Example Request</h4>
+                <CodeBlock
+                  id="subscription-request"
+                  code={`curl "https://api.polyhistorical.com/v1/account/subscription" \\
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+              </div>
+
+              {/* Checkout */}
+              <div className="card p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs font-semibold rounded">POST</span>
+                  <code className="text-indigo-400">/v1/account/subscription/checkout</code>
+                </div>
+                <p className="text-slate-400 mb-4">
+                  Create a Stripe checkout session to upgrade your subscription.
+                </p>
+
+                <h4 className="font-semibold mb-2">Query Parameters</h4>
+                <div className="overflow-x-auto mb-4">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-white/10">
+                        <th className="text-left py-2 pr-4 text-slate-400">Parameter</th>
+                        <th className="text-left py-2 pr-4 text-slate-400">Type</th>
+                        <th className="text-left py-2 pr-4 text-slate-400">Required</th>
+                        <th className="text-left py-2 text-slate-400">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-white/5">
+                        <td className="py-2 pr-4"><code>tier</code></td>
+                        <td className="py-2 pr-4">string</td>
+                        <td className="py-2 pr-4">Yes</td>
+                        <td className="py-2 text-slate-400">Target tier: PRO or ENTERPRISE</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h4 className="font-semibold mb-2">Example Request</h4>
+                <CodeBlock
+                  id="checkout-request"
+                  code={`curl -X POST "https://api.polyhistorical.com/v1/account/subscription/checkout?tier=PRO" \\
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+
+                <h4 className="font-semibold mt-4 mb-2">Example Response</h4>
+                <CodeBlock
+                  id="checkout-response"
+                  code={`{
+  "success": true,
+  "data": {
+    "checkoutUrl": "https://checkout.stripe.com/c/pay/cs_live_..."
+  },
+  "timestamp": "2026-03-15T12:00:00Z"
+}`}
+                  copiedCode={copiedCode}
+                  onCopy={copyCode}
+                />
+              </div>
+            </section>
+
+            {/* Market Endpoints */}
+            <section id="market-endpoints" className="mb-16">
+              <h2 className="text-2xl font-bold mb-4">Market Endpoints</h2>
 
               {/* List Markets */}
               <div className="card p-6 mb-6">
@@ -157,9 +750,9 @@ export function Docs() {
                   <code className="text-indigo-400">/v1/markets</code>
                 </div>
                 <p className="text-slate-400 mb-4">
-                  List all markets with pagination and filtering options.
+                  List all markets with pagination and filtering options. Results are sorted by start_time descending (newest first).
                 </p>
-                
+
                 <h4 className="font-semibold mb-2">Query Parameters</h4>
                 <div className="overflow-x-auto mb-4">
                   <table className="w-full text-sm">
@@ -194,13 +787,25 @@ export function Docs() {
                         <td className="py-2 pr-4"><code>market_type</code></td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">No</td>
-                        <td className="py-2 text-slate-400">5m, 15m, 1h, 4h, or 24h</td>
+                        <td className="py-2 text-slate-400">5m, 15m, 1hr, 4hr, or 24hr</td>
                       </tr>
                       <tr className="border-b border-white/5">
                         <td className="py-2 pr-4"><code>resolved</code></td>
                         <td className="py-2 pr-4">boolean</td>
                         <td className="py-2 pr-4">No</td>
                         <td className="py-2 text-slate-400">Filter by resolved status</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-2 pr-4"><code>start_time</code></td>
+                        <td className="py-2 pr-4">string</td>
+                        <td className="py-2 pr-4">No</td>
+                        <td className="py-2 text-slate-400">Filter markets starting after this time (ms epoch or ISO 8601)</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-2 pr-4"><code>end_time</code></td>
+                        <td className="py-2 pr-4">string</td>
+                        <td className="py-2 pr-4">No</td>
+                        <td className="py-2 text-slate-400">Filter markets starting before this time (ms epoch or ISO 8601)</td>
                       </tr>
                     </tbody>
                   </table>
@@ -209,7 +814,7 @@ export function Docs() {
                 <h4 className="font-semibold mb-2">Example Request</h4>
                 <CodeBlock
                   id="list-markets"
-                  code={`curl "https://api.nebula.io/v1/markets?coin=btc&limit=10&market_type=15m"`}
+                  code={`curl "https://api.polyhistorical.com/v1/markets?coin=btc&limit=10&market_type=15m"`}
                   copiedCode={copiedCode}
                   onCopy={copyCode}
                 />
@@ -223,11 +828,19 @@ export function Docs() {
       "slug": "btc-updown-15m-1773756000",
       "coin": "BTC",
       "marketType": "15m",
+      "marketId": "0x1234...",
+      "eventId": "0x5678...",
       "active": true,
       "resolved": false,
       "startTime": "2026-03-15T12:00:00Z",
       "endTime": "2026-03-15T12:15:00Z",
-      "btcPriceStart": 84235.42
+      "btcPriceStart": 84235.42,
+      "winner": null,
+      "finalVolume": null,
+      "resolvedAt": null,
+      "conditionId": "0xabcd...",
+      "clobTokenUp": "0x1111...",
+      "clobTokenDown": "0x2222..."
     }
   ],
   "total": 150,
@@ -249,10 +862,32 @@ export function Docs() {
                   Get details for a specific market by slug.
                 </p>
 
+                <h4 className="font-semibold mb-2">Query Parameters</h4>
+                <div className="overflow-x-auto mb-4">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-white/10">
+                        <th className="text-left py-2 pr-4 text-slate-400">Parameter</th>
+                        <th className="text-left py-2 pr-4 text-slate-400">Type</th>
+                        <th className="text-left py-2 pr-4 text-slate-400">Required</th>
+                        <th className="text-left py-2 text-slate-400">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-white/5">
+                        <td className="py-2 pr-4"><code>coin</code></td>
+                        <td className="py-2 pr-4">string</td>
+                        <td className="py-2 pr-4">Yes</td>
+                        <td className="py-2 text-slate-400">btc, eth, or sol</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
                 <h4 className="font-semibold mb-2">Example Request</h4>
                 <CodeBlock
                   id="get-market"
-                  code={`curl "https://api.nebula.io/v1/markets/btc-updown-15m-1773756000?coin=btc"`}
+                  code={`curl "https://api.polyhistorical.com/v1/markets/btc-updown-15m-1773756000?coin=btc"`}
                   copiedCode={copiedCode}
                   onCopy={copyCode}
                 />
@@ -311,7 +946,7 @@ export function Docs() {
                 <h4 className="font-semibold mb-2">Example Request (without orderbook)</h4>
                 <CodeBlock
                   id="get-snapshots"
-                  code={`curl "https://api.nebula.io/v1/markets/btc-updown-15m-1773756000/snapshots?coin=btc&limit=10"`}
+                  code={`curl "https://api.polyhistorical.com/v1/markets/btc-updown-15m-1773756000/snapshots?coin=btc&limit=10"`}
                   copiedCode={copiedCode}
                   onCopy={copyCode}
                 />
@@ -319,7 +954,7 @@ export function Docs() {
                 <h4 className="font-semibold mt-4 mb-2">Example Request (with orderbook)</h4>
                 <CodeBlock
                   id="get-snapshots-orderbook"
-                  code={`curl "https://api.nebula.io/v1/markets/btc-updown-15m-1773756000/snapshots?coin=btc&include_orderbook=true"`}
+                  code={`curl "https://api.polyhistorical.com/v1/markets/btc-updown-15m-1773756000/snapshots?coin=btc&include_orderbook=true"`}
                   copiedCode={copiedCode}
                   onCopy={copyCode}
                 />
@@ -369,25 +1004,42 @@ export function Docs() {
                   id="python-example"
                   code={`import requests
 
-BASE_URL = "https://api.nebula.io/v1"
+BASE_URL = "https://api.polyhistorical.com/v1"
+API_KEY = "YOUR_API_KEY"
+
+headers = {"Authorization": f"Bearer {API_KEY}"}
+
+# Register a new account
+register = requests.post(f"{BASE_URL}/auth/register", json={
+    "email": "user@example.com",
+    "password": "securepassword"
+}).json()
+token = register["data"]["accessToken"]
 
 # List BTC 15m markets
 response = requests.get(f"{BASE_URL}/markets", params={
     "coin": "btc",
     "market_type": "15m",
     "limit": 10
-})
+}, headers=headers)
 markets = response.json()
 
 # Get snapshots with orderbook
 slug = markets["markets"][0]["slug"]
 snapshots = requests.get(
     f"{BASE_URL}/markets/{slug}/snapshots",
-    params={"coin": "btc", "include_orderbook": True}
+    params={"coin": "btc", "include_orderbook": True},
+    headers=headers
 ).json()
 
 for snap in snapshots["snapshots"]:
-    print(f"{snap['time']}: UP={snap['price_up']} DOWN={snap['price_down']}")`}
+    print(f"{snap['time']}: UP={snap['price_up']} DOWN={snap['price_down']}")
+
+# Check usage stats
+usage = requests.get(f"{BASE_URL}/account/usage",
+    headers={"Authorization": f"Bearer {token}"}
+).json()
+print(f"Requests today: {usage['data']['requestsToday']}")`}
                   copiedCode={copiedCode}
                   onCopy={copyCode}
                 />
@@ -397,22 +1049,45 @@ for snap in snapshots["snapshots"]:
                 <h3 className="font-semibold mb-4">JavaScript / Node.js</h3>
                 <CodeBlock
                   id="js-example"
-                  code={`const BASE_URL = "https://api.nebula.io/v1";
+                  code={`const BASE_URL = "https://api.polyhistorical.com/v1";
+const API_KEY = "YOUR_API_KEY";
+
+const headers = { Authorization: \`Bearer \${API_KEY}\` };
+
+// Register a new account
+const register = await fetch(\`\${BASE_URL}/auth/register\`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    email: "user@example.com",
+    password: "securepassword"
+  })
+}).then(r => r.json());
+
+const token = register.data.accessToken;
 
 // List markets
 const markets = await fetch(
-  \`\${BASE_URL}/markets?coin=btc&market_type=15m\`
+  \`\${BASE_URL}/markets?coin=btc&market_type=15m\`,
+  { headers }
 ).then(r => r.json());
 
 // Get snapshots with orderbook
 const slug = markets.markets[0].slug;
 const snapshots = await fetch(
-  \`\${BASE_URL}/markets/\${slug}/snapshots?coin=btc&include_orderbook=true\`
+  \`\${BASE_URL}/markets/\${slug}/snapshots?coin=btc&include_orderbook=true\`,
+  { headers }
 ).then(r => r.json());
 
 snapshots.snapshots.forEach(snap => {
   console.log(\`\${snap.time}: UP=\${snap.price_up} DOWN=\${snap.price_down}\`);
-});`}
+});
+
+// Check usage stats
+const usage = await fetch(\`\${BASE_URL}/account/usage\`, {
+  headers: { Authorization: \`Bearer \${token}\` }
+}).then(r => r.json());
+console.log(\`Requests today: \${usage.data.requestsToday}\`);`}
                   copiedCode={copiedCode}
                   onCopy={copyCode}
                 />
@@ -422,17 +1097,51 @@ snapshots.snapshots.forEach(snap => {
                 <h3 className="font-semibold mb-4">cURL</h3>
                 <CodeBlock
                   id="curl-example"
-                  code={`# List all BTC 15m markets
-curl "https://api.nebula.io/v1/markets?coin=btc&market_type=15m"
+                  code={`# Register
+curl -X POST "https://api.polyhistorical.com/v1/auth/register" \\
+  -H "Content-Type: application/json" \\
+  -d '{"email": "user@example.com", "password": "securepassword"}'
+
+# Login
+curl -X POST "https://api.polyhistorical.com/v1/auth/login" \\
+  -H "Content-Type: application/json" \\
+  -d '{"email": "user@example.com", "password": "securepassword"}'
+
+# Get current user
+curl "https://api.polyhistorical.com/v1/auth/me" \\
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"
+
+# List all BTC 15m markets
+curl "https://api.polyhistorical.com/v1/markets?coin=btc&market_type=15m"
+
+# List markets with time filter
+curl "https://api.polyhistorical.com/v1/markets?coin=btc&start_time=2026-03-01T00:00:00Z&end_time=2026-03-15T00:00:00Z"
 
 # Get market details
-curl "https://api.nebula.io/v1/markets/btc-updown-15m-1773756000?coin=btc"
+curl "https://api.polyhistorical.com/v1/markets/btc-updown-15m-1773756000?coin=btc"
 
 # Get snapshots without orderbook (faster)
-curl "https://api.nebula.io/v1/markets/btc-updown-15m-1773756000/snapshots?coin=btc"
+curl "https://api.polyhistorical.com/v1/markets/btc-updown-15m-1773756000/snapshots?coin=btc"
 
 # Get snapshots with full orderbook data
-curl "https://api.nebula.io/v1/markets/btc-updown-15m-1773756000/snapshots?coin=btc&include_orderbook=true"`}
+curl "https://api.polyhistorical.com/v1/markets/btc-updown-15m-1773756000/snapshots?coin=btc&include_orderbook=true"
+
+# Create API key
+curl -X POST "https://api.polyhistorical.com/v1/account/api-keys" \\
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \\
+  -H "Content-Type: application/json" \\
+  -d '{"name": "My Key"}'
+
+# List API keys
+curl "https://api.polyhistorical.com/v1/account/api-keys" \\
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"
+
+# Check usage
+curl "https://api.polyhistorical.com/v1/account/usage" \\
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"
+
+# Health check
+curl "https://api.polyhistorical.com/v1/health"`}
                   copiedCode={copiedCode}
                   onCopy={copyCode}
                 />
