@@ -2,14 +2,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
-import { Markets } from './pages/Markets';
-import { MarketDetail } from './pages/MarketDetail';
 import { Features } from './pages/Features';
 import { Pricing } from './pages/Pricing';
-import { Docs } from './pages/Docs';
 import { Signup } from './pages/Signup';
 import { Login } from './pages/Login';
+import { CheckEmail } from './pages/CheckEmail';
+import { VerifyEmail } from './pages/VerifyEmail';
 import { Dashboard } from './pages/Dashboard';
+import { ForgotPassword } from './pages/ForgotPassword';
+import { ResetPassword } from './pages/ResetPassword';
 
 function PublicLayout() {
   return (
@@ -18,13 +19,14 @@ function PublicLayout() {
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/markets" element={<Markets />} />
-          <Route path="/markets/:slug" element={<MarketDetail />} />
           <Route path="/features" element={<Features />} />
           <Route path="/pricing" element={<Pricing />} />
-          <Route path="/docs" element={<Docs />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/check-email" element={<CheckEmail />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </main>
       <Footer />

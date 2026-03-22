@@ -10,222 +10,108 @@ import {
   Check,
 } from 'lucide-react';
 
-const features = [
+const capabilities = [
   {
     icon: Database,
-    title: 'Full Order Book Depth',
-    description:
-      'Access complete bid/ask data for both UP and DOWN tokens at every snapshot. Calculate slippage, analyze spreads, and measure liquidity with precision.',
-    details: [
-      'Real-time order book snapshots',
-      'Both UP and DOWN token books',
-      'Full price level depth',
-      'Size at each price level',
-    ],
+    title: 'Order Book Depth',
+    desc: 'Every bid and ask at every price level for UP and DOWN tokens. Compute slippage, model fills, and measure real liquidity.',
+    bullets: ['Full bid/ask ladder', 'Both UP & DOWN books', 'Size at each level', 'Synced with BTC price'],
   },
   {
     icon: Clock,
-    title: 'Sub-second Snapshots',
-    description:
-      'Capture market conditions at sub-second intervals. Every snapshot includes BTC reference prices for accurate backtesting.',
-    details: [
-      'Sub-second time resolution',
-      'Precise timestamps',
-      'BTC prices included',
-      'Chainlink & Binance data',
-    ],
+    title: 'Sub-second Resolution',
+    desc: 'Snapshots faster than once per second. Each one timestamped and paired with BTC reference prices from Binance and Chainlink.',
+    bullets: ['<1s capture interval', 'ISO 8601 timestamps', 'Binance price feed', 'Chainlink settlement data'],
   },
   {
     icon: Zap,
-    title: 'Latency Optimized',
-    description:
-      'Our infrastructure is built for speed. Get API responses in under 50ms for lightning-fast backtesting and real-time analysis.',
-    details: [
-      '<50ms API response time',
-      'Global CDN distribution',
-      'Optimized query patterns',
-      'Efficient data compression',
-    ],
+    title: 'Fast API',
+    desc: 'Responses under 50ms. Built for backtesting loops that iterate over thousands of snapshots without waiting.',
+    bullets: ['<50ms latency', 'Efficient pagination', 'Optional depth param', 'Compressed responses'],
   },
   {
     icon: Server,
-    title: 'REST API',
-    description:
-      'Simple and powerful RESTful endpoints. Clean JSON responses, pagination support, and flexible filtering options.',
-    details: [
-      'RESTful JSON API',
-      'Pagination support',
-      'Filter by coin, timeframe',
-      'Optional orderbook data',
-    ],
+    title: 'REST + JSON',
+    desc: 'Standard REST endpoints. Filter by coin, timeframe, resolved status. Include or exclude orderbook depth per request.',
+    bullets: ['GET-only interface', 'Query string filters', 'Consistent envelope', 'Detailed error codes'],
   },
   {
     icon: BookOpen,
-    title: 'Complete History',
-    description:
-      'Access markets long after they\'ve closed. We preserve full resolution data so your backtests never suffer from missing history.',
-    details: [
-      '31+ days of history',
-      'Resolved market data',
-      'Winner information',
-      'Final volumes & liquidity',
-    ],
+    title: 'Complete Archive',
+    desc: 'Markets stay available forever after resolution. Winners, final volumes, and settlement metadata preserved.',
+    bullets: ['31+ days retained', 'Winner + settlement', 'Final volume data', 'Full snapshot history'],
   },
   {
     icon: BarChart3,
-    title: 'Market Analytics',
-    description:
-      'Built-in data for analyzing market dynamics. Track volumes, spreads, and price movements across all timeframes.',
-    details: [
-      'Volume tracking',
-      'Spread analysis',
-      'Price movement data',
-      'Liquidity metrics',
-    ],
+    title: 'Market Metadata',
+    desc: 'Every market includes slug, IDs, start/end times, condition/CLOB tokens, and resolution status out of the box.',
+    bullets: ['Polymarket IDs', 'CLOB token pairs', 'Start / end times', 'Resolution metadata'],
   },
 ];
+
+const timeframes = ['5m', '15m', '1h', '4h', '24h'];
 
 const useCases = [
   {
-    title: 'Backtesting Trading Strategies',
-    description:
-      'Test your Polymarket trading strategies against historical order book data and price movements. Simulate fills with real liquidity data.',
-    icon: BarChart3,
+    title: 'Strategy Backtesting',
+    desc: 'Simulate order placement against real historical depth. Know exactly what would have filled, at what price, and when.',
   },
   {
-    title: 'Analytics Dashboards & Bots',
-    description:
-      'Build trading bots and analytics dashboards powered by comprehensive market snapshots and order book data.',
-    icon: Server,
+    title: 'Liquidity Research',
+    desc: 'Measure how spreads, depth, and book imbalance evolve from market open through resolution across timeframes.',
   },
   {
-    title: 'Prediction Market Research',
-    description:
-      'Conduct in-depth research on prediction market dynamics, price discovery, and market efficiency.',
-    icon: BookOpen,
+    title: 'Bot Development',
+    desc: 'Train and validate market-making or signal-based bots on deterministic historical data before deploying capital.',
   },
-];
-
-const timeframes = [
-  { label: '5m', description: '5 minute markets' },
-  { label: '15m', description: '15 minute markets' },
-  { label: '1h', description: '1 hour markets' },
-  { label: '4h', description: '4 hour markets' },
-  { label: '24h', description: '24 hour markets' },
-];
-
-const coins = [
-  { symbol: 'BTC', name: 'Bitcoin', color: 'text-accent-orange' },
 ];
 
 export function Features() {
   return (
     <div className="pt-20 pb-16">
-      {/* Hero */}
-      <section className="py-16 border-b border-white/5">
+      {/* Hero — minimal */}
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Complete Market <span className="gradient-text">Visibility</span>
+          <div className="max-w-3xl">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              Every data point.{' '}
+              <span className="gradient-text">Every tick.</span>
             </h1>
-            <p className="text-lg text-text-muted mb-8">
-              Everything you need to backtest and create winning trading strategies
-              with real historical Polymarket data.
+            <p className="text-lg text-text-muted mb-8 max-w-2xl leading-relaxed">
+              PolyHistorical captures the full state of Polymarket BTC Up/Down
+              markets at sub-second granularity — order books, prices, and
+              metadata from open to settlement.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/signup" className="btn-primary inline-flex items-center gap-2">
-                Explore Markets
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link to="/docs" className="btn-secondary">
-                View Documentation
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What We Track */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">What We Track</h2>
-          
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {/* Coins */}
-            <div className="card p-6">
-              <h3 className="font-semibold mb-4">Supported Coins</h3>
-              <div className="space-y-3">
-                {coins.map((coin) => (
-                  <div key={coin.symbol} className="flex items-center gap-3">
-                    <span className={`font-mono font-bold ${coin.color}`}>{coin.symbol}</span>
-                    <span className="text-text-muted">{coin.name}</span>
-                  </div>
-                ))}
+            <div className="flex items-center gap-6 flex-wrap">
+              <div className="flex items-center gap-2">
+                <span className="text-text-muted text-sm">Supported:</span>
+                <span className="px-2.5 py-1 bg-accent-orange/10 text-accent-orange rounded text-sm font-mono font-bold">BTC</span>
               </div>
-            </div>
-
-            {/* Timeframes */}
-            <div className="card p-6">
-              <h3 className="font-semibold mb-4">Timeframes</h3>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-text-muted text-sm">Timeframes:</span>
                 {timeframes.map((tf) => (
-                  <span
-                    key={tf.label}
-                    className="px-3 py-1.5 bg-primary/10 text-primary rounded-lg text-sm font-medium"
-                  >
-                    {tf.label}
-                  </span>
+                  <span key={tf} className="px-2.5 py-1 bg-primary/10 text-primary rounded text-sm font-medium">{tf}</span>
                 ))}
               </div>
-              <p className="text-text-muted text-sm mt-4">
-                All major Polymarket Up/Down market durations
-              </p>
-            </div>
-
-            {/* Data Points */}
-            <div className="card p-6">
-              <h3 className="font-semibold mb-4">Data Points</h3>
-              <ul className="space-y-2 text-sm">
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-accent-green" />
-                  <span>Order book depth (bids & asks)</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-accent-green" />
-                  <span>Price UP / Price DOWN</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-accent-green" />
-                  <span>BTC reference prices</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-accent-green" />
-                  <span>Market metadata & status</span>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="py-16 bg-surface-dark">
+      {/* Capabilities — alternating layout */}
+      <section className="py-16 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">Platform Features</h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature) => (
-              <div key={feature.title} className="card p-6">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <feature.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-text-muted mb-4">{feature.description}</p>
-                <ul className="space-y-2">
-                  {feature.details.map((detail) => (
-                    <li key={detail} className="flex items-center gap-2 text-sm">
-                      <Check className="w-4 h-4 text-accent-green" />
-                      <span>{detail}</span>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {capabilities.map((cap) => (
+              <div key={cap.title} className="p-6 rounded-xl bg-surface-dark border border-border hover:border-primary/20 transition-colors">
+                <cap.icon className="w-6 h-6 text-primary mb-4" />
+                <h3 className="text-lg font-semibold mb-2">{cap.title}</h3>
+                <p className="text-text-muted text-sm mb-4 leading-relaxed">{cap.desc}</p>
+                <ul className="space-y-1.5">
+                  {cap.bullets.map((b) => (
+                    <li key={b} className="flex items-center gap-2 text-sm text-text-muted">
+                      <Check className="w-3.5 h-3.5 text-primary shrink-0" />
+                      {b}
                     </li>
                   ))}
                 </ul>
@@ -235,22 +121,19 @@ export function Features() {
         </div>
       </section>
 
-      {/* Use Cases */}
-      <section className="py-16">
+      {/* Use cases — horizontal */}
+      <section className="py-24 bg-surface-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-4">What You Can Build</h2>
-          <p className="text-text-muted text-center mb-12 max-w-2xl mx-auto">
-            Powerful applications built on historical Polymarket data
-          </p>
+          <div className="max-w-2xl mb-12">
+            <h2 className="text-3xl font-bold mb-4">Built for builders</h2>
+            <p className="text-text-muted text-lg">Common ways teams use PolyHistorical data.</p>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {useCases.map((useCase) => (
-              <div key={useCase.title} className="card p-6">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <useCase.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{useCase.title}</h3>
-                <p className="text-text-muted">{useCase.description}</p>
+            {useCases.map((uc) => (
+              <div key={uc.title} className="border border-border rounded-xl p-6 hover:border-primary/20 transition-colors">
+                <h3 className="font-semibold mb-2">{uc.title}</h3>
+                <p className="text-text-muted text-sm leading-relaxed">{uc.desc}</p>
               </div>
             ))}
           </div>
@@ -258,15 +141,15 @@ export function Features() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 border-t border-white/5">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to get started?</h2>
+      <section className="py-20 border-t border-border">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold mb-4">Ready to explore?</h2>
           <p className="text-text-muted mb-8">
-            Start exploring markets and building your strategies today.
+            Create a free account and start pulling market data in minutes.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/signup" className="btn-primary inline-flex items-center gap-2 justify-center">
-              Explore Markets
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Link to="/signup" className="btn-primary">
+              Get Started Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link to="/pricing" className="btn-secondary">

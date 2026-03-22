@@ -1,411 +1,331 @@
 import { Link } from 'react-router-dom';
+import { pricingPlans } from '../lib/pricing';
+import { ProCta } from '../components/ProCta';
 import {
   Zap,
   Database,
   Clock,
-  BookOpen,
-  BarChart3,
   ArrowRight,
   Check,
   ChevronDown,
   TrendingUp,
   TrendingDown,
-  Server,
+  Layers,
+  Shield,
+  Terminal,
 } from 'lucide-react';
-import { useState } from 'react';
-
-const stats = [
-  { label: 'Markets Tracked', value: '5,000+' },
-  { label: 'Order Book Snapshots', value: '60M+' },
-  { label: 'History', value: '31 Days' },
-  { label: 'Response Time', value: '<50ms' },
-];
-
-const features = [
-  {
-    icon: Database,
-    title: 'Full Order Book Depth',
-    description: 'Access complete bid/ask data for both UP and DOWN tokens at every snapshot.',
-  },
-  {
-    icon: Clock,
-    title: 'Sub-second Snapshots',
-    description: 'Capture market conditions at sub-second intervals with BTC price data.',
-  },
-  {
-    icon: Zap,
-    title: 'Latency Optimized',
-    description: '<50ms API response times for lightning-fast backtesting and analysis.',
-  },
-  {
-    icon: Server,
-    title: 'REST API',
-    description: 'Simple and powerful RESTful endpoints for markets, snapshots, and historical data.',
-  },
-  {
-    icon: BookOpen,
-    title: 'Complete History',
-    description: 'Access markets long after they\'ve closed. Full resolution data preserved.',
-  },
-  {
-    icon: BarChart3,
-    title: 'Market Analytics',
-    description: 'Built-in tools for analyzing spreads, slippage, and liquidity depth.',
-  },
-];
-
-const timeframes = ['5m', '15m', '1h', '4h', '24h'];
-
-const pricingPlans = [
-  {
-    name: 'Basic',
-    price: 'Free',
-    period: 'Forever',
-    description: 'Get started with limited access',
-    features: [
-      'BTC 5m & 15m - Last 50 markets',
-      'BTC 1h & 4h - Last 24 markets',
-      'Unlimited Snapshots',
-      'Sub-second resolution',
-      'Full order book depth',
-    ],
-    notIncluded: [
-      'Unlimited history',
-      'Priority support',
-    ],
-    cta: 'Get Started',
-    popular: false,
-  },
-  {
-    name: 'Pro',
-    price: '$19',
-    period: 'per month',
-    description: 'Unlimited access to everything',
-    features: [
-      'All BTC timeframes - Unlimited',
-      'Binance Spot & Futures data',
-      'Unlimited Market History',
-      'Priority Support',
-    ],
-    notIncluded: [],
-    cta: 'Get Pro',
-    popular: true,
-  },
-  {
-    name: 'Enterprise',
-    price: 'Custom',
-    period: '',
-    description: 'For organizations requiring scale',
-    features: [
-      'Custom API Endpoints',
-      'Dedicated Infrastructure',
-      'Tailored Rate Limits',
-      'White-glove Onboarding',
-      'SLA Guarantees',
-    ],
-    notIncluded: [],
-    cta: 'Contact Us',
-    popular: false,
-  },
-];
+import { useState, useEffect } from 'react';
 
 const faqs = [
   {
-    question: 'Is PolyHistorical free?',
-    answer: 'PolyHistorical offers a generous free tier for getting started, and a Pro plan for power users who need unlimited access and priority support.',
+    question: 'Is PolyHistorical affiliated with Polymarket?',
+    answer: 'No, PolyHistorical is an independent data provider. We are not affiliated with, endorsed by, or connected to Polymarket or any exchange.',
   },
   {
-    question: 'How often are snapshots taken?',
-    answer: 'We capture order book snapshots at sub-second intervals for active markets. This includes full bid/ask depth, prices, and BTC reference prices for each snapshot.',
+    question: 'How granular is the snapshot data?',
+    answer: 'We record full order book state at sub-second intervals for every active market, including bid/ask depth, UP/DOWN token prices, and BTC reference prices from Binance and Chainlink.',
   },
   {
-    question: 'Is this affiliated with Polymarket?',
-    answer: 'No, PolyHistorical is an independent project. We are not affiliated with, endorsed by, or connected to Polymarket, Binance, or any other exchange. We simply provide historical data for research and backtesting purposes.',
+    question: 'What markets are supported?',
+    answer: 'We focus on BTC Up/Down prediction markets across 5m, 15m, 1h, 4h, and 24h timeframes. Each market includes complete order book history from open to resolution.',
   },
   {
-    question: 'What markets do you cover?',
-    answer: 'We currently focus on BTC Up/Down prediction markets from Polymarket, capturing both UP and DOWN token order books with full depth across 5m, 15m, 1h, 4h & 24h timeframes.',
-  },
-  {
-    question: 'Where do you get your price data from?',
-    answer: 'We source our BTC price data from Binance and Chainlink. This ensures our data matches Polymarket\'s settlement logic perfectly across all timeframes.',
+    question: 'Can I try before paying?',
+    answer: 'Yes, the free tier gives you access to recent markets with full order book depth and sub-second resolution, no credit card required.',
   },
 ];
 
 export function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [btcPrice, setBtcPrice] = useState<string>('--');
+
+  useEffect(() => {
+    const fetchBtcPrice = async () => {
+      try {
+        const res = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT');
+        const data = await res.json();
+        const price = parseFloat(data.price);
+        setBtcPrice(price.toLocaleString('en-US', { maximumFractionDigits: 0 }));
+      } catch {
+        setBtcPrice('--');
+      }
+    };
+
+    fetchBtcPrice();
+    const interval = setInterval(fetchBtcPrice, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="pt-16">
-      {/* Hero Section */}
-      <section className="relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
-              <Zap className="w-3.5 h-3.5 text-primary" />
-              <span className="text-xs font-medium text-primary">Built for speed</span>
-            </div>
-
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Backtest Polymarket{' '}
-              <span className="text-primary">Up/Down Markets</span> with Real Order Book Data
-            </h1>
-
-            <p className="text-lg md:text-xl text-text-muted mb-8 max-w-2xl mx-auto">
-              The first Polymarket dataset with full historical order book depth at sub-second resolution -
-              backtest fills, spreads, and slippage with price-level context.
-            </p>
-
-            <div className="flex flex-row flex-wrap gap-3 justify-center">
-              <Link to="/signup" className="btn-primary">
-                Start Exploring
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link to="/docs" className="btn-secondary">
-                View Documentation
-              </Link>
-            </div>
-          </div>
-
-          {/* Live Demo Card */}
-          <div className="mt-16 max-w-4xl mx-auto">
-            <div className="gradient-border p-6">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
-                <div className="flex items-center gap-3 min-w-0">
-                  <span className="text-base sm:text-lg font-semibold truncate">bitcoin-up-or-down-on-march-21-2026</span>
-                  <span className="px-2 py-0.5 text-xs bg-primary/10 text-primary rounded shrink-0">24h</span>
-                </div>
-                <div className="flex items-center gap-2 shrink-0">
-                  <div className="w-2 h-2 rounded-full bg-accent-green animate-pulse" />
-                  <span className="text-sm text-accent-green">PolyHistorical API Connected</span>
-                </div>
+      {/* Hero -left-aligned, asymmetric */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(16,185,129,0.12),transparent)]" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36 relative">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/5 mb-8">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                <span className="text-xs font-medium text-primary">Recording live markets now</span>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="bg-surface-base rounded-lg p-4">
-                  <div className="text-sm text-text-muted mb-1">BTC Price</div>
-                  <div className="text-xl font-semibold">$69,914</div>
-                </div>
-                <div className="bg-surface-base rounded-lg p-4">
-                  <div className="text-sm text-text-muted mb-1">Price UP</div>
-                  <div className="text-xl font-semibold text-accent-green flex items-center gap-1">
-                    <TrendingUp className="w-4 h-4" />
-                    0.57
-                  </div>
-                </div>
-                <div className="bg-surface-base rounded-lg p-4">
-                  <div className="text-sm text-text-muted mb-1">Price DOWN</div>
-                  <div className="text-xl font-semibold text-accent-red flex items-center gap-1">
-                    <TrendingDown className="w-4 h-4" />
-                    0.43
-                  </div>
-                </div>
-                <div className="bg-surface-base rounded-lg p-4">
-                  <div className="text-sm text-text-muted mb-1">Snapshots</div>
-                  <div className="text-xl font-semibold">67,568</div>
-                </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1] tracking-tight">
+                Historical order books for{' '}
+                <span className="gradient-text">Polymarket</span>
+              </h1>
+
+              <p className="text-lg text-text-muted mb-10 max-w-lg leading-relaxed">
+                Replay any BTC Up/Down market tick by tick. Full bid/ask depth,
+                sub-second resolution, every timeframe, ready for your backtests.
+              </p>
+
+              <div className="flex flex-wrap gap-3">
+                <Link to="/signup" className="btn-primary text-base py-3 px-6">
+                  Get API Access
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link to="/docs" className="btn-secondary text-base py-3 px-6">
+                  Read the Docs
+                </Link>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Stats Section */}
-      <section className="py-16 border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-white mb-2">{stat.value}</div>
-                <div className="text-text-muted">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-24" id="features">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Complete Market Visibility</h2>
-            <p className="text-text-muted max-w-2xl mx-auto">
-              Everything you need to backtest and create winning trading strategies
-            </p>
-          </div>
-
-          <div className="mb-12 text-center">
-            <div className="inline-flex items-center gap-2 flex-wrap justify-center">
-              <span className="text-text-muted">Timeframes:</span>
-              {timeframes.map((tf) => (
-                <span
-                  key={tf}
-                  className="px-3 py-1 bg-primary/10 text-primary rounded-lg text-sm font-medium"
-                >
-                  {tf}
+              <div className="flex items-center gap-6 mt-10 text-sm text-text-muted">
+                <span className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-primary" /> Free tier available
                 </span>
-              ))}
+                <span className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-primary" /> No credit card
+                </span>
+              </div>
+            </div>
+
+            {/* Terminal preview */}
+            <div className="hidden lg:block">
+              <div className="bg-surface-card rounded-xl border border-border overflow-hidden shadow-2xl shadow-primary/5">
+                <div className="flex items-center gap-2 px-4 py-3 bg-surface-dark border-b border-border">
+                  <div className="w-3 h-3 rounded-full bg-accent-red/70" />
+                  <div className="w-3 h-3 rounded-full bg-accent-yellow/70" />
+                  <div className="w-3 h-3 rounded-full bg-accent-green/70" />
+                  <span className="text-xs text-text-dim ml-2 font-mono">curl - polyhistorical.com</span>
+                </div>
+                <pre className="p-5 text-[13px] leading-relaxed overflow-x-auto font-mono">
+<code className="text-text-muted"><span className="text-text-dim">$ </span><span className="text-primary">curl</span> api.polyhistorical.com/v1/markets/bitcoin-up-or-down-on-march-28-2026/snapshots?coin=btc&limit=1
+</code>
+<code className="text-text-muted">{`
+{
+  "market": {
+    "slug": "bitcoin-up-or-down-on-march-28-2026",
+    "coin": "BTC",
+    "marketType": "24h"
+  },
+  "snapshots": [{
+    "time": "2026-03-21T14:30:01.203Z",
+    "btc_price": `}<span className="text-accent-yellow">69914</span>{`,
+    "price_up": `}<span className="text-accent-green">0.57</span>{`,
+    "price_down": `}<span className="text-accent-red">0.43</span>{`,
+    "orderbook_up": { "bids": [...], "asks": [...] }
+  }],
+  "total": `}<span className="text-text-primary">67568</span>{`
+}`}</code></pre>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature) => (
-              <div key={feature.title} className="card p-6">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <feature.icon className="w-5 h-5 text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                <p className="text-text-muted text-sm">{feature.description}</p>
+      {/* Numbers strip */}
+      <section className="border-y border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-border">
+            {[
+              { value: '250K+', label: 'Snapshots per market' },
+              { value: '<50ms', label: 'API latency' },
+              { value: '5', label: 'Timeframes' },
+              { value: '31+', label: 'Days of history' },
+            ].map((s) => (
+              <div key={s.label} className="py-8 px-4 text-center">
+                <div className="text-2xl md:text-3xl font-bold text-primary mb-1">{s.value}</div>
+                <div className="text-text-muted text-sm">{s.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* API Preview Section */}
+      {/* What's inside -horizontal cards */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">What you get</h2>
+            <p className="text-text-muted text-lg">
+              Every data point a quant needs to model Polymarket dynamics.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            {[
+              { icon: Database, title: 'Full order book depth', desc: 'Bid/ask at every price level for both UP and DOWN tokens. Compute slippage, spreads, and fill probability.' },
+              { icon: Clock, title: 'Sub-second timestamps', desc: 'Snapshots recorded faster than once per second. Includes synced BTC prices from Binance and Chainlink.' },
+              { icon: Layers, title: 'Every timeframe', desc: '5m, 15m, 1h, 4h, and 24h markets, all captured from the moment they open to final resolution.' },
+              { icon: Shield, title: 'Resolved market archive', desc: 'Closed markets preserved at full resolution. Winners, final volumes, and settlement data included.' },
+              { icon: Terminal, title: 'Clean REST API', desc: 'JSON endpoints with pagination, filtering by timeframe/status, and optional orderbook depth in a single call.' },
+              { icon: Zap, title: 'Under 50ms responses', desc: 'Optimized infrastructure built for backtesting workloads. Pull thousands of snapshots without throttling.' },
+            ].map((f) => (
+              <div key={f.title} className="flex gap-4 p-5 rounded-xl border border-border hover:border-primary/30 transition-colors bg-surface-dark/50">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <f.icon className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1">{f.title}</h3>
+                  <p className="text-text-muted text-sm leading-relaxed">{f.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How it works -numbered steps */}
       <section className="py-24 bg-surface-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Developer-Friendly API
-              </h2>
-              <p className="text-text-muted mb-6">
-                Clean, structured endpoints for markets, snapshots, and historical data.
-                Plug in your API key and start pulling data instantly.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-accent-green" />
-                  <span className="text-sm">RESTful JSON API</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-accent-green" />
-                  <span className="text-sm">Pagination support</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-accent-green" />
-                  <span className="text-sm">Filter by coin, timeframe, status</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-4 h-4 text-accent-green" />
-                  <span className="text-sm">Optional orderbook data</span>
-                </li>
-              </ul>
-              <Link to="/docs" className="btn-primary mt-8">
-                Read the Docs
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Three steps to your first backtest</h2>
+            <p className="text-text-muted text-lg">From sign-up to pulling data in under two minutes.</p>
+          </div>
 
-            <div className="bg-surface-card rounded-xl overflow-hidden border border-white/6">
-              <div className="flex items-center gap-2 px-4 py-3 bg-surface-base border-b border-white/6 overflow-hidden">
-                <div className="w-3 h-3 rounded-full bg-accent-red shrink-0" />
-                <div className="w-3 h-3 rounded-full bg-accent-yellow shrink-0" />
-                <div className="w-3 h-3 rounded-full bg-accent-green shrink-0" />
-                <span className="text-xs text-text-muted ml-2 truncate font-mono">GET /v1/markets/bitcoin-up-or-down-on-march-21-2026</span>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { step: '01', title: 'Create an account', desc: 'Sign up free. No credit card required. You get an API key immediately.' },
+              { step: '02', title: 'Pick a market', desc: 'Browse by timeframe or slug. Filter active vs. resolved markets through the API or the explorer.' },
+              { step: '03', title: 'Pull snapshots', desc: 'Fetch order book history at sub-second resolution. Paginate, filter, and include depth, all in one call.' },
+            ].map((s) => (
+              <div key={s.step} className="relative">
+                <div className="text-6xl font-bold text-primary/30 mb-4">{s.step}</div>
+                <h3 className="text-lg font-semibold mb-2">{s.title}</h3>
+                <p className="text-text-muted text-sm leading-relaxed">{s.desc}</p>
               </div>
-              <pre className="p-4 text-sm overflow-x-auto">
-                <code className="text-text-muted">{`{
-  "slug": "bitcoin-up-or-down-on-march-21-2026",
-  "coin": "BTC",
-  "market_type": "24h",
-  "start_time": "2026-03-21T00:00:00Z",
-  "end_time": "2026-03-21T23:59:59Z",
-  "btc_price_start": 69914,
-  "snapshots": 67568,
-  "resolved": false
-}`}</code>
-              </pre>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Live data card */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Live from the API</h2>
+            <p className="text-text-muted text-lg">Real data from a recent BTC market snapshot.</p>
+          </div>
+
+          <div className="max-w-3xl mx-auto">
+            <div className="card p-6">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-5">
+                <div>
+                  <h3 className="font-semibold text-sm mb-1 text-text-muted uppercase tracking-wider">Market</h3>
+                  <p className="font-mono text-sm">bitcoin-up-or-down-on-march-28-2026</p>
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  <span className="text-xs font-medium text-primary">Connected</span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div className="bg-surface-base rounded-lg p-4">
+                  <div className="text-xs text-text-dim mb-1 uppercase tracking-wider">BTC Price</div>
+                  <div className="text-xl font-bold font-mono">${btcPrice}</div>
+                </div>
+                <div className="bg-surface-base rounded-lg p-4">
+                  <div className="text-xs text-text-dim mb-1 uppercase tracking-wider">UP</div>
+                  <div className="text-xl font-bold font-mono text-accent-green flex items-center gap-1.5">
+                    <TrendingUp className="w-4 h-4" /> 0.57
+                  </div>
+                </div>
+                <div className="bg-surface-base rounded-lg p-4">
+                  <div className="text-xs text-text-dim mb-1 uppercase tracking-wider">DOWN</div>
+                  <div className="text-xl font-bold font-mono text-accent-red flex items-center gap-1.5">
+                    <TrendingDown className="w-4 h-4" /> 0.43
+                  </div>
+                </div>
+                <div className="bg-surface-base rounded-lg p-4">
+                  <div className="text-xs text-text-dim mb-1 uppercase tracking-wider">Snapshots</div>
+                  <div className="text-xl font-bold font-mono">2,46,152</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-24" id="pricing">
+      {/* Pricing -compact */}
+      <section className="py-24 bg-surface-dark" id="pricing">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Transparent Pricing</h2>
-            <p className="text-text-muted">Start for free, upgrade for power.</p>
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Simple, honest pricing</h2>
+            <p className="text-text-muted text-lg">Start free. Pay only when you need more.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
             {pricingPlans.map((plan) => (
               <div
                 key={plan.name}
-                className={`card p-6 ${
-                  plan.popular ? 'ring-1 ring-primary relative' : ''
-                }`}
+                className={`card p-6 flex flex-col ${plan.highlight ? 'ring-1 ring-primary relative' : ''}`}
               >
-                {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full">
-                    Most Popular
+                {/* Header */}
+                <div className="text-center mb-6">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <h3 className="font-bold text-xl">{plan.name}</h3>
+                    {plan.badge && (
+                      <span className="px-2 py-0.5 bg-primary/20 text-primary text-xs font-semibold rounded-full">
+                        {plan.badge}
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-4xl font-bold mb-1">{plan.price}</div>
+                  {plan.period && <div className="text-text-muted text-sm">{plan.period}</div>}
+                  {plan.desc && <p className="text-text-muted text-sm mt-2">{plan.desc}</p>}
+                </div>
+
+                {/* Market Access */}
+                {plan.marketAccess && plan.marketAccess.length > 0 && (
+                  <div className="border border-border rounded-lg p-4 mb-6">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-3">
+                      Market History Access
+                    </div>
+                    <div className="space-y-2.5">
+                      {plan.marketAccess.map((m) => (
+                        <div key={m.label} className="flex items-center justify-between text-sm">
+                          <span>{m.label}</span>
+                          <span className="px-2 py-0.5 bg-surface-base text-text-primary text-xs font-medium rounded border border-border">
+                            {m.limit}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
-                <h3 className="text-lg font-semibold mb-2">{plan.name}</h3>
-                <div className="flex items-baseline gap-1 mb-2">
-                  <span className="text-3xl font-bold">{plan.price}</span>
-                  {plan.period && <span className="text-text-muted text-sm">{plan.period}</span>}
-                </div>
-                <p className="text-text-muted text-sm mb-6">{plan.description}</p>
 
-                <ul className="space-y-3 mb-6">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 text-sm">
-                      <Check className="w-4 h-4 text-accent-green mt-0.5 shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                  {plan.notIncluded.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 text-sm text-text-dim">
-                      <span className="w-4 h-4 mt-0.5 shrink-0 text-center">&mdash;</span>
-                      <span>{feature}</span>
+                {/* Features */}
+                <ul className="space-y-2.5 mb-8 flex-1">
+                  {plan.features.map((f) => (
+                    <li key={f.text} className="flex items-start gap-2 text-sm">
+                      <Check className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                      <span>{f.text}</span>
                     </li>
                   ))}
                 </ul>
 
-                <button
-                  className={`w-full py-2.5 rounded-lg font-semibold text-sm ${
-                    plan.popular
-                      ? 'btn-primary justify-center'
-                      : 'btn-secondary justify-center'
-                  }`}
-                >
-                  {plan.cta}
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-24 bg-surface-dark" id="faq">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
-            <p className="text-text-muted">Everything you need to know about PolyHistorical</p>
-          </div>
-
-          <div className="space-y-3">
-            {faqs.map((faq, index) => (
-              <div key={index} className="card overflow-hidden">
-                <button
-                  className="w-full px-6 py-4 flex items-center justify-between text-left"
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                >
-                  <span className="font-medium text-sm">{faq.question}</span>
-                  <ChevronDown
-                    className={`w-4 h-4 text-text-muted transition-transform ${
-                      openFaq === index ? 'rotate-180' : ''
+                {plan.name === 'Pro' ? (
+                  <ProCta />
+                ) : (
+                  <Link
+                    to={plan.ctaLink}
+                    className={`w-full py-2.5 rounded-lg font-semibold text-sm text-center ${
+                      plan.highlight ? 'btn-primary justify-center' : 'btn-secondary justify-center'
                     }`}
-                  />
-                </button>
-                {openFaq === index && (
-                  <div className="px-6 pb-4 text-text-muted text-sm">
-                    {faq.answer}
-                  </div>
+                  >
+                    {plan.cta}
+                  </Link>
                 )}
               </div>
             ))}
@@ -413,24 +333,46 @@ export function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* Frequently Asked Questions (FAQ) */}
+      <section className="py-24" id="faq">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold mb-12 text-center">Frequently Asked Questions (FAQ)</h2>
+          <div className="space-y-2">
+            {faqs.map((faq, i) => (
+              <div key={i} className="border border-border rounded-lg overflow-hidden">
+                <button
+                  className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-surface-card/50 transition-colors"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                >
+                  <span className="font-medium text-sm">{faq.question}</span>
+                  <ChevronDown className={`w-4 h-4 text-text-muted transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
+                </button>
+                {openFaq === i && (
+                  <div className="px-5 pb-4 text-text-muted text-sm leading-relaxed">{faq.answer}</div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="py-24 border-t border-border">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to start backtesting?
+            Start replaying markets today
           </h2>
-          <p className="text-text-muted mb-8 max-w-2xl mx-auto">
-            Join traders and researchers using PolyHistorical to build winning strategies
-            with real historical Polymarket data.
+          <p className="text-text-muted mb-8 text-lg max-w-xl mx-auto">
+            Create a free account, grab your API key, and pull your first snapshot in under a minute.
           </p>
-          <div className="flex flex-row flex-wrap gap-3 justify-center">
-            <Link to="/signup" className="btn-primary">
-              Explore Markets
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Link to="/signup" className="btn-primary text-base py-3 px-6">
+              Create Free Account
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link to="/docs" className="btn-secondary">
-              Read Documentation
-            </Link>
+            <a href="https://docs.polyhistorical.com/" target="_blank" rel="noopener noreferrer" className="btn-secondary text-base py-3 px-6">
+              Explore the API
+            </a>
           </div>
         </div>
       </section>

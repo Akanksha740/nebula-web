@@ -11,10 +11,8 @@ export function Navbar() {
 
   const navLinks = [
     { path: '/', label: 'Home' },
-    { path: '/markets', label: 'Markets' },
     { path: '/features', label: 'Features' },
     { path: '/pricing', label: 'Pricing' },
-    { path: '/docs', label: 'Docs' },
   ];
 
   return (
@@ -41,6 +39,20 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <a
+              href="https://docs.polyhistorical.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium transition-colors text-text-muted hover:text-white"
+            >
+              Docs
+            </a>
+            <a
+              href="/#faq"
+              className="text-sm font-medium transition-colors text-text-muted hover:text-white"
+            >
+              FAQ
+            </a>
           </div>
 
           <div className="hidden md:flex items-center gap-3">
@@ -76,6 +88,22 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <a
+              href="https://docs.polyhistorical.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block px-4 py-2 rounded-lg text-sm font-medium transition-colors text-text-muted hover:text-white hover:bg-white/5"
+            >
+              Docs
+            </a>
+            <a
+              href="/#faq"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block px-4 py-2 rounded-lg text-sm font-medium transition-colors text-text-muted hover:text-white hover:bg-white/5"
+            >
+              FAQ
+            </a>
             <div className="flex gap-2 pt-4">
               <Link to="/login" className="btn-secondary text-sm py-2 px-4 flex-1 justify-center" onClick={() => setMobileMenuOpen(false)}>Login</Link>
               <Link to="/signup" className="btn-primary text-sm py-2 px-4 flex-1 justify-center" onClick={() => setMobileMenuOpen(false)}>Get Started</Link>

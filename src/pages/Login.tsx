@@ -28,6 +28,14 @@ export function Login() {
   const navigateRef = useRef(navigate);
   navigateRef.current = navigate;
 
+  // Redirect to dashboard if already logged in
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/dashboard');
+    }
+  }, [navigate]);
+
   const handleGoogleResponse = useRef(async (response: { credential: string }) => {
     const showError = (msg: string) => {
       const el = document.getElementById('login-error');
@@ -45,6 +53,20 @@ export function Login() {
       if (res.success && res.data?.accessToken) {
         localStorage.setItem('token', res.data.accessToken);
         localStorage.setItem('user', JSON.stringify(res.data.customer));
+
+        const pendingPlan = localStorage.getItem('pendingPlan');
+        if (pendingPlan === 'PRO') {
+          localStorage.removeItem('pendingPlan');
+          try {
+            const checkout = await api.createCheckout('PRO');
+            const checkoutUrl = checkout?.data?.checkoutUrl;
+            if (checkoutUrl) {
+              window.location.href = checkoutUrl;
+              return;
+            }
+          } catch { /* fall through */ }
+        }
+
         navigateRef.current('/dashboard');
       }
     } catch (err: any) {
@@ -89,6 +111,21 @@ export function Login() {
       if (response.success && response.data?.accessToken) {
         localStorage.setItem('token', response.data.accessToken);
         localStorage.setItem('user', JSON.stringify(response.data.customer));
+
+        // If pending pro upgrade, redirect to checkout
+        const pendingPlan = localStorage.getItem('pendingPlan');
+        if (pendingPlan === 'PRO') {
+          localStorage.removeItem('pendingPlan');
+          try {
+            const checkout = await api.createCheckout('PRO');
+            const checkoutUrl = checkout?.data?.checkoutUrl;
+            if (checkoutUrl) {
+              window.location.href = checkoutUrl;
+              return;
+            }
+          } catch { /* fall through to dashboard */ }
+        }
+
         navigate('/dashboard');
       }
     } catch (err: any) {
@@ -159,6 +196,12 @@ export function Login() {
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
+            </div>
+
+            <div className="flex justify-end">
+              <Link to="/forgot-password" className="text-xs text-text-muted hover:text-primary transition-colors">
+                Forgot your password?
+              </Link>
             </div>
 
             <button
