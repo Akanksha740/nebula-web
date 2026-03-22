@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Eye, EyeOff, ArrowRight } from 'lucide-react';
 import { Logo } from '../components/Logo';
 import { api } from '../lib/api';
@@ -19,6 +19,8 @@ function GoogleIcon() {
 
 export function Signup() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const plan = searchParams.get('plan');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,6 +30,21 @@ export function Signup() {
   const googleBtnRef = useRef<HTMLDivElement>(null);
   const navigateRef = useRef(navigate);
   navigateRef.current = navigate;
+
+  // Store pending plan upgrade
+  useEffect(() => {
+    if (plan) {
+      localStorage.setItem('pendingPlan', plan.toUpperCase());
+    }
+  }, [plan]);
+
+  // Redirect to dashboard if already logged in
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/dashboard');
+    }
+  }, [navigate]);
 
   const handleGoogleResponse = useRef(async (response: { credential: string }) => {
     const showError = (msg: string) => {
@@ -46,6 +63,21 @@ export function Signup() {
       if (res.success && res.data?.accessToken) {
         localStorage.setItem('token', res.data.accessToken);
         localStorage.setItem('user', JSON.stringify(res.data.customer));
+
+        // If pending pro upgrade, redirect to checkout
+        const pendingPlan = localStorage.getItem('pendingPlan');
+        if (pendingPlan === 'PRO') {
+          localStorage.removeItem('pendingPlan');
+          try {
+            const checkout = await api.createCheckout('PRO');
+            const checkoutUrl = checkout?.data?.checkoutUrl;
+            if (checkoutUrl) {
+              window.location.href = checkoutUrl;
+              return;
+            }
+          } catch { /* fall through to dashboard */ }
+        }
+
         navigateRef.current('/dashboard');
       }
     } catch (err: any) {
@@ -83,6 +115,17 @@ export function Signup() {
     e.preventDefault();
     setError('');
 
+    if (!name.trim()) {
+      setError('Name is required');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+
     if (password.length < 8) {
       setError('Password must be at least 8 characters');
       return;
@@ -96,10 +139,8 @@ export function Signup() {
         companyName: name || undefined,
       });
 
-      if (response.success && response.data?.accessToken) {
-        localStorage.setItem('token', response.data.accessToken);
-        localStorage.setItem('user', JSON.stringify(response.data.customer));
-        navigate('/dashboard');
+      if (response.success) {
+        navigate(`/check-email?email=${encodeURIComponent(email)}`);
       }
     } catch (err: any) {
       const msg =

@@ -13,7 +13,7 @@ import {
 import { api } from '../lib/api';
 import type { Market } from '../lib/api';
 
-const coins = ['BTC'];
+const coins = ['BTC', 'ETH'];
 const timeframes = ['All', '5m', '15m', '1h', '4h', '24h'];
 
 export function Markets() {

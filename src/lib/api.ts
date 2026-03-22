@@ -2,6 +2,29 @@ import axios from 'axios';
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
 
+// Authenticated axios instance — auto-attaches JWT and handles 401
+const authClient = axios.create();
+
+authClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+authClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
 // API returns snake_case, so we match that
 export interface Market {
   slug: string;
@@ -73,6 +96,7 @@ export interface AuthResponse {
 }
 
 export const api = {
+  // --- Public (no auth) ---
   register: async (params: {
     email: string;
     password: string;
@@ -95,6 +119,63 @@ export const api = {
     return data;
   },
 
+  verifyEmail: async (token: string): Promise<{ success: boolean; message: string }> => {
+    const { data } = await axios.get(`${API_BASE}/auth/verify-email`, { params: { token } });
+    return data;
+  },
+
+  resendVerification: async (email: string): Promise<{ success: boolean; message: string }> => {
+    const { data } = await axios.post(`${API_BASE}/auth/resend-verification`, { email });
+    return data;
+  },
+
+  forgotPassword: async (email: string): Promise<{ success: boolean; message: string }> => {
+    const { data } = await axios.post(`${API_BASE}/auth/forgot-password`, { email });
+    return data;
+  },
+
+  resetPassword: async (token: string, newPassword: string): Promise<{ success: boolean; message: string }> => {
+    const { data } = await axios.post(`${API_BASE}/auth/reset-password`, { token, newPassword });
+    return data;
+  },
+
+  // --- Authenticated ---
+  getProfile: async (): Promise<any> => {
+    const { data } = await authClient.get(`${API_BASE}/auth/me`);
+    return data;
+  },
+
+  changePassword: async (currentPassword: string, newPassword: string): Promise<any> => {
+    const { data } = await authClient.post(`${API_BASE}/account/change-password`, { currentPassword, newPassword });
+    return data;
+  },
+
+  getApiKeys: async (): Promise<any> => {
+    const { data } = await authClient.get(`${API_BASE}/account/api-keys`);
+    return data;
+  },
+
+  createApiKey: async (params: { name: string; expiresAt?: string }): Promise<any> => {
+    const { data } = await authClient.post(`${API_BASE}/account/api-keys`, params);
+    return data;
+  },
+
+  revokeApiKey: async (keyId: string): Promise<any> => {
+    const { data } = await authClient.delete(`${API_BASE}/account/api-keys/${keyId}`);
+    return data;
+  },
+
+  createCheckout: async (tier: string): Promise<any> => {
+    const { data } = await authClient.post(`${API_BASE}/account/subscription/checkout?tier=${tier}`);
+    return data;
+  },
+
+
+  getUsageStats: async (): Promise<any> => {
+    const { data } = await authClient.get(`${API_BASE}/account/usage`);
+    return data;
+  },
+
   getMarkets: async (params: {
     coin: string;
     limit?: number;
@@ -102,12 +183,12 @@ export const api = {
     market_type?: string;
     resolved?: boolean;
   }): Promise<MarketsResponse> => {
-    const { data } = await axios.get(`${API_BASE}/markets`, { params });
+    const { data } = await authClient.get(`${API_BASE}/markets`, { params });
     return data;
   },
 
   getMarket: async (slug: string, coin: string): Promise<Market> => {
-    const { data } = await axios.get(`${API_BASE}/markets/${slug}`, {
+    const { data } = await authClient.get(`${API_BASE}/markets/${slug}`, {
       params: { coin }
     });
     return data;
@@ -122,7 +203,7 @@ export const api = {
       include_orderbook?: boolean;
     }
   ): Promise<MarketWithSnapshotsResponse> => {
-    const { data } = await axios.get(`${API_BASE}/markets/${slug}/snapshots`, {
+    const { data } = await authClient.get(`${API_BASE}/markets/${slug}/snapshots`, {
       params: { coin, ...params }
     });
     return data;

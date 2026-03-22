@@ -197,7 +197,7 @@ export function MarketDetail() {
               </div>
             </div>
             <div className="bg-surface-dark rounded-lg p-4">
-              <div className="text-sm text-text-muted mb-1">BTC Price Start</div>
+              <div className="text-sm text-text-muted mb-1">Coin Price Start</div>
               <div className="font-medium">{formatPrice(market.btc_price_start)}</div>
             </div>
             <div className="bg-surface-dark rounded-lg p-4">
@@ -249,7 +249,7 @@ export function MarketDetail() {
               <thead>
                 <tr className="bg-surface-dark">
                   <th className="text-left py-3 px-6 text-sm font-medium text-text-muted">Time</th>
-                  <th className="text-right py-3 px-4 text-sm font-medium text-text-muted">BTC Price</th>
+                  <th className="text-right py-3 px-4 text-sm font-medium text-text-muted">Coin Price</th>
                   <th className="text-right py-3 px-4 text-sm font-medium text-text-muted">Price UP</th>
                   <th className="text-right py-3 px-4 text-sm font-medium text-text-muted">Price DOWN</th>
                   {includeOrderbook && (
