@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { SEO } from '../components/SEO';
 import {
   Database,
   Clock,
@@ -69,6 +70,11 @@ const useCases = [
 export function Features() {
   return (
     <div className="pt-20 pb-16">
+      <SEO
+        title="Features"
+        description="Full order book depth, sub-second snapshots, and a fast REST API for Polymarket BTC and ETH Up/Down historical data."
+        path="/features"
+      />
       {/* Hero — minimal */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

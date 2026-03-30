@@ -7,10 +7,12 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) =>
+    path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
 
   const navLinks = [
     { path: '/', label: 'Home' },
+    { path: '/markets', label: 'Markets' },
     { path: '/features', label: 'Features' },
     { path: '/pricing', label: 'Pricing' },
   ];

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useSearchParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import {
   ArrowLeft,
   TrendingUp,
@@ -12,11 +12,11 @@ import {
 } from 'lucide-react';
 import { api } from '../lib/api';
 import type { Market, Snapshot } from '../lib/api';
+import { SEO } from '../components/SEO';
 
 export function MarketDetail() {
-  const { slug } = useParams<{ slug: string }>();
-  const [searchParams] = useSearchParams();
-  const coin = searchParams.get('coin') || 'btc';
+  const { slug, coin: coinParam } = useParams<{ slug: string; coin: string }>();
+  const coin = coinParam || 'btc';
 
   const [market, setMarket] = useState<Market | null>(null);
   const [snapshots, setSnapshots] = useState<Snapshot[]>([]);
@@ -126,10 +126,28 @@ export function MarketDetail() {
 
   return (
     <div className="pt-20 pb-16">
+      <SEO
+        title={`${market.slug} — ${coin.toUpperCase()} Order Book History`}
+        description={`Historical order book data for Polymarket ${market.slug}. ${market.market_type} ${coin.toUpperCase()} Up/Down market with ${total.toLocaleString()} snapshots at sub-second resolution.`}
+        path={`/markets/${coin}/market/${market.slug}`}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Dataset",
+          "name": `${market.slug} Order Book Data`,
+          "description": `Historical order book snapshots for Polymarket ${coin.toUpperCase()} Up/Down market: ${market.slug}`,
+          "url": `https://polyhistorical.com/markets/${coin}/market/${market.slug}`,
+          "provider": {
+            "@type": "Organization",
+            "name": "PolyHistorical",
+            "url": "https://polyhistorical.com"
+          },
+          "temporalCoverage": `${market.start_time || ''}/${market.end_time || ''}`
+        }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back button */}
         <Link
-          to="/markets"
+          to={`/markets/${coin}`}
           className="inline-flex items-center gap-2 text-text-muted hover:text-white mb-6 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />

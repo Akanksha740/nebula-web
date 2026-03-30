@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import {
   Search,
   TrendingUp,
@@ -12,20 +12,68 @@ import {
 } from 'lucide-react';
 import { api } from '../lib/api';
 import type { Market } from '../lib/api';
+import { SEO } from '../components/SEO';
 
-const coins = ['BTC', 'ETH'];
-const timeframes = ['All', '5m', '15m', '1h', '4h', '24h'];
+const validCoins = ['btc', 'eth'];
+const validTimeframes = ['5m', '15m', '1h', '4h', '24h'];
+
+function buildSeoTitle(coin?: string, timeframe?: string) {
+  const c = coin?.toUpperCase() || 'BTC & ETH';
+  if (timeframe) {
+    return `${c} ${timeframe} Polymarket Up/Down Markets`;
+  }
+  return `${c} Polymarket Up/Down Markets — Historical Data`;
+}
+
+function buildSeoDescription(coin?: string, timeframe?: string) {
+  const c = coin?.toUpperCase() || 'BTC and ETH';
+  if (timeframe) {
+    return `Browse historical ${c} ${timeframe} Up/Down prediction markets on Polymarket. Full order book depth, sub-second snapshots, and resolution data.`;
+  }
+  return `Explore all ${c} Up/Down prediction markets on Polymarket with full historical order book data. Filter by timeframe, status, and search by slug.`;
+}
 
 export function Markets() {
+  const { coin: coinParam, slugOrTimeframe } = useParams<{ coin?: string; slugOrTimeframe?: string }>();
+  const navigate = useNavigate();
+
+  const urlCoin = validCoins.includes(coinParam?.toLowerCase() || '') ? coinParam!.toUpperCase() : undefined;
+  const urlTimeframe = validTimeframes.includes(slugOrTimeframe || '') ? slugOrTimeframe : undefined;
+
   const [markets, setMarkets] = useState<Market[]>([]);
   const [loading, setLoading] = useState(true);
-  const [coin, setCoin] = useState('BTC');
-  const [timeframe, setTimeframe] = useState('All');
+  const [coin, setCoin] = useState(urlCoin || 'BTC');
+  const [timeframe, setTimeframe] = useState(urlTimeframe || 'All');
   const [resolved, setResolved] = useState<boolean | undefined>(undefined);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(0);
   const [total, setTotal] = useState(0);
   const limit = 20;
+
+  // Sync URL params to state
+  useEffect(() => {
+    if (urlCoin && urlCoin !== coin) setCoin(urlCoin);
+    if (urlTimeframe && urlTimeframe !== timeframe) setTimeframe(urlTimeframe);
+    if (!urlTimeframe && slugOrTimeframe === undefined && timeframe !== 'All' && !urlCoin) setTimeframe('All');
+  }, [coinParam, slugOrTimeframe]);
+
+  // Update URL when filters change
+  const handleCoinChange = (c: string) => {
+    setCoin(c);
+    setPage(0);
+    const tf = timeframe !== 'All' ? `/${timeframe}` : '';
+    navigate(`/markets/${c.toLowerCase()}${tf}`);
+  };
+
+  const handleTimeframeChange = (tf: string) => {
+    setTimeframe(tf);
+    setPage(0);
+    if (tf === 'All') {
+      navigate(`/markets/${coin.toLowerCase()}`);
+    } else {
+      navigate(`/markets/${coin.toLowerCase()}/${tf}`);
+    }
+  };
 
   useEffect(() => {
     fetchMarkets();
@@ -74,14 +122,35 @@ export function Markets() {
     });
   };
 
+  const seoPath = urlTimeframe
+    ? `/markets/${coin.toLowerCase()}/${urlTimeframe}`
+    : urlCoin
+      ? `/markets/${coin.toLowerCase()}`
+      : '/markets';
+
   return (
     <div className="pt-20 pb-16">
+      <SEO
+        title={buildSeoTitle(urlCoin, urlTimeframe)}
+        description={buildSeoDescription(urlCoin, urlTimeframe)}
+        path={seoPath}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Markets Explorer</h1>
+          <h1 className="text-3xl font-bold mb-2">
+            {urlTimeframe
+              ? `${coin} ${urlTimeframe} Markets`
+              : urlCoin
+                ? `${coin} Up/Down Markets`
+                : 'Markets Explorer'}
+          </h1>
           <p className="text-text-muted">
-            Browse and explore historical Polymarket Up/Down markets
+            {urlTimeframe
+              ? `Historical ${coin} ${urlTimeframe} Up/Down prediction markets on Polymarket with full order book data.`
+              : urlCoin
+                ? `Browse all ${coin} Up/Down prediction markets on Polymarket. Sub-second snapshots and full order book depth.`
+                : 'Browse and explore historical Polymarket Up/Down markets'}
           </p>
         </div>
 
@@ -92,10 +161,10 @@ export function Markets() {
             <div className="flex items-center gap-2">
               <span className="text-sm text-text-muted">Coin:</span>
               <div className="flex rounded-lg bg-surface-card p-1">
-                {coins.map((c) => (
+                {['BTC', 'ETH'].map((c) => (
                   <button
                     key={c}
-                    onClick={() => { setCoin(c); setPage(0); }}
+                    onClick={() => handleCoinChange(c)}
                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                       coin === c
                         ? 'bg-primary text-white'
@@ -111,10 +180,10 @@ export function Markets() {
             <div className="flex items-center gap-2">
               <span className="text-sm text-text-muted">Timeframe:</span>
               <div className="flex rounded-lg bg-surface-card p-1">
-                {timeframes.map((tf) => (
+                {['All', '5m', '15m', '1h', '4h', '24h'].map((tf) => (
                   <button
                     key={tf}
-                    onClick={() => { setTimeframe(tf); setPage(0); }}
+                    onClick={() => handleTimeframeChange(tf)}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                       timeframe === tf
                         ? 'bg-primary text-white'
@@ -186,6 +255,25 @@ export function Markets() {
           </div>
         </div>
 
+        {/* Internal links for SEO */}
+        <div className="mb-6 flex flex-wrap gap-2 text-sm">
+          {['btc', 'eth'].map((c) =>
+            validTimeframes.map((tf) => (
+              <Link
+                key={`${c}-${tf}`}
+                to={`/markets/${c}/${tf}`}
+                className={`px-3 py-1.5 rounded-full border transition-colors ${
+                  coin.toLowerCase() === c && timeframe === tf
+                    ? 'border-primary text-primary bg-primary/10'
+                    : 'border-border text-text-muted hover:text-white hover:border-white/30'
+                }`}
+              >
+                {c.toUpperCase()} {tf}
+              </Link>
+            ))
+          )}
+        </div>
+
         {/* Results count */}
         <div className="mb-4 text-sm text-text-muted">
           Showing {filteredMarkets.length} of {total} markets
@@ -228,16 +316,19 @@ export function Markets() {
                     >
                       <td className="py-4 px-6">
                         <Link
-                          to={`/markets/${market.slug}?coin=${coin.toLowerCase()}`}
+                          to={`/markets/${coin.toLowerCase()}/market/${market.slug}`}
                           className="font-medium hover:text-primary transition-colors"
                         >
                           {market.slug}
                         </Link>
                       </td>
                       <td className="py-4 px-4">
-                        <span className="px-2 py-1 bg-primary/20 text-primary rounded text-sm">
+                        <Link
+                          to={`/markets/${coin.toLowerCase()}/${market.market_type}`}
+                          className="px-2 py-1 bg-primary/20 text-primary rounded text-sm hover:bg-primary/30 transition-colors"
+                        >
                           {market.market_type}
-                        </span>
+                        </Link>
                       </td>
                       <td className="py-4 px-4 text-sm text-text-muted">
                         {formatDate(market.start_time)}
@@ -285,7 +376,7 @@ export function Markets() {
                       </td>
                       <td className="py-4 px-6 text-right">
                         <Link
-                          to={`/markets/${market.slug}?coin=${coin.toLowerCase()}`}
+                          to={`/markets/${coin.toLowerCase()}/market/${market.slug}`}
                           className="text-sm text-primary hover:text-primary-light"
                         >
                           View Details →

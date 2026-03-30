@@ -11,6 +11,9 @@ import { VerifyEmail } from './pages/VerifyEmail';
 import { Dashboard } from './pages/Dashboard';
 import { ForgotPassword } from './pages/ForgotPassword';
 import { ResetPassword } from './pages/ResetPassword';
+import { Markets } from './pages/Markets';
+import { MarketDetail } from './pages/MarketDetail';
+import { NotFound } from './pages/NotFound';
 
 function PublicLayout() {
   return (
@@ -27,6 +30,11 @@ function PublicLayout() {
           <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/markets" element={<Markets />} />
+          <Route path="/markets/:coin" element={<Markets />} />
+          <Route path="/markets/:coin/:slugOrTimeframe" element={<Markets />} />
+          <Route path="/markets/:coin/market/:slug" element={<MarketDetail />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { SEO } from '../components/SEO';
 import { Eye, EyeOff, ArrowRight } from 'lucide-react';
 import { Logo } from '../components/Logo';
 import { api } from '../lib/api';
@@ -141,6 +142,11 @@ export function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-24">
+      <SEO
+        title="Log In"
+        description="Log in to your PolyHistorical account to manage API keys and access Polymarket historical data."
+        path="/login"
+      />
       <div className="w-full max-w-md">
         <div className="card p-8">
           {/* Header */}

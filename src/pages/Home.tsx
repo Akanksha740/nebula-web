@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { SEO } from '../components/SEO';
 import {
   Zap,
   Database,
@@ -62,6 +63,43 @@ export function Home() {
 
   return (
     <div className="pt-16">
+      <SEO
+        title="PolyHistorical - Polymarket Historical Data API"
+        description="Backtest Polymarket BTC and ETH Up/Down markets with real order book data. Full historical order book depth at sub-second resolution."
+        path="/"
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "PolyHistorical",
+            "url": "https://polyhistorical.com",
+            "logo": "https://polyhistorical.com/logo.svg",
+            "description": "Polymarket historical order book data provider"
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "PolyHistorical",
+            "url": "https://polyhistorical.com"
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "PolyHistorical API",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Web",
+            "url": "https://polyhistorical.com",
+            "description": "REST API for Polymarket historical order book data at sub-second resolution",
+            "offers": {
+              "@type": "AggregateOffer",
+              "priceCurrency": "USD",
+              "lowPrice": "0",
+              "highPrice": "11",
+              "offerCount": "3"
+            }
+          }
+        ]}
+      />
       {/* Hero -left-aligned, asymmetric */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(16,185,129,0.12),transparent)]" />

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { SEO } from '../components/SEO';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import { tierConfigs } from '../lib/pricing';
@@ -28,6 +29,11 @@ export function Pricing() {
 
   return (
     <div className="pt-20 pb-16">
+      <SEO
+        title="Pricing"
+        description="Simple pricing for Polymarket historical data. Free tier included. Pro and Enterprise plans for full order book access."
+        path="/pricing"
+      />
       {/* Hero */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

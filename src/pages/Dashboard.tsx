@@ -27,6 +27,7 @@ import {
   CheckCircle,
 } from 'lucide-react';
 import { Logo } from '../components/Logo';
+import { PricingCards } from '../components/PricingCards';
 import { api } from '../lib/api';
 import { getTierConfig } from '../lib/pricing';
 
@@ -107,6 +108,7 @@ export function Dashboard() {
   const [passwordError, setPasswordError] = useState('');
   const [passwordSuccess, setPasswordSuccess] = useState('');
   const [upgradeLoading, setUpgradeLoading] = useState(false);
+  const [showPlansModal, setShowPlansModal] = useState(false);
 
   const currentTierConfig = getTierConfig(user?.tier);
   const maxApiKeys = currentTierConfig.maxApiKeys;
@@ -898,15 +900,85 @@ export function Dashboard() {
           {activeNav === 'billing' && (
             <div>
               <h1 className="text-2xl font-bold mb-1">Billing</h1>
-              <p className="text-text-muted text-sm mb-8">Manage your subscription and billing</p>
-              <div className="card p-12 text-center">
-                <CreditCard className="w-12 h-12 text-text-dim mx-auto mb-4" />
-                <p className="text-text-muted text-sm mb-4">You're on the Free plan</p>
-                <Link to="/pricing" className="btn-primary text-sm py-2.5 px-5 inline-flex items-center gap-2">
-                  <Zap className="w-4 h-4" />
-                  View Plans
-                </Link>
+              <p className="text-text-muted text-sm mb-8">Manage your subscription and invoice history</p>
+
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                {/* Current Plan */}
+                <div className="card p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-xs font-semibold tracking-wider text-text-muted uppercase">Current Plan</span>
+                    <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-surface-alt text-text-muted border border-border">
+                      {currentTierConfig.badge || currentTierConfig.name}
+                    </span>
+                  </div>
+                  <h2 className="text-3xl font-bold mb-1">{currentTierConfig.name}</h2>
+                  <p className="text-text-muted text-sm mb-6">{currentTierConfig.price} /mo</p>
+                  <button
+                    onClick={() => setShowPlansModal(true)}
+                    className="block w-full text-center py-2.5 rounded-lg text-sm font-medium bg-white text-black hover:bg-gray-200 transition-colors"
+                  >
+                    View Plans
+                  </button>
+                </div>
+
+                {/* Plan Limits */}
+                <div className="card p-6">
+                  <span className="text-xs font-semibold tracking-wider text-text-muted uppercase">Plan Limits</span>
+                  <div className="mt-4 space-y-0 divide-y divide-border">
+                    {currentTierConfig.marketAccess.map((m, i) => (
+                      <div key={i} className="flex items-center justify-between py-3">
+                        <span className="text-sm text-text-secondary">Market History ({m.label.replace('BTC ', '').replace('ETH ', '')})</span>
+                        <span className="text-xs font-medium px-2.5 py-1 rounded bg-surface-alt text-text-muted border border-border">
+                          {m.limit === 'All' ? 'Unlimited' : `Last ${m.limit}`}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Unlock Pro Benefits */}
+                <div className="card p-6 border-primary/30">
+                  <span className="text-xs font-semibold tracking-wider text-text-muted uppercase">Unlock Pro Benefits</span>
+                  <div className="mt-4 space-y-3 mb-6">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary" />
+                      <span className="text-sm text-text-secondary">Unlimited Market History</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary" />
+                      <span className="text-sm text-text-secondary">Priority Support</span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={handleUpgrade}
+                    disabled={upgradeLoading || user?.tier === 'PRO' || user?.tier === 'ENTERPRISE'}
+                    className="w-full py-2.5 rounded-lg text-sm font-semibold btn-primary justify-center disabled:opacity-50"
+                  >
+                    {upgradeLoading ? 'Redirecting...' : user?.tier === 'PRO' || user?.tier === 'ENTERPRISE' ? 'Current Plan' : 'Upgrade to Pro'}
+                  </button>
+                </div>
               </div>
+
+              {/* Invoice History */}
+              <div className="card p-6">
+                <span className="text-xs font-semibold tracking-wider text-text-muted uppercase">Invoice History</span>
+                <p className="text-text-muted text-sm mt-4">No invoices yet.</p>
+              </div>
+
+              {/* Choose Your Plan Modal */}
+              {showPlansModal && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setShowPlansModal(false)}>
+                  <div className="bg-surface-raised border border-border rounded-2xl p-8 max-w-5xl w-full mx-4 max-h-[90vh] overflow-y-auto relative" onClick={(e) => e.stopPropagation()}>
+                    <div className="flex items-center justify-between mb-6">
+                      <h2 className="text-xl font-bold">Choose Your Plan</h2>
+                      <button onClick={() => setShowPlansModal(false)} className="text-text-muted hover:text-text-primary transition-colors">
+                        <X className="w-5 h-5" />
+                      </button>
+                    </div>
+                    <PricingCards />
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
