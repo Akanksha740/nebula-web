@@ -210,4 +210,82 @@ export const api = {
   }
 };
 
+// ── pSEO types ──
+
+export interface CategoryItem {
+  id: string;
+  name: string;
+  slug: string;
+  description: string | null;
+  metaTitle: string | null;
+  metaDescription: string | null;
+  displayOrder: number;
+  pageCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CategoryListResponse {
+  categories: CategoryItem[];
+  total: number;
+}
+
+export interface PseoPageSummary {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  categorySlug: string;
+  categoryName: string;
+}
+
+export interface PseoPageFull {
+  id: string;
+  categorySlug: string;
+  categoryName: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  content: string;
+  metaTitle: string | null;
+  metaDescription: string | null;
+  ogImage: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PseoPageListResponse {
+  pages: PseoPageSummary[];
+  total: number;
+  limit: number;
+  offset: number;
+}
+
+// ── pSEO API (public, no auth) ──
+
+export const pseoApi = {
+  getCategories: async (): Promise<CategoryListResponse> => {
+    const { data } = await axios.get(`${API_BASE}/pseo/categories`);
+    return data;
+  },
+
+  getCategory: async (slug: string): Promise<CategoryItem> => {
+    const { data } = await axios.get(`${API_BASE}/pseo/categories/${slug}`);
+    return data;
+  },
+
+  getCategoryPages: async (
+    slug: string,
+    params?: { limit?: number; offset?: number }
+  ): Promise<PseoPageListResponse> => {
+    const { data } = await axios.get(`${API_BASE}/pseo/categories/${slug}/pages`, { params });
+    return data;
+  },
+
+  getPage: async (slug: string): Promise<PseoPageFull> => {
+    const { data } = await axios.get(`${API_BASE}/pseo/pages/${slug}`);
+    return data;
+  },
+};
+
 export type { Market as MarketType, Snapshot as SnapshotType };

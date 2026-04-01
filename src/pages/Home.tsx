@@ -126,9 +126,9 @@ export function Home() {
                   Get API Access
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link to="/docs" className="btn-secondary text-base py-3 px-6">
+                <a href="https://docs.polyhistorical.com/" target="_blank" rel="noopener noreferrer" className="btn-secondary text-base py-3 px-6">
                   Read the Docs
-                </Link>
+                </a>
               </div>
 
               <div className="flex items-center gap-6 mt-10 text-sm text-text-muted">

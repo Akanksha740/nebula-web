@@ -1,0 +1,31 @@
+import type { PseoPageFull } from '../api';
+
+const page: PseoPageFull = {
+  id: 'b3', categorySlug: 'compare', categoryName: 'Comparisons',
+  title: 'PolyHistorical vs Amberdata: Market Data API Comparison',
+  slug: 'polyhistorical-vs-amberdata',
+  excerpt: 'How PolyHistorical stacks up against Amberdata for crypto market data APIs.',
+  metaTitle: 'PolyHistorical vs Amberdata: Crypto Market Data API Comparison',
+  metaDescription: 'Compare PolyHistorical and Amberdata for crypto market data. Prediction market order books vs institutional DeFi analytics.',
+  ogImage: null, createdAt: '', updatedAt: '',
+  content: `<h1>PolyHistorical vs Amberdata: Market Data API Comparison</h1>
+  <h2>Overview</h2>
+  <p>Amberdata offers institutional-grade digital asset data including DeFi, derivatives, and blockchain analytics. PolyHistorical focuses on <strong>Polymarket prediction market order book snapshots</strong>.</p>
+
+  <h2>Comparison</h2>
+  <table>
+  <thead><tr><th>Feature</th><th>PolyHistorical</th><th>Amberdata</th></tr></thead>
+  <tbody>
+  <tr><td>Prediction Markets</td><td>&#10003; Full order book history</td><td>&#10007; Not covered</td></tr>
+  <tr><td>DeFi Analytics</td><td>&#10007;</td><td>&#10003; DEX, lending, staking</td></tr>
+  <tr><td>Free Tier</td><td>&#10003; Generous</td><td>Limited trial</td></tr>
+  <tr><td>Pricing</td><td>From $0 (free) to $11/mo</td><td>Enterprise pricing ($1000+)</td></tr>
+  <tr><td>API Latency</td><td>&lt;100ms</td><td>&lt;200ms</td></tr>
+  </tbody>
+  </table>
+
+  <h2>Why Developers Choose PolyHistorical</h2>
+  <p>For prediction market backtesting, PolyHistorical provides data that simply doesn't exist elsewhere — sub-second order book snapshots for every BTC and ETH Up/Down market on Polymarket, with 30-day rolling history.</p>`,
+};
+
+export default page;

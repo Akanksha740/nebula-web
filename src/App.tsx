@@ -14,6 +14,9 @@ import { ResetPassword } from './pages/ResetPassword';
 import { Markets } from './pages/Markets';
 import { MarketDetail } from './pages/MarketDetail';
 import { NotFound } from './pages/NotFound';
+import { CategoryIndex } from './pages/CategoryIndex';
+import { CategoryDetail } from './pages/CategoryDetail';
+import { PseoPageView } from './pages/PseoPageView';
 
 function PublicLayout() {
   return (
@@ -34,6 +37,9 @@ function PublicLayout() {
           <Route path="/markets/:coin" element={<Markets />} />
           <Route path="/markets/:coin/:slugOrTimeframe" element={<Markets />} />
           <Route path="/markets/:coin/market/:slug" element={<MarketDetail />} />
+          <Route path="/category" element={<CategoryIndex />} />
+          <Route path="/category/:slug" element={<CategoryDetail />} />
+          <Route path="/p/:slug" element={<PseoPageView />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
