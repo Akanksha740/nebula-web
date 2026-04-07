@@ -17,7 +17,7 @@ const page: PseoPageFull = {
   <thead><tr><th>Feature</th><th>PolyHistorical</th><th>Kaiko</th></tr></thead>
   <tbody>
   <tr><td>Prediction Market Data</td><td>&#10003; Full order book history</td><td>&#10007; Not available</td></tr>
-  <tr><td>BTC/ETH Up/Down Markets</td><td>&#10003; 5m, 15m, 1h, 4h, 24h</td><td>&#10007;</td></tr>
+  <tr><td>BTC/ETH/SOL Up/Down Markets</td><td>&#10003; 5m, 15m, 1h, 4h, 24h</td><td>&#10007;</td></tr>
   <tr><td>Snapshot Granularity</td><td>Sub-second (500ms)</td><td>10s–1min (exchange data)</td></tr>
   <tr><td>CEX Spot/Derivatives</td><td>&#10007;</td><td>&#10003; 100+ exchanges</td></tr>
   <tr><td>Order Book Depth</td><td>&#10003; Full bid/ask depth</td><td>&#10003; Top of book + depth</td></tr>

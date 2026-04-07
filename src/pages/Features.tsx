@@ -16,13 +16,13 @@ const capabilities = [
     icon: Database,
     title: 'Order Book Depth',
     desc: 'Every bid and ask at every price level for UP and DOWN tokens. Compute slippage, model fills, and measure real liquidity.',
-    bullets: ['Full bid/ask ladder', 'Both UP & DOWN books', 'Size at each level', 'Synced with BTC/ETH price'],
+    bullets: ['Full bid/ask ladder', 'Both UP & DOWN books', 'Size at each level', 'Synced with BTC/ETH/SOL price'],
   },
   {
     icon: Clock,
     title: 'Sub-second Resolution',
     desc: 'Snapshots faster than once per second. Each one timestamped and paired with BTC/ETH reference prices from Binance and Chainlink.',
-    bullets: ['<1s capture interval', 'ISO 8601 timestamps', 'Binance price feed', 'Chainlink settlement data'],
+    bullets: ['<1s capture interval', 'ISO 8601 timestamps', 'Binance + Chainlink feeds', 'BTC, ETH & SOL markets'],
   },
   {
     icon: Zap,
@@ -72,7 +72,7 @@ export function Features() {
     <div className="pt-20 pb-16">
       <SEO
         title="Features"
-        description="Full order book depth, sub-second snapshots, and a fast REST API for Polymarket BTC and ETH Up/Down historical data."
+        description="Full order book depth, sub-second snapshots, and a fast REST API for Polymarket BTC, ETH, and SOL Up/Down historical data."
         path="/features"
       />
       {/* Hero — minimal */}
@@ -84,7 +84,7 @@ export function Features() {
               <span className="gradient-text">Every tick.</span>
             </h1>
             <p className="text-lg text-text-muted mb-8 max-w-2xl leading-relaxed">
-              PolyHistorical captures the full state of Polymarket BTC and ETH Up/Down
+              PolyHistorical captures the full state of Polymarket BTC, ETH, and SOL Up/Down
               markets at sub-second granularity, order books, prices, and
               metadata from open to settlement.
             </p>
@@ -93,6 +93,7 @@ export function Features() {
                 <span className="text-text-muted text-sm">Supported:</span>
                 <span className="px-2.5 py-1 bg-accent-orange/10 text-accent-orange rounded text-sm font-mono font-bold">BTC</span>
                 <span className="px-2.5 py-1 bg-accent-blue/10 text-accent-blue rounded text-sm font-mono font-bold">ETH</span>
+                <span className="px-2.5 py-1 bg-purple-500/10 text-purple-400 rounded text-sm font-mono font-bold">SOL</span>
               </div>
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-text-muted text-sm">Timeframes:</span>

@@ -23,11 +23,11 @@ const faqs = [
   },
   {
     question: 'How granular is the snapshot data?',
-    answer: 'We record full order book state at sub-second intervals for every active market, including bid/ask depth, UP/DOWN token prices, and BTC/ETH reference prices from Binance and Chainlink.',
+    answer: 'We record full order book state at sub-second intervals for every active market, including bid/ask depth, UP/DOWN token prices, and BTC/ETH/SOL reference prices from Binance and Chainlink.',
   },
   {
     question: 'What markets are supported?',
-    answer: 'We support BTC and ETH Up/Down prediction markets across 5m, 15m, 1h, 4h, and 24h timeframes. Each market includes complete order book history from open to resolution.',
+    answer: 'We support BTC, ETH, and SOL Up/Down prediction markets across 5m, 15m, 1h, 4h, and 24h timeframes. Each market includes complete order book history from open to resolution.',
   },
   {
     question: 'Can I try before paying?',
@@ -39,20 +39,24 @@ export function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [btcPrice, setBtcPrice] = useState<string>('--');
   const [ethPrice, setEthPrice] = useState<string>('--');
+  const [solPrice, setSolPrice] = useState<string>('--');
 
   useEffect(() => {
     const fetchPrices = async () => {
       try {
-        const [btcRes, ethRes] = await Promise.all([
+        const [btcRes, ethRes, solRes] = await Promise.all([
           fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT'),
           fetch('https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT'),
+          fetch('https://api.binance.com/api/v3/ticker/price?symbol=SOLUSDT'),
         ]);
-        const [btcData, ethData] = await Promise.all([btcRes.json(), ethRes.json()]);
+        const [btcData, ethData, solData] = await Promise.all([btcRes.json(), ethRes.json(), solRes.json()]);
         setBtcPrice(parseFloat(btcData.price).toLocaleString('en-US', { maximumFractionDigits: 0 }));
         setEthPrice(parseFloat(ethData.price).toLocaleString('en-US', { maximumFractionDigits: 0 }));
+        setSolPrice(parseFloat(solData.price).toLocaleString('en-US', { maximumFractionDigits: 2 }));
       } catch {
         setBtcPrice('--');
         setEthPrice('--');
+        setSolPrice('--');
       }
     };
 
@@ -65,7 +69,7 @@ export function Home() {
     <div className="pt-16">
       <SEO
         title="PolyHistorical - Polymarket Historical Data API"
-        description="Backtest Polymarket BTC and ETH Up/Down markets with real order book data. Full historical order book depth at sub-second resolution."
+        description="Backtest Polymarket BTC, ETH, and SOL Up/Down markets with real order book data. Full historical order book depth at sub-second resolution."
         path="/"
         jsonLd={[
           {
@@ -117,7 +121,7 @@ export function Home() {
               </h1>
 
               <p className="text-lg text-text-muted mb-10 max-w-lg leading-relaxed">
-                Replay any BTC or ETH Up/Down market tick by tick. Full bid/ask depth,
+                Replay any BTC, ETH, or SOL Up/Down market tick by tick. Full bid/ask depth,
                 sub-second resolution, every timeframe, ready for your backtests.
               </p>
 
@@ -207,7 +211,7 @@ export function Home() {
           <div className="grid md:grid-cols-2 gap-4">
             {[
               { icon: Database, title: 'Full order book depth', desc: 'Bid/ask at every price level for both UP and DOWN tokens. Compute slippage, spreads, and fill probability.' },
-              { icon: Clock, title: 'Sub-second timestamps', desc: 'Snapshots recorded faster than once per second. Includes synced BTC/ETH prices from Binance and Chainlink.' },
+              { icon: Clock, title: 'Sub-second timestamps', desc: 'Snapshots recorded faster than once per second. Includes synced BTC/ETH/SOL prices from Binance and Chainlink.' },
               { icon: Layers, title: 'Every timeframe', desc: '5m, 15m, 1h, 4h, and 24h markets, all captured from the moment they open to final resolution.' },
               { icon: Shield, title: 'Resolved market archive', desc: 'Closed markets preserved at full resolution. Winners, final volumes, and settlement data included.' },
               { icon: Terminal, title: 'Clean REST API', desc: 'JSON endpoints with pagination, filtering by timeframe/status, and optional orderbook depth in a single call.' },
@@ -329,6 +333,39 @@ export function Home() {
                   <div className="bg-surface-base rounded-lg p-4">
                     <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Snapshots</div>
                     <div className="text-xl font-bold font-mono">1,83,947</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Divider */}
+              <div className="border-t border-border my-6" />
+
+              {/* SOL Row */}
+              <div>
+                <div className="flex items-center gap-2.5 mb-4">
+                  <span className="text-sm font-bold tracking-wide">SOL</span>
+                  <span className="font-mono text-xs text-text-muted">solana-up-or-down</span>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <div className="bg-surface-base rounded-lg p-4">
+                    <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Price</div>
+                    <div className="text-xl font-bold font-mono">${solPrice}</div>
+                  </div>
+                  <div className="bg-surface-base rounded-lg p-4">
+                    <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Up</div>
+                    <div className="text-xl font-bold font-mono text-accent-green flex items-center gap-1.5">
+                      <TrendingUp className="w-4 h-4" /> 0.54
+                    </div>
+                  </div>
+                  <div className="bg-surface-base rounded-lg p-4">
+                    <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Down</div>
+                    <div className="text-xl font-bold font-mono text-accent-red flex items-center gap-1.5">
+                      <TrendingDown className="w-4 h-4" /> 0.46
+                    </div>
+                  </div>
+                  <div className="bg-surface-base rounded-lg p-4">
+                    <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Snapshots</div>
+                    <div className="text-xl font-bold font-mono">48,312</div>
                   </div>
                 </div>
               </div>

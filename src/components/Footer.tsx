@@ -13,7 +13,7 @@ export function Footer() {
               <span className="text-lg font-bold">PolyHistorical</span>
             </Link>
             <p className="text-text-muted text-sm max-w-xs leading-relaxed">
-              Historical order book data for Polymarket BTC and ETH Up/Down markets. Built for quants, researchers, and bot developers.
+              Historical order book data for Polymarket BTC, ETH, and SOL Up/Down markets. Built for quants, researchers, and bot developers.
             </p>
             <div className="flex items-center gap-3 mt-4">
               <a href="https://x.com/polyhistorical" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">

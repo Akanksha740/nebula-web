@@ -14,11 +14,11 @@ import { api } from '../lib/api';
 import type { Market } from '../lib/api';
 import { SEO } from '../components/SEO';
 
-const validCoins = ['btc', 'eth'];
+const validCoins = ['btc', 'eth', 'sol'];
 const validTimeframes = ['5m', '15m', '1h', '4h', '24h'];
 
 function buildSeoTitle(coin?: string, timeframe?: string) {
-  const c = coin?.toUpperCase() || 'BTC & ETH';
+  const c = coin?.toUpperCase() || 'BTC, ETH & SOL';
   if (timeframe) {
     return `${c} ${timeframe} Polymarket Up/Down Markets`;
   }
@@ -26,7 +26,7 @@ function buildSeoTitle(coin?: string, timeframe?: string) {
 }
 
 function buildSeoDescription(coin?: string, timeframe?: string) {
-  const c = coin?.toUpperCase() || 'BTC and ETH';
+  const c = coin?.toUpperCase() || 'BTC, ETH and SOL';
   if (timeframe) {
     return `Browse historical ${c} ${timeframe} Up/Down prediction markets on Polymarket. Full order book depth, sub-second snapshots, and resolution data.`;
   }
@@ -162,7 +162,7 @@ export function Markets() {
             <div className="flex items-center gap-2">
               <span className="text-sm text-text-muted">Coin:</span>
               <div className="flex rounded-lg bg-surface-card p-1">
-                {['BTC', 'ETH'].map((c) => (
+                {['BTC', 'ETH', 'SOL'].map((c) => (
                   <button
                     key={c}
                     onClick={() => handleCoinChange(c)}
@@ -260,7 +260,7 @@ export function Markets() {
 
         {/* Internal links for SEO */}
         <div className="mb-6 flex flex-wrap gap-2 text-sm">
-          {['btc', 'eth'].map((c) =>
+          {['btc', 'eth', 'sol'].map((c) =>
             validTimeframes.map((tf) => (
               <Link
                 key={`${c}-${tf}`}

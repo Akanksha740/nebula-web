@@ -57,6 +57,13 @@ print(f"Retrieved {len(data['snapshots'])} snapshots")
 <li>Full order book depth on every snapshot</li>
 <li>No credit card required</li>
 </ul>
+
+<h2>Pro &amp; Enterprise Tier</h2>
+<ul>
+<li>Full BTC, ETH, and SOL market history — all timeframes, no limits</li>
+<li>Up to 300 requests/min, 50,000 requests/day (Pro) or custom limits (Enterprise)</li>
+<li>Priority support</li>
+</ul>
 <p>The PolyHistorical API is the easiest way to access Polymarket historical data programmatically. Sign up free and start building today.</p>`,
 };
 

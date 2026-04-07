@@ -26,7 +26,7 @@ const page: PseoPageFull = {
   <thead><tr><th>Capability</th><th>PolyHistorical</th><th>Messari</th></tr></thead>
   <tbody>
   <tr><td>Polymarket Order Books</td><td>&#10003; Sub-second snapshots</td><td>&#10007; Not available</td></tr>
-  <tr><td>BTC/ETH Up/Down Data</td><td>&#10003; All timeframes</td><td>&#10007;</td></tr>
+  <tr><td>BTC/ETH/SOL Up/Down Data</td><td>&#10003; All timeframes</td><td>&#10007;</td></tr>
   <tr><td>Backtesting Data</td><td>&#10003; 30-day rolling history</td><td>&#10007;</td></tr>
   <tr><td>Free Tier</td><td>&#10003; BTC markets, full depth</td><td>&#10003; Limited research access</td></tr>
   <tr><td>Pro Pricing</td><td>$11/month</td><td>$29.99/month</td></tr>

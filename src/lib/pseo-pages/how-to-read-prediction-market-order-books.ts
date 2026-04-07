@@ -10,7 +10,7 @@ const page: PseoPageFull = {
   ogImage: null, createdAt: '', updatedAt: '',
   content: `<h1>How to Read Prediction Market Order Books</h1>
   <h2>What Is a Prediction Market Order Book?</h2>
-  <p>An order book is a real-time list of outstanding buy orders (bids) and sell orders (asks) for a prediction market contract. On Polymarket, each <strong>BTC or ETH Up/Down market</strong> has its own order book showing the prices and quantities at which traders are willing to buy or sell outcome shares.</p>
+  <p>An order book is a real-time list of outstanding buy orders (bids) and sell orders (asks) for a prediction market contract. On Polymarket, each <strong>BTC, ETH, or SOL Up/Down market</strong> has its own order book showing the prices and quantities at which traders are willing to buy or sell outcome shares.</p>
 
   <h2>Anatomy of a Polymarket Order Book</h2>
   <table>
@@ -50,7 +50,7 @@ const page: PseoPageFull = {
   </ul>
 
   <h2>Using PolyHistorical to Study Order Books</h2>
-  <p>PolyHistorical captures <strong>sub-second order book snapshots</strong> for every Polymarket BTC and ETH Up/Down market. This lets you study how order books evolve over time — watch bids build before events, observe how the spread tightens as consensus forms, and analyze depth changes around market resolution. Start with the free tier to explore BTC market order books today.</p>`,
+  <p>PolyHistorical captures <strong>sub-second order book snapshots</strong> for every Polymarket BTC, ETH, and SOL Up/Down market. This lets you study how order books evolve over time — watch bids build before events, observe how the spread tightens as consensus forms, and analyze depth changes around market resolution. Start with the free tier to explore BTC market order books today.</p>`,
 };
 
 export default page;

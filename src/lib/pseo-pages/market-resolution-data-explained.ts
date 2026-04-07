@@ -10,17 +10,17 @@ const page: PseoPageFull = {
   ogImage: null, createdAt: '', updatedAt: '',
   content: `<h1>Market Resolution Data Explained: How Polymarket Settles</h1>
   <h2>How Polymarket Markets Resolve</h2>
-  <p>Polymarket prediction markets have defined resolution criteria — for BTC/ETH Up/Down markets, the resolution is based on whether the asset price is above or below a strike price at a specific time. Understanding this resolution process is critical for anyone analyzing historical data from <strong>PolyHistorical</strong>.</p>
+  <p>Polymarket prediction markets have defined resolution criteria — for BTC/ETH/SOL Up/Down markets, the resolution is based on whether the asset price is above or below a strike price at a specific time. Understanding this resolution process is critical for anyone analyzing historical data from <strong>PolyHistorical</strong>.</p>
 
   <h2>Resolution Mechanics for Up/Down Markets</h2>
   <table>
   <thead><tr><th>Market Type</th><th>Resolution Time</th><th>Resolution Criteria</th></tr></thead>
   <tbody>
-  <tr><td>5-minute</td><td>Every 5 minutes</td><td>BTC/ETH price vs strike at end of 5-min window</td></tr>
-  <tr><td>15-minute</td><td>Every 15 minutes</td><td>BTC/ETH price vs strike at end of 15-min window</td></tr>
-  <tr><td>1-hour</td><td>Every hour</td><td>BTC/ETH price vs strike at end of hour</td></tr>
-  <tr><td>4-hour</td><td>Every 4 hours</td><td>BTC/ETH price vs strike at end of 4-hour block</td></tr>
-  <tr><td>24-hour</td><td>Daily</td><td>BTC/ETH price vs strike at end of day (UTC)</td></tr>
+  <tr><td>5-minute</td><td>Every 5 minutes</td><td>BTC/ETH/SOL price vs strike at end of 5-min window</td></tr>
+  <tr><td>15-minute</td><td>Every 15 minutes</td><td>BTC/ETH/SOL price vs strike at end of 15-min window</td></tr>
+  <tr><td>1-hour</td><td>Every hour</td><td>BTC/ETH/SOL price vs strike at end of hour</td></tr>
+  <tr><td>4-hour</td><td>Every 4 hours</td><td>BTC/ETH/SOL price vs strike at end of 4-hour block</td></tr>
+  <tr><td>24-hour</td><td>Daily</td><td>BTC/ETH/SOL price vs strike at end of day (UTC)</td></tr>
   </tbody>
   </table>
 

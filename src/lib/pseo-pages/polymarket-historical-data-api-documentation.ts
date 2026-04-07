@@ -62,16 +62,22 @@ const page: PseoPageFull = {
 </tbody>
 </table>
 
-<h2>Free Tier Market Access</h2>
+<h2>Market Access by Plan</h2>
 <table>
-<thead><tr><th>Market Type</th><th>Starter (Free)</th><th>Pro</th></tr></thead>
+<thead><tr><th>Market Type</th><th>Starter (Free)</th><th>Pro / Enterprise</th></tr></thead>
 <tbody>
 <tr><td>BTC 5m &amp; 15m</td><td>Last 50 markets</td><td>All</td></tr>
 <tr><td>BTC 1h &amp; 4h</td><td>Last 24 markets</td><td>All</td></tr>
 <tr><td>BTC 24h</td><td>Last 5 markets</td><td>All</td></tr>
+<tr><td>ETH 5m &amp; 15m</td><td>—</td><td>All</td></tr>
+<tr><td>ETH 1h &amp; 4h</td><td>—</td><td>All</td></tr>
+<tr><td>ETH 24h</td><td>—</td><td>All</td></tr>
+<tr><td>SOL 5m &amp; 15m</td><td>—</td><td>All</td></tr>
+<tr><td>SOL 1h &amp; 4h</td><td>—</td><td>All</td></tr>
+<tr><td>SOL 24h</td><td>—</td><td>All</td></tr>
 </tbody>
 </table>
-<p>All snapshots within an accessible market are included on every plan — no snapshot limits.</p>
+<p>ETH and SOL markets require a Pro or Enterprise plan. All snapshots within an accessible market are included on every plan — no snapshot limits.</p>
 
 <h2>Get Started</h2>
 <p>Sign up for free, get your API key, and start querying Polymarket historical data in minutes. The free tier has no expiration — use it as long as you need.</p>`,

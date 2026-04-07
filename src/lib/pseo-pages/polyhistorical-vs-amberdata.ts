@@ -25,7 +25,7 @@ const page: PseoPageFull = {
   </table>
 
   <h2>Why Developers Choose PolyHistorical</h2>
-  <p>For prediction market backtesting, PolyHistorical provides data that simply doesn't exist elsewhere — sub-second order book snapshots for every BTC and ETH Up/Down market on Polymarket, with 30-day rolling history.</p>`,
+  <p>For prediction market backtesting, PolyHistorical provides data that simply doesn't exist elsewhere — sub-second order book snapshots for every BTC, ETH, and SOL Up/Down market on Polymarket, with 30-day rolling history.</p>`,
 };
 
 export default page;

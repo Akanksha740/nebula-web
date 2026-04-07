@@ -20,7 +20,7 @@ const page: PseoPageFull = {
   <tr><td>Order Book History</td><td>&#10003; 500ms snapshots, full depth</td><td>&#10003; Daily snapshots only</td></tr>
   <tr><td>Delivery Format</td><td>REST API (JSON)</td><td>Bulk CSV downloads</td></tr>
   <tr><td>Real-Time Streaming</td><td>Coming soon</td><td>&#10003; WebSocket feeds</td></tr>
-  <tr><td>Prediction Markets</td><td>&#10003; BTC/ETH Up/Down</td><td>&#10007; Not available</td></tr>
+  <tr><td>Prediction Markets</td><td>&#10003; BTC/ETH/SOL Up/Down</td><td>&#10007; Not available</td></tr>
   <tr><td>Cost</td><td>Free tier + $11/mo Pro</td><td>Free (exchange data only)</td></tr>
   </tbody>
   </table>
