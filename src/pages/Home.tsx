@@ -7,8 +7,6 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
-  TrendingUp,
-  TrendingDown,
   Layers,
   Shield,
   Terminal,
@@ -37,9 +35,12 @@ const faqs = [
 
 export function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [activeCoin, setActiveCoin] = useState<'BTC' | 'ETH' | 'SOL'>('BTC');
   const [btcPrice, setBtcPrice] = useState<string>('--');
   const [ethPrice, setEthPrice] = useState<string>('--');
   const [solPrice, setSolPrice] = useState<string>('--');
+  const [priceHistory, setPriceHistory] = useState<number[]>([]);
+  const [tick, setTick] = useState(0);
 
   useEffect(() => {
     const fetchPrices = async () => {
@@ -64,6 +65,66 @@ export function Home() {
     const interval = setInterval(fetchPrices, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  // Simulate a sparkline that drifts naturally
+  useEffect(() => {
+    const base = activeCoin === 'BTC' ? 0.57 : activeCoin === 'ETH' ? 0.62 : 0.54;
+    const seed = Array.from({ length: 40 }, (_, i) => {
+      const noise = Math.sin(i * 0.4) * 0.03 + Math.cos(i * 0.7) * 0.02 + (Math.random() - 0.5) * 0.015;
+      return base + noise;
+    });
+    setPriceHistory(seed);
+  }, [activeCoin]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTick((t) => t + 1);
+      setPriceHistory((prev) => {
+        if (prev.length === 0) return prev;
+        const last = prev[prev.length - 1];
+        const next = last + (Math.random() - 0.48) * 0.008;
+        return [...prev.slice(1), Math.max(0.35, Math.min(0.75, next))];
+      });
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const coinData = {
+    BTC: { name: 'Bitcoin', slug: 'btc-updown-5m', price: btcPrice, up: 0.57, down: 0.43, snapshots: '246,152', color: '#F7931A', timeframe: '5m' },
+    ETH: { name: 'Ethereum', slug: 'eth-updown-15m', price: ethPrice, up: 0.62, down: 0.38, snapshots: '183,947', color: '#627EEA', timeframe: '15m' },
+    SOL: { name: 'Solana', slug: 'sol-updown-15m', price: solPrice, up: 0.54, down: 0.46, snapshots: '48,312', color: '#9945FF', timeframe: '15m' },
+  };
+  const active = coinData[activeCoin];
+
+  // Build sparkline SVG path
+  const sparkW = 600, sparkH = 120;
+  const sparkPath = (() => {
+    if (priceHistory.length < 2) return '';
+    const min = Math.min(...priceHistory) - 0.005;
+    const max = Math.max(...priceHistory) + 0.005;
+    const range = max - min || 1;
+    const points = priceHistory.map((v, i) => {
+      const x = (i / (priceHistory.length - 1)) * sparkW;
+      const y = sparkH - ((v - min) / range) * sparkH;
+      return `${x},${y}`;
+    });
+    return `M${points.join(' L')}`;
+  })();
+  const sparkAreaPath = sparkPath ? `${sparkPath} L${sparkW},${sparkH} L0,${sparkH} Z` : '';
+
+  // Simulated order book rows
+  const orderBookBids = [
+    { price: (active.up - 0.01).toFixed(2), size: '1,247', total: '1,247', pct: 95 },
+    { price: (active.up - 0.02).toFixed(2), size: '892', total: '2,139', pct: 72 },
+    { price: (active.up - 0.03).toFixed(2), size: '634', total: '2,773', pct: 51 },
+    { price: (active.up - 0.04).toFixed(2), size: '421', total: '3,194', pct: 34 },
+  ];
+  const orderBookAsks = [
+    { price: (active.up + 0.01).toFixed(2), size: '1,089', total: '1,089', pct: 88 },
+    { price: (active.up + 0.02).toFixed(2), size: '756', total: '1,845', pct: 61 },
+    { price: (active.up + 0.03).toFixed(2), size: '523', total: '2,368', pct: 42 },
+    { price: (active.up + 0.04).toFixed(2), size: '318', total: '2,686', pct: 26 },
+  ];
 
   return (
     <div className="pt-16">
@@ -107,7 +168,7 @@ export function Home() {
       {/* Hero -left-aligned, asymmetric */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(16,185,129,0.12),transparent)]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/5 mb-8">
@@ -199,9 +260,9 @@ export function Home() {
       </section>
 
       {/* What's inside -horizontal cards */}
-      <section className="py-24">
+      <section className="py-16" id="features">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-16">
+          <div className="max-w-2xl mb-10">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">What you get</h2>
             <p className="text-text-muted text-lg">
               Every data point a quant needs to model Polymarket dynamics.
@@ -232,9 +293,9 @@ export function Home() {
       </section>
 
       {/* How it works -numbered steps */}
-      <section className="py-24 bg-surface-dark">
+      <section className="py-16 bg-surface-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Three steps to your first backtest</h2>
             <p className="text-text-muted text-lg">From sign-up to pulling data in under two minutes.</p>
           </div>
@@ -256,118 +317,192 @@ export function Home() {
       </section>
 
       {/* Live data card */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+      <section className="py-16 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,rgba(16,185,129,0.04),transparent)]" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Live from the API</h2>
-            <p className="text-text-muted text-lg">Real data from a recent market snapshot.</p>
+            <p className="text-text-muted text-lg">Real-time market data. Click a coin to explore.</p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="card p-6 md:p-8">
-              {/* Header row */}
-              <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                  <span className="text-xs font-medium text-primary uppercase tracking-wider">Live</span>
-                </div>
-                <span className="text-xs text-text-dim font-mono">march-28-2026</span>
-              </div>
+          <div className="max-w-5xl mx-auto">
+            <div className="rounded-2xl border border-border bg-surface-card/80 backdrop-blur-sm overflow-hidden">
 
-              {/* BTC Row */}
-              <div className="mb-6">
-                <div className="flex items-center gap-2.5 mb-4">
-                  <span className="text-sm font-bold tracking-wide">BTC</span>
-                  <span className="font-mono text-xs text-text-muted">bitcoin-up-or-down</span>
+              {/* Top bar: terminal style */}
+              <div className="flex items-center justify-between px-5 py-3 bg-surface-dark border-b border-border">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-accent-red/60" />
+                  <div className="w-3 h-3 rounded-full bg-accent-yellow/60" />
+                  <div className="w-3 h-3 rounded-full bg-accent-green/60" />
+                  <span className="text-xs text-text-dim font-mono ml-3">polyhistorical@api</span>
+                  <span className="text-xs text-text-muted font-mono">~/v1/markets/{active.slug}/snapshots</span>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  <div className="bg-surface-base rounded-lg p-4">
-                    <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Price</div>
-                    <div className="text-xl font-bold font-mono">${btcPrice}</div>
+                <div className="flex items-center gap-2">
+                  <div className="relative">
+                    <div className="w-2 h-2 rounded-full bg-accent-green" />
+                    <div className="w-2 h-2 rounded-full bg-accent-green absolute inset-0 animate-ping opacity-40" />
                   </div>
-                  <div className="bg-surface-base rounded-lg p-4">
-                    <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Up</div>
-                    <div className="text-xl font-bold font-mono text-accent-green flex items-center gap-1.5">
-                      <TrendingUp className="w-4 h-4" /> 0.57
-                    </div>
-                  </div>
-                  <div className="bg-surface-base rounded-lg p-4">
-                    <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Down</div>
-                    <div className="text-xl font-bold font-mono text-accent-red flex items-center gap-1.5">
-                      <TrendingDown className="w-4 h-4" /> 0.43
-                    </div>
-                  </div>
-                  <div className="bg-surface-base rounded-lg p-4">
-                    <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Snapshots</div>
-                    <div className="text-xl font-bold font-mono">2,46,152</div>
-                  </div>
+                  <span className="text-[10px] text-accent-green font-semibold uppercase tracking-wider">Streaming</span>
                 </div>
               </div>
 
-              {/* Divider */}
-              <div className="border-t border-border my-6" />
+              {/* Coin selector tabs */}
+              <div className="flex border-b border-border">
+                {(['BTC', 'ETH', 'SOL'] as const).map((coin) => {
+                  const d = coinData[coin];
+                  const isActive = activeCoin === coin;
+                  return (
+                    <button
+                      key={coin}
+                      onClick={() => setActiveCoin(coin)}
+                      className={`flex-1 py-3.5 px-4 flex items-center justify-center gap-2.5 text-sm font-medium transition-all relative ${
+                        isActive ? 'text-white bg-surface-card-hover/40' : 'text-text-dim hover:text-text-muted hover:bg-surface-card-hover/20'
+                      }`}
+                    >
+                      <div className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold" style={{ background: `${d.color}${isActive ? '30' : '15'}`, color: d.color }}>
+                        {coin.charAt(0)}
+                      </div>
+                      <span>{coin}</span>
+                      <span className="text-xs text-text-dim">${coin === 'BTC' ? btcPrice : coin === 'ETH' ? ethPrice : solPrice}</span>
+                      {isActive && <div className="absolute bottom-0 left-0 right-0 h-0.5" style={{ background: d.color }} />}
+                    </button>
+                  );
+                })}
+              </div>
 
-              {/* ETH Row */}
-              <div>
-                <div className="flex items-center gap-2.5 mb-4">
-                  <span className="text-sm font-bold tracking-wide">ETH</span>
-                  <span className="font-mono text-xs text-text-muted">ethereum-up-or-down</span>
+              {/* Main content area */}
+              <div className="p-5 md:p-6">
+
+                {/* Stats row */}
+                <div className="grid grid-cols-3 md:grid-cols-6 gap-3 mb-6">
+                  <div className="bg-surface-dark rounded-lg p-3 text-center">
+                    <div className="text-[9px] text-text-dim uppercase tracking-widest mb-1">Price UP</div>
+                    <div className="text-lg font-bold font-mono text-accent-green">{active.up.toFixed(2)}</div>
+                  </div>
+                  <div className="bg-surface-dark rounded-lg p-3 text-center">
+                    <div className="text-[9px] text-text-dim uppercase tracking-widest mb-1">High</div>
+                    <div className="text-lg font-bold font-mono text-accent-green">{(active.up + 0.05).toFixed(2)}</div>
+                  </div>
+                  <div className="bg-surface-dark rounded-lg p-3 text-center">
+                    <div className="text-[9px] text-text-dim uppercase tracking-widest mb-1">Low</div>
+                    <div className="text-lg font-bold font-mono text-accent-red">{(active.up - 0.06).toFixed(2)}</div>
+                  </div>
+                  <div className="bg-surface-dark rounded-lg p-3 text-center">
+                    <div className="text-[9px] text-text-dim uppercase tracking-widest mb-1">{activeCoin}</div>
+                    <div className="text-lg font-bold font-mono">${active.price}</div>
+                  </div>
+                  <div className="bg-surface-dark rounded-lg p-3 text-center">
+                    <div className="text-[9px] text-text-dim uppercase tracking-widest mb-1">Timeframe</div>
+                    <div className="text-lg font-bold font-mono">{active.timeframe}</div>
+                  </div>
+                  <div className="bg-surface-dark rounded-lg p-3 text-center">
+                    <div className="text-[9px] text-text-dim uppercase tracking-widest mb-1">Snapshots</div>
+                    <div className="text-lg font-bold font-mono">{active.snapshots}</div>
+                  </div>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  <div className="bg-surface-base rounded-lg p-4">
-                    <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Price</div>
-                    <div className="text-xl font-bold font-mono">${ethPrice}</div>
-                  </div>
-                  <div className="bg-surface-base rounded-lg p-4">
-                    <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Up</div>
-                    <div className="text-xl font-bold font-mono text-accent-green flex items-center gap-1.5">
-                      <TrendingUp className="w-4 h-4" /> 0.62
+
+                {/* Chart + Order Book side by side */}
+                <div className="grid md:grid-cols-5 gap-4">
+
+                  {/* Sparkline chart area — 3 cols */}
+                  <div className="md:col-span-3 bg-surface-dark rounded-xl p-4 border border-border-subtle">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs text-text-muted font-medium">Price UP — {active.timeframe} market</span>
+                      <span className="text-[10px] text-text-dim font-mono">last 40 ticks</span>
                     </div>
+                    <svg viewBox={`0 0 ${sparkW} ${sparkH}`} className="w-full h-32 md:h-40" preserveAspectRatio="none">
+                      {/* Grid lines */}
+                      {[0.25, 0.5, 0.75].map((pct) => (
+                        <line key={pct} x1="0" y1={sparkH * pct} x2={sparkW} y2={sparkH * pct} stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+                      ))}
+                      {/* Gradient fill */}
+                      <defs>
+                        <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor={active.color} stopOpacity="0.3" />
+                          <stop offset="100%" stopColor={active.color} stopOpacity="0" />
+                        </linearGradient>
+                      </defs>
+                      {sparkAreaPath && <path d={sparkAreaPath} fill="url(#sparkGrad)" />}
+                      {/* Line */}
+                      {sparkPath && (
+                        <path d={sparkPath} fill="none" stroke={active.color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                      )}
+                      {/* Current price dot */}
+                      {priceHistory.length > 0 && (() => {
+                        const min = Math.min(...priceHistory) - 0.005;
+                        const max = Math.max(...priceHistory) + 0.005;
+                        const range = max - min || 1;
+                        const lastY = sparkH - ((priceHistory[priceHistory.length - 1] - min) / range) * sparkH;
+                        return (
+                          <>
+                            <circle cx={sparkW} cy={lastY} r="4" fill={active.color} />
+                            <circle cx={sparkW} cy={lastY} r="8" fill={active.color} opacity="0.2">
+                              <animate attributeName="r" values="4;12;4" dur="2s" repeatCount="indefinite" />
+                              <animate attributeName="opacity" values="0.3;0;0.3" dur="2s" repeatCount="indefinite" />
+                            </circle>
+                          </>
+                        );
+                      })()}
+                    </svg>
+                    {/* Y-axis labels */}
+                    {priceHistory.length > 0 && (
+                      <div className="flex justify-between mt-1">
+                        <span className="text-[10px] text-text-dim font-mono">{Math.min(...priceHistory).toFixed(3)}</span>
+                        <span className="text-[10px] font-mono" style={{ color: active.color }}>{priceHistory[priceHistory.length - 1].toFixed(3)}</span>
+                        <span className="text-[10px] text-text-dim font-mono">{Math.max(...priceHistory).toFixed(3)}</span>
+                      </div>
+                    )}
                   </div>
-                  <div className="bg-surface-base rounded-lg p-4">
-                    <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Down</div>
-                    <div className="text-xl font-bold font-mono text-accent-red flex items-center gap-1.5">
-                      <TrendingDown className="w-4 h-4" /> 0.38
+
+                  {/* Order book depth — 2 cols */}
+                  <div className="md:col-span-2 bg-surface-dark rounded-xl p-4 border border-border-subtle">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs text-text-muted font-medium">Order Book Depth</span>
+                      <span className="text-[10px] text-text-dim">UP token</span>
                     </div>
-                  </div>
-                  <div className="bg-surface-base rounded-lg p-4">
-                    <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Snapshots</div>
-                    <div className="text-xl font-bold font-mono">1,83,947</div>
+
+                    {/* Asks (red, top) */}
+                    <div className="space-y-0.5 mb-2">
+                      {orderBookAsks.slice().reverse().map((row, i) => (
+                        <div key={`a${i}`} className="flex items-center text-[11px] font-mono h-6 relative">
+                          <div className="absolute right-0 top-0 bottom-0 bg-accent-red/10 rounded-r" style={{ width: `${row.pct}%` }} />
+                          <span className="w-12 text-accent-red relative z-10">{row.price}</span>
+                          <span className="flex-1 text-right text-text-dim relative z-10">{row.size}</span>
+                          <span className="w-16 text-right text-text-dim relative z-10">{row.total}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Spread */}
+                    <div className="flex items-center justify-center py-1.5 my-1 border-y border-border-subtle">
+                      <span className="text-[10px] text-text-dim">Spread</span>
+                      <span className="text-[11px] font-mono text-accent-yellow ml-2">0.02</span>
+                    </div>
+
+                    {/* Bids (green, bottom) */}
+                    <div className="space-y-0.5 mt-2">
+                      {orderBookBids.map((row, i) => (
+                        <div key={`b${i}`} className="flex items-center text-[11px] font-mono h-6 relative">
+                          <div className="absolute left-0 top-0 bottom-0 bg-accent-green/10 rounded-l" style={{ width: `${row.pct}%` }} />
+                          <span className="w-12 text-accent-green relative z-10">{row.price}</span>
+                          <span className="flex-1 text-right text-text-dim relative z-10">{row.size}</span>
+                          <span className="w-16 text-right text-text-dim relative z-10">{row.total}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Divider */}
-              <div className="border-t border-border my-6" />
-
-              {/* SOL Row */}
-              <div>
-                <div className="flex items-center gap-2.5 mb-4">
-                  <span className="text-sm font-bold tracking-wide">SOL</span>
-                  <span className="font-mono text-xs text-text-muted">solana-up-or-down</span>
+              {/* Footer */}
+              <div className="px-5 py-3 bg-surface-dark/50 border-t border-border flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <span className="text-[10px] text-text-dim">Auto-refresh 5s</span>
+                  <span className="text-[10px] text-text-dim font-mono">tick #{tick}</span>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  <div className="bg-surface-base rounded-lg p-4">
-                    <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Price</div>
-                    <div className="text-xl font-bold font-mono">${solPrice}</div>
-                  </div>
-                  <div className="bg-surface-base rounded-lg p-4">
-                    <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Up</div>
-                    <div className="text-xl font-bold font-mono text-accent-green flex items-center gap-1.5">
-                      <TrendingUp className="w-4 h-4" /> 0.54
-                    </div>
-                  </div>
-                  <div className="bg-surface-base rounded-lg p-4">
-                    <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Down</div>
-                    <div className="text-xl font-bold font-mono text-accent-red flex items-center gap-1.5">
-                      <TrendingDown className="w-4 h-4" /> 0.46
-                    </div>
-                  </div>
-                  <div className="bg-surface-base rounded-lg p-4">
-                    <div className="text-[10px] text-text-dim mb-1.5 uppercase tracking-widest">Snapshots</div>
-                    <div className="text-xl font-bold font-mono">48,312</div>
-                  </div>
-                </div>
+                <Link to="/signup" className="text-xs text-primary font-medium hover:text-primary-light transition-colors flex items-center gap-1">
+                  Get API access <ArrowRight className="w-3 h-3" />
+                </Link>
               </div>
             </div>
           </div>
@@ -375,9 +510,9 @@ export function Home() {
       </section>
 
       {/* Pricing -compact */}
-      <section className="py-24 bg-surface-dark" id="pricing">
+      <section className="py-16 bg-surface-dark" id="pricing">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Simple, honest pricing</h2>
             <p className="text-text-muted text-lg">Start free. Pay only when you need more.</p>
           </div>
@@ -387,7 +522,7 @@ export function Home() {
       </section>
 
       {/* Frequently Asked Questions (FAQ) */}
-      <section className="py-24" id="faq">
+      <section className="py-16" id="faq">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-12 text-center">Frequently Asked Questions (FAQ)</h2>
           <div className="space-y-2">
@@ -410,7 +545,7 @@ export function Home() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-24 border-t border-border">
+      <section className="py-16 border-t border-border">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Start replaying markets today
