@@ -91,8 +91,8 @@ export function Home() {
 
   const coinData = {
     BTC: { name: 'Bitcoin', slug: 'btc-updown-5m', price: btcPrice, up: 0.57, down: 0.43, snapshots: '246,152', color: '#F7931A', timeframe: '5m' },
-    ETH: { name: 'Ethereum', slug: 'eth-updown-15m', price: ethPrice, up: 0.62, down: 0.38, snapshots: '183,947', color: '#627EEA', timeframe: '15m' },
-    SOL: { name: 'Solana', slug: 'sol-updown-15m', price: solPrice, up: 0.54, down: 0.46, snapshots: '48,312', color: '#9945FF', timeframe: '15m' },
+    ETH: { name: 'Ethereum', slug: 'eth-updown-5m', price: ethPrice, up: 0.62, down: 0.38, snapshots: '183,947', color: '#627EEA', timeframe: '5m' },
+    SOL: { name: 'Solana', slug: 'sol-updown-5m', price: solPrice, up: 0.54, down: 0.46, snapshots: '48,312', color: '#9945FF', timeframe: '5m' },
   };
   const active = coinData[activeCoin];
 
@@ -328,21 +328,18 @@ export function Home() {
           <div className="max-w-5xl mx-auto">
             <div className="rounded-2xl border border-border bg-surface-card/80 backdrop-blur-sm overflow-hidden">
 
-              {/* Top bar: terminal style */}
+              {/* Top bar */}
               <div className="flex items-center justify-between px-5 py-3 bg-surface-dark border-b border-border">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-accent-red/60" />
-                  <div className="w-3 h-3 rounded-full bg-accent-yellow/60" />
-                  <div className="w-3 h-3 rounded-full bg-accent-green/60" />
-                  <span className="text-xs text-text-dim font-mono ml-3">polyhistorical@api</span>
-                  <span className="text-xs text-text-muted font-mono">~/v1/markets/{active.slug}/snapshots</span>
-                </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   <div className="relative">
-                    <div className="w-2 h-2 rounded-full bg-accent-green" />
-                    <div className="w-2 h-2 rounded-full bg-accent-green absolute inset-0 animate-ping opacity-40" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-accent-green" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-accent-green absolute inset-0 animate-ping opacity-40" />
                   </div>
-                  <span className="text-[10px] text-accent-green font-semibold uppercase tracking-wider">Streaming</span>
+                  <span className="text-xs font-semibold text-accent-green uppercase tracking-wider">Live</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <span className="text-[10px] text-text-dim uppercase tracking-widest">Binance Feed</span>
+                  <span className="text-xs text-text-dim font-mono bg-surface-card px-2.5 py-1 rounded">500ms snapshots</span>
                 </div>
               </div>
 
@@ -407,7 +404,7 @@ export function Home() {
                   {/* Sparkline chart area — 3 cols */}
                   <div className="md:col-span-3 bg-surface-dark rounded-xl p-4 border border-border-subtle">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs text-text-muted font-medium">Price UP — {active.timeframe} market</span>
+                      <span className="text-xs text-text-muted font-medium">Price UP - {active.timeframe} market</span>
                       <span className="text-[10px] text-text-dim font-mono">last 40 ticks</span>
                     </div>
                     <svg viewBox={`0 0 ${sparkW} ${sparkH}`} className="w-full h-32 md:h-40" preserveAspectRatio="none">
