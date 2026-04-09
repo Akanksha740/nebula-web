@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import { tierConfigs } from '../lib/pricing';
+import { pricingPlans } from '../lib/pricing';
 import { PricingCards } from '../components/PricingCards';
 
 const faqs = [
@@ -65,7 +65,7 @@ export function Pricing() {
                 </tr>
               </thead>
               <tbody>
-                {tierConfigs.map((t) => (
+                {pricingPlans.map((t) => (
                   <tr key={t.tier} className="border-t border-border">
                     <td className="py-3 px-5">{t.name}</td>
                     <td className="py-3 px-5 text-center font-mono">{t.rateLimit.reqPerMin}</td>

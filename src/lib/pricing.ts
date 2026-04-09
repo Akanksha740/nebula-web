@@ -75,6 +75,48 @@ export const tierConfigs: TierConfig[] = [
     highlight: false,
   },
   {
+    tier: 'PRO_TRIAL',
+    name: 'Pro Trial',
+    price: '$0',
+    period: 'Free trial',
+    desc: 'Full access, no limits',
+    marketAccess: [
+      { label: 'BTC 5m & 15m', limit: 'All' },
+      { label: 'BTC 1h & 4h', limit: 'All' },
+      { label: 'BTC 24h', limit: 'All' },
+      { label: 'ETH 5m & 15m', limit: 'All' },
+      { label: 'ETH 1h & 4h', limit: 'All' },
+      { label: 'ETH 24h', limit: 'All' },
+      { label: 'SOL 5m & 15m', limit: 'All' },
+      { label: 'SOL 1h & 4h', limit: 'All' },
+      { label: 'SOL 24h', limit: 'All' },
+    ],
+    features: [
+      { text: 'Everything in Starter' },
+      { text: 'Unlimited market history' },
+      { text: 'ETH & SOL market data' },
+      { text: 'Priority support' },
+    ],
+    dashboardFeatures: [
+      'BTC 5m & 15m — All',
+      'BTC 1h & 4h — All',
+      'BTC 24h — All',
+      'ETH 5m & 15m — All',
+      'ETH 1h & 4h — All',
+      'ETH 24h — All',
+      'SOL 5m & 15m — All',
+      'SOL 1h & 4h — All',
+      'SOL 24h — All',
+      'Complete history',
+      'Priority support',
+    ],
+    rateLimit: { reqPerMin: '300', reqPerDay: '50,000' },
+    maxApiKeys: 3,
+    cta: 'Go Pro',
+    ctaLink: '/signup?plan=pro',
+    highlight: false,
+  },
+  {
     tier: 'PRO',
     name: 'Pro',
     price: '$11',
@@ -166,5 +208,5 @@ export function getTierConfig(tier?: string | null): TierConfig {
   return tierConfigs.find((t) => t.tier === tier) || tierConfigs[0];
 }
 
-/** Backward-compatible alias used by Pricing/Home pages */
-export const pricingPlans = tierConfigs;
+/** Backward-compatible alias used by Pricing/Home pages — excludes internal-only tiers */
+export const pricingPlans = tierConfigs.filter((t) => t.tier !== 'PRO_TRIAL');

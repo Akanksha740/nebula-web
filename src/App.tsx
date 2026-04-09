@@ -14,6 +14,7 @@ import { ResetPassword } from './pages/ResetPassword';
 import { Markets } from './pages/Markets';
 import { MarketDetail } from './pages/MarketDetail';
 import { NotFound } from './pages/NotFound';
+import { ProTrial } from './pages/ProTrial';
 import { CategoryIndex } from './pages/CategoryIndex';
 import { CategoryDetail } from './pages/CategoryDetail';
 import { PseoPageView } from './pages/PseoPageView';
@@ -31,6 +32,7 @@ function PublicLayout() {
           <Route path="/login" element={<Login />} />
           <Route path="/check-email" element={<CheckEmail />} />
           <Route path="/verify-email" element={<VerifyEmail />} />
+          <Route path="/pro-trial" element={<ProTrial />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/markets" element={<Markets />} />
