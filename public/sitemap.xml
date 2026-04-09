@@ -406,6 +406,26 @@
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://polyhistorical.com/p/polymarket-btc-odds-today</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://polyhistorical.com/p/polymarket-eth-odds-today</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://polyhistorical.com/p/polymarket-sol-odds-today</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://polyhistorical.com/p/polymarket-crypto-odds-today</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
 
   <!-- Docs -->
   <url>

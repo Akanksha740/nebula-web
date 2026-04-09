@@ -14,6 +14,10 @@ import page_mean_reversion_prediction_markets from './pseo-pages/mean-reversion-
 import page_monte_carlo_simulation_prediction_markets from './pseo-pages/monte-carlo-simulation-prediction-markets';
 import page_polyhistorical_api_authentication_guide from './pseo-pages/polyhistorical-api-authentication-guide';
 import page_polymarket_api_historical_data from './pseo-pages/polymarket-api-historical-data';
+import page_polymarket_btc_odds_today from './pseo-pages/polymarket-btc-odds-today';
+import page_polymarket_eth_odds_today from './pseo-pages/polymarket-eth-odds-today';
+import page_polymarket_sol_odds_today from './pseo-pages/polymarket-sol-odds-today';
+import page_polymarket_crypto_odds_today from './pseo-pages/polymarket-crypto-odds-today';
 import page_polyhistorical_vs_amberdata from './pseo-pages/polyhistorical-vs-amberdata';
 import page_polyhistorical_vs_binance_historical_data from './pseo-pages/polyhistorical-vs-binance-historical-data';
 import page_polyhistorical_vs_coingecko_api from './pseo-pages/polyhistorical-vs-coingecko-api';
@@ -116,7 +120,7 @@ export const CATEGORIES: CategoryItem[] = [
     metaTitle: 'Crypto Prediction Market Trading Guides | PolyHistorical',
     metaDescription: 'Trading strategies, analysis techniques, and insights for crypto prediction markets using historical order book data.',
     displayOrder: 6,
-    pageCount: 6,
+    pageCount: 10,
     createdAt: '',
     updatedAt: '',
   },
@@ -203,6 +207,10 @@ const PAGES_MAP: Record<string, PseoPageSummary[]> = {
     { id: 'b43', title: 'Mean Reversion Strategies in Prediction Markets', slug: 'mean-reversion-prediction-markets', excerpt: 'Applying mean reversion trading strategies to Polymarket Up/Down markets using historical order book data.', categorySlug: 'crypto-trading', categoryName: 'Crypto Trading' },
     { id: 'b44', title: 'Volume Analysis for Polymarket Trading', slug: 'volume-analysis-polymarket-trading', excerpt: 'How to analyze trading volume patterns in Polymarket prediction markets to identify opportunities and confirm trends.', categorySlug: 'crypto-trading', categoryName: 'Crypto Trading' },
     { id: 'b45', title: 'Spread Trading Strategies for Prediction Markets', slug: 'spread-trading-prediction-markets', excerpt: 'How to trade spreads between correlated Polymarket prediction markets using historical order book data.', categorySlug: 'crypto-trading', categoryName: 'Crypto Trading' },
+    { id: 'b63', title: 'Polymarket BTC Odds Today: Live Bitcoin Up/Down Prediction Markets', slug: 'polymarket-btc-odds-today', excerpt: 'How Polymarket BTC odds work today — live Bitcoin Up/Down markets, how prices reflect probabilities, and how to track historical BTC odds.', categorySlug: 'crypto-trading', categoryName: 'Crypto Trading' },
+    { id: 'b64', title: 'Polymarket ETH Odds Today: Live Ethereum Up/Down Prediction Market Lines', slug: 'polymarket-eth-odds-today', excerpt: 'Track Polymarket ETH odds today. Understand how Ethereum Up/Down prediction markets price probability and how to access historical ETH odds.', categorySlug: 'crypto-trading', categoryName: 'Crypto Trading' },
+    { id: 'b65', title: 'Polymarket SOL Odds Today: Live Solana Up/Down Prediction Markets', slug: 'polymarket-sol-odds-today', excerpt: 'Polymarket SOL odds today — Solana Up/Down prediction markets are now live on PolyHistorical. Learn how SOL odds work and how to track them historically.', categorySlug: 'crypto-trading', categoryName: 'Crypto Trading' },
+    { id: 'b66', title: 'Polymarket Crypto Odds Today: BTC, ETH & SOL Up/Down Markets', slug: 'polymarket-crypto-odds-today', excerpt: 'Track Polymarket crypto odds today across BTC, ETH, and SOL Up/Down prediction markets. Live prices, probability conversion, and historical archives.', categorySlug: 'crypto-trading', categoryName: 'Crypto Trading' },
   ],
   backtesting: [
     { id: 'b19', title: 'Backtesting Framework for Polymarket with Python', slug: 'backtesting-framework-polymarket-python', excerpt: 'Build a complete backtesting framework for Polymarket prediction markets using Python and PolyHistorical data.', categorySlug: 'backtesting', categoryName: 'Backtesting' },
@@ -275,6 +283,10 @@ const FULL_PAGES: Record<string, PseoPageFull> = {
   'webhook-integration-polymarket-data': page_webhook_integration_polymarket_data,
   'historical-polymarket-data': page_historical_polymarket_data,
   'polymarket-api-historical-data': page_polymarket_api_historical_data,
+  'polymarket-btc-odds-today': page_polymarket_btc_odds_today,
+  'polymarket-eth-odds-today': page_polymarket_eth_odds_today,
+  'polymarket-sol-odds-today': page_polymarket_sol_odds_today,
+  'polymarket-crypto-odds-today': page_polymarket_crypto_odds_today,
 };
 
 // ── Helper functions ──
