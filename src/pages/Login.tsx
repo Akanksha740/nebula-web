@@ -55,6 +55,13 @@ export function Login() {
         localStorage.setItem('token', res.data.accessToken);
         localStorage.setItem('user', JSON.stringify(res.data.customer));
 
+        const pendingProTrial = localStorage.getItem('pendingProTrial');
+        if (pendingProTrial) {
+          localStorage.removeItem('pendingProTrial');
+          navigateRef.current('/pro-trial');
+          return;
+        }
+
         const pendingPlan = localStorage.getItem('pendingPlan');
         if (pendingPlan === 'PRO') {
           localStorage.removeItem('pendingPlan');
@@ -112,6 +119,13 @@ export function Login() {
       if (response.success && response.data?.accessToken) {
         localStorage.setItem('token', response.data.accessToken);
         localStorage.setItem('user', JSON.stringify(response.data.customer));
+
+        const pendingProTrial = localStorage.getItem('pendingProTrial');
+        if (pendingProTrial) {
+          localStorage.removeItem('pendingProTrial');
+          navigate('/pro-trial');
+          return;
+        }
 
         // If pending pro upgrade, redirect to checkout
         const pendingPlan = localStorage.getItem('pendingPlan');

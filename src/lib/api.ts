@@ -171,6 +171,11 @@ export const api = {
   },
 
 
+  activateProTrial: async (): Promise<any> => {
+    const { data } = await authClient.post(`${API_BASE}/account/activate-pro-trial`);
+    return data;
+  },
+
   getUsageStats: async (): Promise<any> => {
     const { data } = await authClient.get(`${API_BASE}/account/usage`);
     return data;
