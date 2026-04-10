@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { ScrollToTop } from './components/ScrollToTop';
 import { Home } from './pages/Home';
 import { Features } from './pages/Features';
 import { Pricing } from './pages/Pricing';
@@ -59,6 +60,7 @@ function PublicLayout() {
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/*" element={<PublicLayout />} />
