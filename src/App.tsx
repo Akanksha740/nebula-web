@@ -18,6 +18,9 @@ import { ProTrial } from './pages/ProTrial';
 import { CategoryIndex } from './pages/CategoryIndex';
 import { CategoryDetail } from './pages/CategoryDetail';
 import { PseoPageView } from './pages/PseoPageView';
+import { Contact } from './pages/Contact';
+import { Terms } from './pages/Terms';
+import { Privacy } from './pages/Privacy';
 
 function PublicLayout() {
   return (
@@ -42,6 +45,9 @@ function PublicLayout() {
           <Route path="/category" element={<CategoryIndex />} />
           <Route path="/category/:slug" element={<CategoryDetail />} />
           <Route path="/p/:slug" element={<PseoPageView />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
