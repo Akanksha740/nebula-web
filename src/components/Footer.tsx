@@ -1,8 +1,25 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Mail } from 'lucide-react';
 import { Logo } from './Logo';
 
 export function Footer() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Scroll to a section on the home page. If already on "/", scroll smoothly;
+  // otherwise navigate to "/" first, then scroll once the page has mounted.
+  // Mirrors the Navbar's handleNavClick so both entry points feel identical.
+  const scrollToSection = (hash: string) => {
+    if (location.pathname === '/') {
+      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/');
+      setTimeout(() => {
+        document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  };
+
   return (
     <footer className="border-t border-border py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,8 +45,16 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold mb-3 text-text-muted uppercase tracking-wider">Product</h4>
             <ul className="space-y-2">
-              <li><Link to="/features" className="text-text-muted hover:text-white text-sm transition-colors">Features</Link></li>
-              <li><Link to="/pricing" className="text-text-muted hover:text-white text-sm transition-colors">Pricing</Link></li>
+              <li>
+                <button onClick={() => scrollToSection('features')} className="text-text-muted hover:text-white text-sm transition-colors text-left">
+                  Features
+                </button>
+              </li>
+              <li>
+                <button onClick={() => scrollToSection('pricing')} className="text-text-muted hover:text-white text-sm transition-colors text-left">
+                  Pricing
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -45,7 +70,7 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold mb-3 text-text-muted uppercase tracking-wider">Company</h4>
             <ul className="space-y-2">
-              <li><a href="mailto:support@polyhistorical.com" className="text-text-muted hover:text-white text-sm transition-colors">Contact</a></li>
+              <li><Link to="/contact" className="text-text-muted hover:text-white text-sm transition-colors">Contact</Link></li>
               <li><Link to="/terms" className="text-text-muted hover:text-white text-sm transition-colors">Terms</Link></li>
               <li><Link to="/privacy" className="text-text-muted hover:text-white text-sm transition-colors">Privacy</Link></li>
             </ul>
