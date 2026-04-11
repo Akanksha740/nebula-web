@@ -339,7 +339,7 @@ export function Home() {
                 </div>
                 <div className="flex items-center gap-4">
                   <span className="text-[10px] text-text-dim uppercase tracking-widest">Binance Feed</span>
-                  <span className="text-xs text-text-dim font-mono bg-surface-card px-2.5 py-1 rounded">500ms snapshots</span>
+                  <span className="text-xs text-text-dim font-mono bg-surface-card px-2.5 py-1 rounded">300ms snapshots</span>
                 </div>
               </div>
 
