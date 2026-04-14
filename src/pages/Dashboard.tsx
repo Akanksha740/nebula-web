@@ -28,6 +28,7 @@ import {
 } from 'lucide-react';
 import { Logo } from '../components/Logo';
 import { PricingCards } from '../components/PricingCards';
+import { PaymentMethodModal } from '../components/PaymentMethodModal';
 import { api } from '../lib/api';
 import { getTierConfig } from '../lib/pricing';
 
@@ -107,8 +108,8 @@ export function Dashboard() {
   const [passwordLoading, setPasswordLoading] = useState(false);
   const [passwordError, setPasswordError] = useState('');
   const [passwordSuccess, setPasswordSuccess] = useState('');
-  const [upgradeLoading, setUpgradeLoading] = useState(false);
   const [showPlansModal, setShowPlansModal] = useState(false);
+  const [showPaymentMethodModal, setShowPaymentMethodModal] = useState(false);
 
   const currentTierConfig = getTierConfig(user?.tier);
   const maxApiKeys = currentTierConfig.maxApiKeys;
@@ -243,18 +244,8 @@ export function Dashboard() {
     setTimeout(() => setCopiedKey(false), 2000);
   };
 
-  const handleUpgrade = async () => {
-    setUpgradeLoading(true);
-    try {
-      const res = await api.createCheckout('PRO');
-      const checkoutUrl = res?.data?.checkoutUrl;
-      if (checkoutUrl) {
-        window.location.href = checkoutUrl;
-      }
-    } catch (err: any) {
-      alert(err?.response?.data?.error?.message || 'Failed to start checkout. Please try again.');
-      setUpgradeLoading(false);
-    }
+  const handleUpgrade = () => {
+    setShowPaymentMethodModal(true);
   };
 
   const handleChangePassword = async () => {
@@ -723,11 +714,10 @@ export function Dashboard() {
           ) : (
             <button
               onClick={handleUpgrade}
-              disabled={upgradeLoading}
               className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-primary-hover transition-colors disabled:opacity-50"
             >
               <Zap className="w-4 h-4" />
-              {upgradeLoading ? 'Redirecting...' : 'Upgrade to Pro'}
+              Upgrade to Pro
             </button>
           )}
         </div>
@@ -845,11 +835,10 @@ export function Dashboard() {
           <div className="px-3 pb-3">
             <button
               onClick={handleUpgrade}
-              disabled={upgradeLoading}
               className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-primary-hover transition-colors disabled:opacity-50"
             >
               <Zap className="w-4 h-4" />
-              {upgradeLoading ? 'Redirecting...' : 'Upgrade to Pro'}
+              Upgrade to Pro
             </button>
           </div>
         )}
@@ -951,10 +940,10 @@ export function Dashboard() {
                   </div>
                   <button
                     onClick={handleUpgrade}
-                    disabled={upgradeLoading || user?.tier === 'PRO' || user?.tier === 'ENTERPRISE'}
+                    disabled={user?.tier === 'PRO' || user?.tier === 'ENTERPRISE'}
                     className="w-full py-2.5 rounded-lg text-sm font-semibold btn-primary justify-center disabled:opacity-50"
                   >
-                    {upgradeLoading ? 'Redirecting...' : user?.tier === 'PRO' || user?.tier === 'ENTERPRISE' ? 'Current Plan' : 'Upgrade to Pro'}
+                    {user?.tier === 'PRO' || user?.tier === 'ENTERPRISE' ? 'Current Plan' : 'Upgrade to Pro'}
                   </button>
                 </div>
               </div>
@@ -983,6 +972,7 @@ export function Dashboard() {
           )}
         </div>
       </main>
+      <PaymentMethodModal open={showPaymentMethodModal} onClose={() => setShowPaymentMethodModal(false)} />
     </div>
   );
 }

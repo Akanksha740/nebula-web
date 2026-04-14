@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     q: 'What payment methods work?',
-    a: 'Visa, MasterCard, American Express, and PayPal. Enterprise customers can pay by invoice.',
+    a: 'Visa, MasterCard, American Express, PayPal, and cryptocurrency (BTC, ETH, USDT, and more via Cryptomus). Enterprise customers can also pay by invoice.',
   },
   {
     q: 'Is there a Pro trial?',
