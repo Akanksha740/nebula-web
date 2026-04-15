@@ -118,3 +118,12 @@ html {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+@keyframes tradeFlash {
+  0% {
+    background: rgba(255, 255, 255, 0.06);
+  }
+  100% {
+    background: transparent;
+  }
+}
