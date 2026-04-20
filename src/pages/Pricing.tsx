@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     q: 'What payment methods work?',
-    a: 'Visa, MasterCard, American Express, and PayPal. Enterprise customers can pay by invoice.',
+    a: 'Visa, MasterCard, American Express, PayPal, and cryptocurrency (BTC, ETH, USDT, and more via Cryptomus). Enterprise customers can also pay by invoice.',
   },
   {
     q: 'Is there a Pro trial?',
@@ -28,7 +28,7 @@ export function Pricing() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div className="pt-20 pb-16">
+    <div className="pt-28 pb-16">
       <SEO
         title="Pricing"
         description="Simple pricing for Polymarket historical data. Free tier included. Pro and Enterprise plans for full order book access."

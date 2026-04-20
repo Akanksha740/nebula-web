@@ -130,7 +130,7 @@ export function Markets() {
       : '/markets';
 
   return (
-    <div className="pt-20 pb-16">
+    <div className="pt-28 pb-16">
       <SEO
         title={buildSeoTitle(urlCoin, urlTimeframe)}
         description={buildSeoDescription(urlCoin, urlTimeframe)}

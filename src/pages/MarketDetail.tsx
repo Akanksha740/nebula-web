@@ -102,7 +102,7 @@ export function MarketDetail() {
 
   if (loading) {
     return (
-      <div className="pt-20 pb-16 flex items-center justify-center min-h-screen">
+      <div className="pt-28 pb-16 flex items-center justify-center min-h-screen">
         <div className="text-center">
           <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-primary" />
           <p className="text-text-muted">Loading market data...</p>
@@ -113,7 +113,7 @@ export function MarketDetail() {
 
   if (!market) {
     return (
-      <div className="pt-20 pb-16 flex items-center justify-center min-h-screen">
+      <div className="pt-28 pb-16 flex items-center justify-center min-h-screen">
         <div className="text-center">
           <p className="text-text-muted mb-4">Market not found</p>
           <Link to="/markets" className="text-primary hover:text-primary-light">
@@ -125,7 +125,7 @@ export function MarketDetail() {
   }
 
   return (
-    <div className="pt-20 pb-16">
+    <div className="pt-28 pb-16">
       <SEO
         title={`${market.slug} — ${coin.toUpperCase()} Order Book History`}
         description={`Historical order book data for Polymarket ${market.slug}. ${market.market_type} ${coin.toUpperCase()} Up/Down market with ${total.toLocaleString()} snapshots at sub-second resolution.`}

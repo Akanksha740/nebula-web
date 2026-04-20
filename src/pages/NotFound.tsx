@@ -4,7 +4,7 @@ import { SEO } from '../components/SEO';
 
 export function NotFound() {
   return (
-    <div className="pt-20 pb-16 flex items-center justify-center min-h-[60vh]">
+    <div className="pt-28 pb-16 flex items-center justify-center min-h-[60vh]">
       <SEO
         title="Page Not Found"
         description="The page you're looking for doesn't exist."

@@ -2,7 +2,7 @@ import { SEO } from '../components/SEO';
 
 export function Terms() {
   return (
-    <div className="pt-20 pb-24">
+    <div className="pt-28 pb-24">
       <SEO
         title="Terms of Service"
         description="The terms governing your use of the PolyHistorical API and website. Read-only historical Polymarket data, no AI agent, no model training on your queries."

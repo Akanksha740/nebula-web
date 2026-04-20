@@ -170,6 +170,16 @@ export const api = {
     return data;
   },
 
+  createCryptoCheckout: async (tier: string): Promise<any> => {
+    const { data } = await authClient.post(`${API_BASE}/account/subscription/crypto-checkout?tier=${tier}`);
+    return data;
+  },
+
+
+  cancelSubscription: async (): Promise<any> => {
+    const { data } = await authClient.post(`${API_BASE}/account/subscription/cancel`);
+    return data;
+  },
 
   activateProTrial: async (): Promise<any> => {
     const { data } = await authClient.post(`${API_BASE}/account/activate-pro-trial`);

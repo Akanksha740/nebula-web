@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Check, X } from 'lucide-react';
+import { Check, X, Bitcoin } from 'lucide-react';
 import { pricingPlans } from '../lib/pricing';
 import { ProCta } from './ProCta';
 
@@ -24,6 +24,14 @@ export function PricingCards() {
             <div className="text-4xl font-bold mb-1">{plan.price}</div>
             {plan.period && <div className="text-text-muted text-sm">{plan.period}</div>}
             {plan.desc && <p className="text-text-muted text-sm mt-2">{plan.desc}</p>}
+
+            {plan.name === 'Pro' && (
+              <div className="mt-3 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0a1f18] border border-primary/30 text-xs">
+                <Bitcoin className="w-3.5 h-3.5 text-[#F7931A] shrink-0" />
+                <span className="text-text-muted">Pay with crypto:</span>
+                <span className="text-primary font-semibold">$22/2mo</span>
+              </div>
+            )}
           </div>
 
           {/* Market History Access */}

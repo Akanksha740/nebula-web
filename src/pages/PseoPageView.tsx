@@ -36,7 +36,7 @@ export function PseoPageView() {
 
   if (!page) {
     return (
-      <div className="pt-24 pb-16 text-center">
+      <div className="pt-32 pb-16 text-center">
         <h1 className="text-2xl font-bold mb-2">Page not found</h1>
         <Link to="/category" className="text-primary hover:underline">Browse resources</Link>
       </div>
@@ -44,13 +44,15 @@ export function PseoPageView() {
   }
 
   return (
-    <div className="pt-24 pb-20">
+    <div className="pt-32 pb-20">
       <Helmet>
         <title>{page.metaTitle || page.title} | PolyHistorical</title>
         {page.metaDescription && <meta name="description" content={page.metaDescription} />}
+        <link rel="canonical" href={`https://polyhistorical.com/p/${slug}`} />
         {page.ogImage && <meta property="og:image" content={page.ogImage} />}
         <meta property="og:title" content={page.metaTitle || page.title} />
         {page.metaDescription && <meta property="og:description" content={page.metaDescription} />}
+        <meta property="og:url" content={`https://polyhistorical.com/p/${slug}`} />
         <meta property="og:type" content="article" />
       </Helmet>
 
@@ -75,7 +77,7 @@ export function PseoPageView() {
               >
                 {page.categoryName}
               </Link>
-              <h1 className="text-3xl md:text-4xl font-bold mb-3 leading-tight">{page.title}</h1>
+              <div className="text-3xl md:text-4xl font-bold mb-3 leading-tight">{page.title}</div>
               {page.excerpt && (
                 <p className="text-lg text-text-muted">{page.excerpt}</p>
               )}
@@ -85,7 +87,7 @@ export function PseoPageView() {
             <article
               className="prose prose-invert max-w-none
                 prose-headings:text-text-primary prose-headings:font-bold
-                prose-h1:hidden
+                prose-h1:text-3xl prose-h1:mt-0 prose-h1:mb-6
                 prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
                 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
                 prose-p:text-text-muted prose-p:leading-relaxed prose-p:mb-4

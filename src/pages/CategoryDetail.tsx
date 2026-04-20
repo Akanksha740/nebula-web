@@ -56,7 +56,7 @@ export function CategoryDetail() {
 
   if (!category) {
     return (
-      <div className="pt-24 pb-16 text-center">
+      <div className="pt-32 pb-16 text-center">
         <h1 className="text-2xl font-bold mb-2">Category not found</h1>
         <Link to="/category" className="text-primary hover:underline">Back to categories</Link>
       </div>
@@ -67,10 +67,15 @@ export function CategoryDetail() {
   const totalPages = Math.ceil(total / ITEMS_PER_PAGE);
 
   return (
-    <div className="pt-24 pb-20">
+    <div className="pt-32 pb-20">
       <Helmet>
         <title>{category.metaTitle || category.name} | PolyHistorical</title>
         {category.metaDescription && <meta name="description" content={category.metaDescription} />}
+        <link rel="canonical" href={`https://polyhistorical.com/category/${slug}`} />
+        <meta property="og:title" content={category.metaTitle || category.name} />
+        {category.metaDescription && <meta property="og:description" content={category.metaDescription} />}
+        <meta property="og:url" content={`https://polyhistorical.com/category/${slug}`} />
+        <meta property="og:type" content="website" />
       </Helmet>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

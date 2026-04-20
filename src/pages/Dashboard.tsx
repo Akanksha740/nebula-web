@@ -28,6 +28,7 @@ import {
 } from 'lucide-react';
 import { Logo } from '../components/Logo';
 import { PricingCards } from '../components/PricingCards';
+import { PaymentMethodModal } from '../components/PaymentMethodModal';
 import { api } from '../lib/api';
 import { getTierConfig } from '../lib/pricing';
 
@@ -107,8 +108,11 @@ export function Dashboard() {
   const [passwordLoading, setPasswordLoading] = useState(false);
   const [passwordError, setPasswordError] = useState('');
   const [passwordSuccess, setPasswordSuccess] = useState('');
-  const [upgradeLoading, setUpgradeLoading] = useState(false);
   const [showPlansModal, setShowPlansModal] = useState(false);
+  const [showPaymentMethodModal, setShowPaymentMethodModal] = useState(false);
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [cancelLoading, setCancelLoading] = useState(false);
+  const [cancelError, setCancelError] = useState('');
 
   const currentTierConfig = getTierConfig(user?.tier);
   const maxApiKeys = currentTierConfig.maxApiKeys;
@@ -179,6 +183,25 @@ export function Dashboard() {
     navigate('/');
   };
 
+  const handleCancelSubscription = async () => {
+    setCancelLoading(true);
+    setCancelError('');
+    try {
+      await api.cancelSubscription();
+      setShowCancelModal(false);
+      // Refresh user data
+      const res = await api.getProfile();
+      if (res.success && res.data) {
+        setUser(res.data);
+        localStorage.setItem('user', JSON.stringify(res.data));
+      }
+    } catch (err: any) {
+      setCancelError(err?.response?.data?.error?.message || 'Failed to cancel subscription. Please try again.');
+    } finally {
+      setCancelLoading(false);
+    }
+  };
+
   const handleNavClick = (id: string) => {
     if (id === 'docs') {
       window.open('https://docs.polyhistorical.com/', '_blank');
@@ -243,18 +266,8 @@ export function Dashboard() {
     setTimeout(() => setCopiedKey(false), 2000);
   };
 
-  const handleUpgrade = async () => {
-    setUpgradeLoading(true);
-    try {
-      const res = await api.createCheckout('PRO');
-      const checkoutUrl = res?.data?.checkoutUrl;
-      if (checkoutUrl) {
-        window.location.href = checkoutUrl;
-      }
-    } catch (err: any) {
-      alert(err?.response?.data?.error?.message || 'Failed to start checkout. Please try again.');
-      setUpgradeLoading(false);
-    }
+  const handleUpgrade = () => {
+    setShowPaymentMethodModal(true);
   };
 
   const handleChangePassword = async () => {
@@ -723,11 +736,10 @@ export function Dashboard() {
           ) : (
             <button
               onClick={handleUpgrade}
-              disabled={upgradeLoading}
               className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-primary-hover transition-colors disabled:opacity-50"
             >
               <Zap className="w-4 h-4" />
-              {upgradeLoading ? 'Redirecting...' : 'Upgrade to Pro'}
+              Upgrade to Pro
             </button>
           )}
         </div>
@@ -845,11 +857,10 @@ export function Dashboard() {
           <div className="px-3 pb-3">
             <button
               onClick={handleUpgrade}
-              disabled={upgradeLoading}
               className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-primary-hover transition-colors disabled:opacity-50"
             >
               <Zap className="w-4 h-4" />
-              {upgradeLoading ? 'Redirecting...' : 'Upgrade to Pro'}
+              Upgrade to Pro
             </button>
           </div>
         )}
@@ -879,6 +890,15 @@ export function Dashboard() {
                 <Settings className="w-4 h-4" />
                 Profile
               </button>
+              {user?.tier === 'PRO' && (
+                <button
+                  onClick={() => { setShowCancelModal(true); setUserMenuOpen(false); }}
+                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-text-muted hover:text-accent-red hover:bg-white/5 transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                  Manage Subscription
+                </button>
+              )}
               <button
                 onClick={handleLogout}
                 className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-accent-red hover:bg-white/5 transition-colors"
@@ -951,10 +971,10 @@ export function Dashboard() {
                   </div>
                   <button
                     onClick={handleUpgrade}
-                    disabled={upgradeLoading || user?.tier === 'PRO' || user?.tier === 'ENTERPRISE'}
+                    disabled={user?.tier === 'PRO' || user?.tier === 'ENTERPRISE'}
                     className="w-full py-2.5 rounded-lg text-sm font-semibold btn-primary justify-center disabled:opacity-50"
                   >
-                    {upgradeLoading ? 'Redirecting...' : user?.tier === 'PRO' || user?.tier === 'ENTERPRISE' ? 'Current Plan' : 'Upgrade to Pro'}
+                    {user?.tier === 'PRO' || user?.tier === 'ENTERPRISE' ? 'Current Plan' : 'Upgrade to Pro'}
                   </button>
                 </div>
               </div>
@@ -983,6 +1003,53 @@ export function Dashboard() {
           )}
         </div>
       </main>
+      <PaymentMethodModal open={showPaymentMethodModal} onClose={() => setShowPaymentMethodModal(false)} />
+
+      {/* Cancel Subscription Modal */}
+      {showCancelModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+          <div className="bg-surface-card border border-border rounded-xl shadow-2xl max-w-md w-full mx-4 p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-full bg-accent-red/10 flex items-center justify-center">
+                <AlertCircle className="w-5 h-5 text-accent-red" />
+              </div>
+              <h3 className="text-lg font-bold">Cancel Subscription</h3>
+            </div>
+
+            <p className="text-text-muted text-sm mb-2">
+              Are you sure you want to cancel your Pro subscription?
+            </p>
+            <ul className="text-text-muted text-sm space-y-1 mb-4 ml-4 list-disc">
+              <li>Your Pro plan remains active until the end of the current billing cycle</li>
+              <li>After that, your account will revert to the Starter (free) plan</li>
+              <li>You'll lose access to ETH/SOL data and higher rate limits</li>
+              <li>Your API keys will continue to work within Starter limits</li>
+            </ul>
+
+            {cancelError && (
+              <div className="text-accent-red text-sm bg-accent-red/10 px-3 py-2 rounded mb-4">
+                {cancelError}
+              </div>
+            )}
+
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={() => { setShowCancelModal(false); setCancelError(''); }}
+                className="px-4 py-2 text-sm font-medium rounded-lg hover:bg-white/5 transition-colors"
+              >
+                Keep Subscription
+              </button>
+              <button
+                onClick={handleCancelSubscription}
+                disabled={cancelLoading}
+                className="px-4 py-2 text-sm font-medium rounded-lg bg-accent-red text-white hover:bg-accent-red/80 transition-colors disabled:opacity-50"
+              >
+                {cancelLoading ? 'Cancelling...' : 'Yes, Cancel'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
