@@ -3,7 +3,7 @@ import { SEO } from '../components/SEO';
 
 export function Contact() {
   return (
-    <div className="pt-20 pb-8">
+    <div className="pt-28 pb-8">
       <SEO
         title="Contact"
         description="Reach the team behind PolyHistorical. Email or DM for support, billing, and enterprise data inquiries."

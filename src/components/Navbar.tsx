@@ -15,15 +15,21 @@ export function Navbar() {
     { path: '/', hash: 'faq', label: 'FAQ' },
   ];
 
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 104; // announcement bar (32) + navbar (64) + small gap (8)
+      window.scrollTo({ top: el.offsetTop - offset, behavior: 'smooth' });
+    }
+  };
+
   const handleNavClick = (path: string, hash: string) => {
     setMobileMenuOpen(false);
     if (location.pathname === path && hash) {
-      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+      scrollToSection(hash);
     } else if (hash) {
       navigate(path);
-      setTimeout(() => {
-        document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+      setTimeout(() => scrollToSection(hash), 100);
     } else {
       navigate(path);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -36,7 +42,7 @@ export function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-surface-base/90 backdrop-blur-xl border-b border-white/5">
+    <nav className="fixed top-8 left-0 right-0 z-50 bg-surface-base/90 backdrop-blur-xl border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>

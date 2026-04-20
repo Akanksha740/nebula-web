@@ -36,7 +36,7 @@ export function PseoPageView() {
 
   if (!page) {
     return (
-      <div className="pt-24 pb-16 text-center">
+      <div className="pt-32 pb-16 text-center">
         <h1 className="text-2xl font-bold mb-2">Page not found</h1>
         <Link to="/category" className="text-primary hover:underline">Browse resources</Link>
       </div>
@@ -44,7 +44,7 @@ export function PseoPageView() {
   }
 
   return (
-    <div className="pt-24 pb-20">
+    <div className="pt-32 pb-20">
       <Helmet>
         <title>{page.metaTitle || page.title} | PolyHistorical</title>
         {page.metaDescription && <meta name="description" content={page.metaDescription} />}

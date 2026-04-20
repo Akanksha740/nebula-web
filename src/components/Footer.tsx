@@ -10,13 +10,18 @@ export function Footer() {
   // otherwise navigate to "/" first, then scroll once the page has mounted.
   // Mirrors the Navbar's handleNavClick so both entry points feel identical.
   const scrollToSection = (hash: string) => {
+    const scrollTo = () => {
+      const el = document.getElementById(hash);
+      if (el) {
+        const offset = 104; // announcement bar (32) + navbar (64) + small gap (8)
+        window.scrollTo({ top: el.offsetTop - offset, behavior: 'smooth' });
+      }
+    };
     if (location.pathname === '/') {
-      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+      scrollTo();
     } else {
       navigate('/');
-      setTimeout(() => {
-        document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+      setTimeout(scrollTo, 100);
     }
   };
 

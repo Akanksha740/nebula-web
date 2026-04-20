@@ -18,7 +18,7 @@ export function CategoryIndex() {
   const totalPages = categories.reduce((sum, c) => sum + c.pageCount, 0);
 
   return (
-    <div className="pt-24 pb-20">
+    <div className="pt-32 pb-20">
       <Helmet>
         <title>Resources & Guides | PolyHistorical</title>
         <meta name="description" content="Browse comparisons, guides, and resources for crypto prediction market data, backtesting strategies, and Polymarket historical analysis." />

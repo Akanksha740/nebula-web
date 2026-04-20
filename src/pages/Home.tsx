@@ -4,6 +4,9 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
+  Bitcoin,
+  Globe,
+  ShieldCheck,
 } from 'lucide-react';
 import { PricingCards } from '../components/PricingCards';
 import { LiveMarketSection } from '../components/LiveMarketSection';
@@ -42,7 +45,7 @@ export function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div className="pt-16">
+    <div className="pt-24">
       <SEO
         title="PolyHistorical - Polymarket Order Book Data API"
         description="300ms order book snapshots for every BTC, ETH, and SOL Polymarket market. Full bid/ask depth, 13,000+ resolved markets. Built for traders, bots, and researchers."
@@ -220,7 +223,70 @@ export function Home() {
       {/* ── Live data card ── */}
       <LiveMarketSection />
 
-      {/* ── Pricing ── */}
+      {/* Crypto payments banner */}
+      <section className="py-16 relative overflow-hidden" id="crypto">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,rgba(16,185,129,0.06),transparent)]" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-surface-card via-surface-dark to-surface-card p-8 md:p-12">
+            <div className="grid lg:grid-cols-2 gap-10 items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/5 mb-6">
+                  <Bitcoin className="w-3.5 h-3.5 text-primary" />
+                  <span className="text-xs font-medium text-primary">Now accepting crypto</span>
+                </div>
+
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  Pay with crypto.{' '}
+                  <span className="gradient-text">No KYC. No friction.</span>
+                </h2>
+
+                <p className="text-text-muted text-lg leading-relaxed mb-6 max-w-lg">
+                  You trade crypto. You analyze crypto markets. Now you can pay for your data tools in crypto too.
+                  Pick a coin, scan the QR or send to the address, done in seconds.
+                </p>
+
+                <div className="flex flex-wrap gap-x-8 gap-y-3 mb-8">
+                  {[
+                    'BTC, ETH, USDT & 200+ coins',
+                    'No bank account needed',
+                    'Instant activation',
+                  ].map((t) => (
+                    <span key={t} className="flex items-center gap-2 text-sm text-text-muted">
+                      <Check className="w-4 h-4 text-primary shrink-0" />
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                <Link to="/signup" className="btn-primary text-sm py-3 px-6">
+                  Get started with crypto
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+
+              <div className="hidden lg:flex flex-col gap-4">
+                {[
+                  { icon: Bitcoin, title: 'Send from anywhere', desc: 'Pay from Coinbase, Binance, MetaMask, or any wallet. No special setup needed.' },
+                  { icon: Globe, title: 'Available worldwide', desc: 'No geo-restrictions, no bank approvals. If you have crypto, you can pay.' },
+                  { icon: ShieldCheck, title: 'Privacy-first', desc: 'No credit card on file, no billing address. Just a transaction on-chain.' },
+                ].map((item) => (
+                  <div key={item.title} className="flex gap-4 p-4 rounded-xl bg-surface-dark/80 border border-border">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                      <item.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-sm mb-0.5">{item.title}</div>
+                      <div className="text-text-muted text-xs leading-relaxed">{item.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing -compact */}
       <section className="py-16 bg-surface-dark" id="pricing">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-4">

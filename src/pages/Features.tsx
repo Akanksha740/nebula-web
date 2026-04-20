@@ -69,7 +69,7 @@ const useCases = [
 
 export function Features() {
   return (
-    <div className="pt-20 pb-16">
+    <div className="pt-28 pb-16">
       <SEO
         title="Features"
         description="Full order book depth, sub-second snapshots, and a fast REST API for Polymarket BTC, ETH, and SOL Up/Down historical data."

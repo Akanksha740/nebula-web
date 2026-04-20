@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
+import { AnnouncementBar } from './components/AnnouncementBar';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
 import { Home } from './pages/Home';
@@ -26,6 +27,7 @@ import { Privacy } from './pages/Privacy';
 function PublicLayout() {
   return (
     <div className="min-h-screen flex flex-col">
+      <AnnouncementBar />
       <Navbar />
       <main className="flex-1">
         <Routes>

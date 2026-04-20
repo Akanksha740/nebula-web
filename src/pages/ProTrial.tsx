@@ -119,7 +119,7 @@ export function ProTrial() {
   );
 
   return (
-    <div className="pt-20 pb-16">
+    <div className="pt-28 pb-16">
       <SEO
         title={activated ? 'Pro Trial Activated' : 'Free Pro Trial'}
         description="Try PolyHistorical Pro free for 7 days. Full access, no credit card."

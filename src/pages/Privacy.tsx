@@ -2,7 +2,7 @@ import { SEO } from '../components/SEO';
 
 export function Privacy() {
   return (
-    <div className="pt-20 pb-24">
+    <div className="pt-28 pb-24">
       <SEO
         title="Privacy Policy"
         description="What PolyHistorical collects, what we don't, and how we handle it. We don't sell your data, we don't train models on your queries, we don't share with advertisers."

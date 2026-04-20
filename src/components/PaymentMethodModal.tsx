@@ -50,7 +50,7 @@ export function PaymentMethodModal({ open, onClose }: PaymentMethodModalProps) {
         </div>
 
         <p className="text-text-muted text-sm mb-6">
-          Select how you'd like to pay for the Pro plan ($11/mo).
+          Select how you'd like to pay for the Pro plan.
         </p>
 
         <div className="space-y-3">
@@ -67,7 +67,7 @@ export function PaymentMethodModal({ open, onClose }: PaymentMethodModalProps) {
                 {loading === 'usd' ? 'Redirecting...' : 'Card / PayPal'}
               </div>
               <div className="text-text-muted text-xs mt-0.5">
-                Visa, MasterCard, Amex, PayPal
+                $11/mo &middot; Visa, MasterCard, Amex, PayPal
               </div>
             </div>
           </button>
@@ -81,11 +81,12 @@ export function PaymentMethodModal({ open, onClose }: PaymentMethodModalProps) {
               <Bitcoin className="w-5 h-5 text-orange-400" />
             </div>
             <div className="flex-1">
-              <div className="font-semibold text-sm">
+              <div className="font-semibold text-sm flex items-center gap-2">
                 {loading === 'crypto' ? 'Redirecting...' : 'Cryptocurrency'}
+                <span className="px-1.5 py-0.5 bg-primary/20 text-primary text-[10px] font-semibold rounded-full">SAVE 9%</span>
               </div>
               <div className="text-text-muted text-xs mt-0.5">
-                BTC, ETH, USDT, and more
+                $20 for 2 months &middot; BTC, ETH, USDT, and more
               </div>
             </div>
           </button>
