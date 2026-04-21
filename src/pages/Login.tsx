@@ -29,7 +29,7 @@ export function Login() {
   const navigateRef = useRef(navigate);
   navigateRef.current = navigate;
 
-  // Redirect to dashboard if already logged in
+  // Redirect if already logged in
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
