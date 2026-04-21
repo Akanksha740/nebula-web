@@ -25,12 +25,14 @@ import {
   Lock,
   Settings,
   CheckCircle,
+  PlayCircle,
 } from 'lucide-react';
 import { Logo } from '../components/Logo';
 import { PricingCards } from '../components/PricingCards';
 import { PaymentMethodModal } from '../components/PaymentMethodModal';
 import { api } from '../lib/api';
 import { getTierConfig } from '../lib/pricing';
+import { ReplayContent } from './Replay';
 
 interface CustomerData {
   id: string;
@@ -58,6 +60,7 @@ const navItems = [
   { id: 'api-keys', label: 'API Keys', icon: KeyRound },
   { id: 'billing', label: 'Billing', icon: CreditCard },
   { id: 'profile', label: 'Profile', icon: User },
+  { id: 'replay', label: 'Strategy Replay', icon: PlayCircle },
   { id: 'docs', label: 'Documentation', icon: FileText, external: true },
   { id: 'contact', label: 'Contact Us', icon: Mail },
 ];
@@ -919,6 +922,16 @@ export function Dashboard() {
           {activeNav === 'home' && renderHome()}
           {activeNav === 'api-keys' && renderApiKeys()}
           {activeNav === 'profile' && renderProfile()}
+          {activeNav === 'replay' && (
+            user?.tier === 'PRO' || user?.tier === 'PRO_TRIAL' || user?.tier === 'ENTERPRISE'
+              ? <ReplayContent />
+              : <div className="max-w-lg mx-auto text-center py-16">
+                  <Lock className="w-12 h-12 text-text-dim mx-auto mb-4" />
+                  <h2 className="text-2xl font-bold mb-2">Pro Feature</h2>
+                  <p className="text-text-muted mb-6">Strategy Replay is available on Pro and Enterprise plans.</p>
+                  <button onClick={handleUpgrade} className="btn-primary py-3 px-6">Upgrade to Pro</button>
+                </div>
+          )}
           {activeNav === 'billing' && (
             <div>
               <h1 className="text-2xl font-bold mb-1">Billing</h1>
