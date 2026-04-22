@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Set up real-time webhooks to receive Polymarket order book updates and market events from PolyHistorical.',
   metaTitle: 'Webhook Integration for Polymarket Data | PolyHistorical',
   metaDescription: 'Set up webhooks for real-time Polymarket order book updates. Learn how to configure endpoints, handle payloads, and build event-driven prediction market applications.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Webhook Integration Guide for Polymarket Data</h1>
-  <h2>What Are Webhooks?</h2>
+  ogImage: '/og/api-developers.png', createdAt: '', updatedAt: '',
+  content: `<h2>What Are Webhooks?</h2>
   <p>Webhooks allow PolyHistorical to <strong>push data to your application</strong> in real time, instead of requiring you to poll the API. When a relevant event occurs — such as a significant order book change or market resolution — PolyHistorical sends an HTTP POST request to your configured endpoint with the event data.</p>
 
   <h2>Supported Webhook Events</h2>
@@ -57,7 +56,14 @@ const page: PseoPageFull = {
   <p>Webhooks are ideal for building <strong>event-driven applications</strong> that react to Polymarket changes in real time. Trading bots can receive order book updates without polling. Alerting systems can notify you of unusual spread or depth changes. Research platforms can automatically ingest new data as it becomes available.</p>
 
   <h2>Availability</h2>
-  <p>Webhook integration is available on the <strong>Pro plan ($11/month)</strong> and above. Configure webhooks through the PolyHistorical dashboard or API.</p>`,
+  <p>Webhook integration is available on the <strong>Pro plan ($11/month)</strong> and above. Configure webhooks through the PolyHistorical dashboard or API.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polyhistorical-api-authentication-guide">PolyHistorical API Authentication and Security Guide</a></li>
+  <li><a href="/p/polymarket-historical-data-api-documentation">Polymarket Historical Data API Documentation</a></li>
+  <li><a href="/p/rate-limiting-best-practices-polyhistorical">Rate Limiting Best Practices for PolyHistorical API</a></li>
+  </ul>`,
 };
 
 export default page;

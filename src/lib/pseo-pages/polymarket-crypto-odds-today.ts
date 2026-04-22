@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'How Polymarket crypto odds work across BTC, ETH, and SOL Up/Down prediction markets — pricing, conversion to traditional odds, and how to query historical snapshots.',
   metaTitle: 'Polymarket Crypto Odds Today — BTC, ETH & SOL Markets | PolyHistorical',
   metaDescription: 'How Polymarket crypto odds work across BTC, ETH, and SOL Up/Down markets. Read prices as probabilities and access historical snapshots via PolyHistorical.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Polymarket Crypto Odds Today: BTC, ETH & SOL Up/Down Markets</h1>
-<p>Looking for <strong>Polymarket crypto odds today</strong>? Polymarket runs continuous Up/Down prediction markets for the three crypto assets covered by PolyHistorical — Bitcoin, Ethereum, and Solana — across 5-minute, 15-minute, 1-hour, 4-hour, and 24-hour windows. PolyHistorical archives every order book snapshot so you can study how odds evolved after a market resolves.</p>
+  ogImage: '/og/crypto-trading.png', createdAt: '', updatedAt: '',
+  content: `<p>Looking for <strong>Polymarket crypto odds today</strong>? Polymarket runs continuous Up/Down prediction markets for the three crypto assets covered by PolyHistorical — Bitcoin, Ethereum, and Solana — across 5-minute, 15-minute, 1-hour, 4-hour, and 24-hour windows. PolyHistorical archives every order book snapshot so you can study how odds evolved after a market resolves.</p>
 
 <h2>What Are Polymarket Crypto Odds?</h2>
 <p>Polymarket crypto odds are binary prediction market prices, not sportsbook lines. Each Up/Down market resolves based on whether the underlying asset closes above or below its opening price. Outcomes trade between $0 and $1, and because each winning $1 share pays $1, the share price is directly the implied probability the market is assigning to that outcome.</p>
@@ -72,7 +71,14 @@ for coin in ("BTC", "ETH", "SOL"):
 <p>See <a href="/pricing">polyhistorical.com/pricing</a> for the full plan breakdown.</p>
 
 <h2>Get Started</h2>
-<p>Sign up free at <a href="/signup">polyhistorical.com/signup</a> to get an API key. Start on Starter for BTC, then upgrade to Pro to unlock ETH and SOL markets.</p>`,
+<p>Sign up free at <a href="/signup">polyhistorical.com/signup</a> to get an API key. Start on Starter for BTC, then upgrade to Pro to unlock ETH and SOL markets.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polymarket-btc-odds-today">Polymarket BTC Odds Today</a></li>
+  <li><a href="/p/polymarket-eth-odds-today">Polymarket ETH Odds Today</a></li>
+  <li><a href="/p/polymarket-sol-odds-today">Polymarket SOL Odds Today</a></li>
+  </ul>`,
 };
 
 export default page;

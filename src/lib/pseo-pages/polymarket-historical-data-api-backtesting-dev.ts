@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Developer-focused guide to the Polymarket historical data API for backtesting. Code examples in Python and JavaScript using free PolyHistorical endpoints.',
   metaTitle: 'Polymarket Historical Data API for Backtesting — Developer Guide | PolyHistorical',
   metaDescription: 'Developer guide to the Polymarket historical data API for backtesting. Python and JavaScript code examples, endpoint reference, and free API access from PolyHistorical.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Polymarket Historical Data API for Backtesting: Developer Guide</h1>
-<p>This developer guide shows you how to integrate the <strong>Polymarket historical data API</strong> into your backtesting pipeline. Code examples in Python and JavaScript, all using the free PolyHistorical tier.</p>
+  ogImage: '/og/polymarket-historical-data.png', createdAt: '', updatedAt: '',
+  content: `<p>This developer guide shows you how to integrate the <strong>Polymarket historical data API</strong> into your backtesting pipeline. Code examples in Python and JavaScript, all using the free PolyHistorical tier.</p>
 
 <h2>Authentication</h2>
 <p>All requests require an API key passed in the <code>X-API-Key</code> header. Get yours for free at PolyHistorical — no credit card needed.</p>
@@ -75,7 +74,14 @@ console.log(\`Loaded \${snapRes.data.snapshots.length} snapshots\`);
 <li>Access to recent BTC markets (last 50 for 5m/15m)</li>
 <li>All snapshots within accessible markets included</li>
 </ul>
-<p>For higher throughput, the Pro plan at $11/month gives you 50,000 requests/day and access to all historical BTC markets.</p>`,
+<p>For higher throughput, the Pro plan at $11/month gives you 50,000 requests/day and access to all historical BTC markets.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polymarket-historical-data-api-backtesting">API for Backtesting Trading Strategies</a></li>
+  <li><a href="/p/polyhistorical-api-authentication-guide">PolyHistorical API Authentication Guide</a></li>
+  <li><a href="/p/data-cleaning-prediction-market-backtests">Data Cleaning for Prediction Market Backtests</a></li>
+  </ul>`,
 };
 
 export default page;

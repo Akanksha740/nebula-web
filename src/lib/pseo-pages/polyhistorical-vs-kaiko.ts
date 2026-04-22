@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'How does PolyHistorical compare to Kaiko for crypto prediction market data? We break down pricing, data granularity, and coverage.',
   metaTitle: 'PolyHistorical vs Kaiko: Prediction Market Data Comparison',
   metaDescription: 'Compare PolyHistorical and Kaiko for crypto market data. See differences in prediction market coverage, pricing, order book granularity, and API features.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>PolyHistorical vs Kaiko: Prediction Market Data Compared</h1>
-  <h2>Overview</h2>
+  ogImage: '/og/compare.png', createdAt: '', updatedAt: '',
+  content: `<h2>Overview</h2>
   <p>Kaiko is a well-known institutional crypto market data provider covering centralized exchanges. PolyHistorical focuses specifically on <strong>Polymarket prediction market data</strong> with sub-second order book snapshots — a niche Kaiko does not cover.</p>
 
   <h2>Data Coverage</h2>
@@ -18,7 +17,7 @@ const page: PseoPageFull = {
   <tbody>
   <tr><td>Prediction Market Data</td><td>&#10003; Full order book history</td><td>&#10007; Not available</td></tr>
   <tr><td>BTC/ETH/SOL Up/Down Markets</td><td>&#10003; 5m, 15m, 1h, 4h, 24h</td><td>&#10007;</td></tr>
-  <tr><td>Snapshot Granularity</td><td>Sub-second (500ms)</td><td>10s–1min (exchange data)</td></tr>
+  <tr><td>Snapshot Granularity</td><td>Sub-second (300ms)</td><td>10s–1min (exchange data)</td></tr>
   <tr><td>CEX Spot/Derivatives</td><td>&#10007;</td><td>&#10003; 100+ exchanges</td></tr>
   <tr><td>Order Book Depth</td><td>&#10003; Full bid/ask depth</td><td>&#10003; Top of book + depth</td></tr>
   </tbody>
@@ -39,6 +38,27 @@ const page: PseoPageFull = {
   <li>You need broad CEX coverage across 100+ exchanges</li>
   <li>You're building institutional-grade trading infrastructure</li>
   <li>You need derivatives and options data</li>
+  </ul>
+
+  <h2>Quick Start: Fetch Polymarket Data</h2>
+  <pre><code>import requests
+
+API_KEY = "your_api_key"
+resp = requests.get(
+    "https://api.polyhistorical.com/v1/markets",
+    headers={"X-API-Key": API_KEY},
+    params={"coin": "BTC", "active": "true"}
+)
+markets = resp.json()["data"]
+for m in markets:
+    print(f"{m['slug']} — Up: {m['price_up']}, Down: {m['price_down']}")
+</code></pre>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polyhistorical-vs-amberdata">PolyHistorical vs Amberdata: Market Data API Comparison</a></li>
+  <li><a href="/p/best-prediction-market-data-providers-2025">Best Prediction Market Data Providers in 2025</a></li>
+  <li><a href="/p/polymarket-historical-data-guide">Polymarket Historical Data: Complete Guide</a></li>
   </ul>`,
 };
 

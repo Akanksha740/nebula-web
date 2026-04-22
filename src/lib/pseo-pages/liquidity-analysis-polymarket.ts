@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'How to measure and analyze liquidity in Polymarket prediction markets using historical order book depth data.',
   metaTitle: 'Liquidity Analysis for Polymarket Prediction Markets | PolyHistorical',
   metaDescription: 'Measure and analyze liquidity in Polymarket prediction markets. Use order book depth, spread, and turnover data from PolyHistorical for liquidity research.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Liquidity Analysis for Polymarket Markets</h1>
-  <h2>Why Liquidity Analysis Matters</h2>
+  ogImage: '/og/use-cases.png', createdAt: '', updatedAt: '',
+  content: `<h2>Why Liquidity Analysis Matters</h2>
   <p>Liquidity determines how easily you can enter and exit prediction market positions without moving the price. For Polymarket traders, understanding liquidity patterns using <strong>PolyHistorical order book data</strong> is essential for optimal execution and strategy development.</p>
 
   <h2>Liquidity Metrics You Can Calculate</h2>
@@ -57,7 +56,14 @@ const page: PseoPageFull = {
   </ul>
 
   <h2>Get Started</h2>
-  <p>PolyHistorical's free tier includes full order book depth for BTC markets — everything you need to start building liquidity analysis tools. The Pro plan at <strong>$11/month</strong> extends coverage to all markets for comprehensive liquidity monitoring.</p>`,
+  <p>PolyHistorical's free tier includes full order book depth for BTC markets — everything you need to start building liquidity analysis tools. The Pro plan at <strong>$11/month</strong> extends coverage to all markets for comprehensive liquidity monitoring.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/understanding-bid-ask-spread-prediction-markets">Understanding Bid-Ask Spread in Prediction Markets</a></li>
+  <li><a href="/p/spread-trading-prediction-markets">Spread Trading Strategies for Prediction Markets</a></li>
+  <li><a href="/p/polymarket-historical-data-api">Polymarket Historical Data API: Full Documentation</a></li>
+  </ul>`,
 };
 
 export default page;

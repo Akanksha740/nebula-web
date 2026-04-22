@@ -7,10 +7,9 @@ const page: PseoPageFull = {
   excerpt: 'Comparing PolyHistorical and Messari for prediction market data — research tools, coverage, and pricing.',
   metaTitle: 'PolyHistorical vs Messari: Prediction Market Data Comparison',
   metaDescription: 'Compare PolyHistorical and Messari for crypto prediction market data. See how order book history compares to research reports and on-chain analytics.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>PolyHistorical vs Messari: Prediction Market Data Coverage</h1>
-  <h2>Overview</h2>
-  <p>Messari is a leading crypto research and data platform providing fundamental analysis, on-chain metrics, and governance data. PolyHistorical is purpose-built for <strong>Polymarket prediction market order book data</strong>, offering sub-second historical snapshots for BTC Up/Down markets (ETH coming soon).</p>
+  ogImage: '/og/compare.png', createdAt: '', updatedAt: '',
+  content: `<h2>Overview</h2>
+  <p>Messari is a leading crypto research and data platform providing fundamental analysis, on-chain metrics, and governance data. PolyHistorical is purpose-built for <strong>Polymarket prediction market order book data</strong>, offering sub-second historical snapshots for BTC, ETH, and SOL Up/Down markets.</p>
 
   <h2>Feature Comparison</h2>
   <table>
@@ -20,7 +19,7 @@ const page: PseoPageFull = {
   <tr><td>Fundamental Research</td><td>&#10007;</td><td>&#10003; Reports, profiles, screeners</td></tr>
   <tr><td>On-Chain Metrics</td><td>&#10007;</td><td>&#10003; TVL, revenue, token metrics</td></tr>
   <tr><td>API Access</td><td>&#10003; REST API, sub-second data</td><td>&#10003; REST API, daily/weekly metrics</td></tr>
-  <tr><td>Data Granularity</td><td>500ms order book snapshots</td><td>Daily/weekly aggregates</td></tr>
+  <tr><td>Data Granularity</td><td>300ms order book snapshots</td><td>Daily/weekly aggregates</td></tr>
   <tr><td>Free Tier</td><td>&#10003; BTC markets included</td><td>&#10003; Limited data access</td></tr>
   </tbody>
   </table>
@@ -45,7 +44,14 @@ const page: PseoPageFull = {
   </ul>
 
   <h2>Bottom Line</h2>
-  <p>Messari and PolyHistorical are complementary rather than competing products. If your work involves <strong>Polymarket prediction markets</strong>, PolyHistorical provides the granular order book history that Messari simply does not offer. For broader crypto research and fundamental analysis, Messari remains a strong choice.</p>`,
+  <p>Messari and PolyHistorical are complementary rather than competing products. If your work involves <strong>Polymarket prediction markets</strong>, PolyHistorical provides the granular order book history that Messari simply does not offer. For broader crypto research and fundamental analysis, Messari remains a strong choice.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polyhistorical-vs-coingecko-api">PolyHistorical vs CoinGecko API for Historical Crypto Data</a></li>
+  <li><a href="/p/best-messari-alternative-prediction-market">Best Messari Alternative for Prediction Market Research</a></li>
+  <li><a href="/p/polymarket-historical-data-guide">Polymarket Historical Data: Complete Guide</a></li>
+  </ul>`,
 };
 
 export default page;

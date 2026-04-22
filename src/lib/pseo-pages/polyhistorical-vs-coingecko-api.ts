@@ -7,10 +7,9 @@ const page: PseoPageFull = {
   excerpt: 'How PolyHistorical prediction market data compares to CoinGecko API for historical crypto analysis.',
   metaTitle: 'PolyHistorical vs CoinGecko API: Historical Crypto Data Comparison',
   metaDescription: 'Compare PolyHistorical and CoinGecko API for historical crypto data. Prediction market order books vs exchange price aggregation.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>PolyHistorical vs CoinGecko API for Historical Crypto Data</h1>
-  <h2>Overview</h2>
-  <p>CoinGecko is one of the most popular crypto data aggregators, providing price, volume, and market cap data across thousands of tokens and hundreds of exchanges. PolyHistorical focuses exclusively on <strong>Polymarket prediction market order book history</strong>, providing sub-second snapshots for BTC Up/Down markets (ETH coming soon).</p>
+  ogImage: '/og/compare.png', createdAt: '', updatedAt: '',
+  content: `<h2>Overview</h2>
+  <p>CoinGecko is one of the most popular crypto data aggregators, providing price, volume, and market cap data across thousands of tokens and hundreds of exchanges. PolyHistorical focuses exclusively on <strong>Polymarket prediction market order book history</strong>, providing sub-second snapshots for BTC, ETH, and SOL Up/Down markets.</p>
 
   <h2>Comparison Table</h2>
   <table>
@@ -19,7 +18,7 @@ const page: PseoPageFull = {
   <tr><td>Prediction Market Data</td><td>&#10003; Full order book history</td><td>&#10007; Not available</td></tr>
   <tr><td>Token Price Data</td><td>&#10007;</td><td>&#10003; 10,000+ coins</td></tr>
   <tr><td>Exchange Coverage</td><td>Polymarket only</td><td>800+ exchanges</td></tr>
-  <tr><td>Order Book Snapshots</td><td>&#10003; Sub-second (500ms)</td><td>&#10007; No historical order books</td></tr>
+  <tr><td>Order Book Snapshots</td><td>&#10003; Sub-second (300ms)</td><td>&#10007; No historical order books</td></tr>
   <tr><td>Free Tier Rate Limit</td><td>1,000 requests/day</td><td>10-30 calls/min</td></tr>
   <tr><td>Pro Pricing</td><td>$11/month</td><td>$129+/month</td></tr>
   </tbody>
@@ -48,7 +47,14 @@ const page: PseoPageFull = {
   <p>CoinGecko's paid API tiers start at <strong>$129/month</strong> (Analyst plan) and go up to <strong>$499/month</strong> for their Pro plan with higher rate limits. PolyHistorical Pro at <strong>$11/month</strong> is purpose-built and costs a fraction of the price — though it covers a different data niche entirely.</p>
 
   <h2>When to Use Each</h2>
-  <p>Use <strong>CoinGecko</strong> when you need broad crypto market data — token prices, market caps, exchange volumes, and trending coins. Use <strong>PolyHistorical</strong> when you need granular prediction market order book data for backtesting, market making, or quantitative research on Polymarket. Many developers use both in their data stack.</p>`,
+  <p>Use <strong>CoinGecko</strong> when you need broad crypto market data — token prices, market caps, exchange volumes, and trending coins. Use <strong>PolyHistorical</strong> when you need granular prediction market order book data for backtesting, market making, or quantitative research on Polymarket. Many developers use both in their data stack.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polyhistorical-vs-messari">PolyHistorical vs Messari: Prediction Market Data Coverage</a></li>
+  <li><a href="/p/best-coinmarketcap-api-alternative">Best CoinMarketCap API Alternative for Historical Data</a></li>
+  <li><a href="/p/polymarket-historical-data-api">Polymarket Historical Data API: Full Documentation</a></li>
+  </ul>`,
 };
 
 export default page;

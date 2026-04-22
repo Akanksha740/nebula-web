@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Understanding how Polymarket markets resolve, what settlement data looks like, and how to use resolution history in your analysis.',
   metaTitle: 'Polymarket Market Resolution Data Explained | PolyHistorical',
   metaDescription: 'Learn how Polymarket prediction markets resolve and settle. Understand resolution data, settlement mechanics, and how to use resolution history for research.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Market Resolution Data Explained: How Polymarket Settles</h1>
-  <h2>How Polymarket Markets Resolve</h2>
+  ogImage: '/og/market-data.png', createdAt: '', updatedAt: '',
+  content: `<h2>How Polymarket Markets Resolve</h2>
   <p>Polymarket prediction markets have defined resolution criteria — for BTC/ETH/SOL Up/Down markets, the resolution is based on whether the asset price is above or below a strike price at a specific time. Understanding this resolution process is critical for anyone analyzing historical data from <strong>PolyHistorical</strong>.</p>
 
   <h2>Resolution Mechanics for Up/Down Markets</h2>
@@ -54,7 +53,14 @@ const page: PseoPageFull = {
   </ul>
 
   <h2>Accessing Resolution Data with PolyHistorical</h2>
-  <p>PolyHistorical stores order book snapshots through and beyond market resolution. This means you can reconstruct exactly how the order book looked 1 minute, 5 minutes, or 1 hour before each resolution — critical for backtesting and market efficiency research. Start exploring with the free tier for BTC markets.</p>`,
+  <p>PolyHistorical stores order book snapshots through and beyond market resolution. This means you can reconstruct exactly how the order book looked 1 minute, 5 minutes, or 1 hour before each resolution — critical for backtesting and market efficiency research. Start exploring with the free tier for BTC, ETH, and SOL markets.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polymarket-historical-data-availability">Polymarket Historical Data Availability</a></li>
+  <li><a href="/p/polymarket-historical-data-guide">Polymarket Historical Data: Complete Guide</a></li>
+  <li><a href="/p/how-to-read-prediction-market-order-books">How to Read Prediction Market Order Books</a></li>
+  </ul>`,
 };
 
 export default page;

@@ -7,12 +7,11 @@ const page: PseoPageFull = {
   excerpt: 'Get free access to historical Polymarket data. PolyHistorical archives every order book snapshot from Polymarket prediction markets so you can analyze past market behavior.',
   metaTitle: 'Historical Polymarket Data — Free Order Book Archive | PolyHistorical',
   metaDescription: 'Access historical Polymarket data for free. PolyHistorical archives order book snapshots from BTC Up/Down prediction markets with sub-second resolution.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Historical Polymarket Data: Free Access to Past Order Book Snapshots</h1>
-<p>Looking for <strong>historical Polymarket data</strong>? Polymarket doesn't keep order book history once a market resolves — but PolyHistorical does. We archive every snapshot so you can access past prediction market data anytime, for free.</p>
+  ogImage: '/og/polymarket-historical-data.png', createdAt: '', updatedAt: '',
+  content: `<p>Looking for <strong>historical Polymarket data</strong>? Polymarket doesn't keep order book history once a market resolves — but PolyHistorical does. We archive every snapshot so you can access past prediction market data anytime, for free.</p>
 
 <h2>What Historical Polymarket Data Is Available?</h2>
-<p>PolyHistorical captures and stores time-series snapshots from Polymarket's BTC Up/Down prediction markets (ETH and SOL coming soon). Each snapshot includes:</p>
+<p>PolyHistorical captures and stores time-series snapshots from Polymarket's BTC, ETH, and SOL Up/Down prediction markets. Each snapshot includes:</p>
 <ul>
 <li><strong>Timestamp</strong> — exact time in UTC with sub-second precision</li>
 <li><strong>Coin price</strong> — the underlying BTC price at snapshot time</li>
@@ -66,7 +65,14 @@ print(f"Retrieved {len(data['snapshots'])} historical snapshots")
 </code></pre>
 
 <h2>Free Tier</h2>
-<p>Sign up for free — no credit card required. The Starter plan gives you access to recent BTC markets (last 50 for 5m/15m, last 24 for 1h/4h, last 5 for 24h) with 1,000 API calls per day. Upgrade to Pro at $11/month for full historical access to all markets.</p>`,
+<p>Sign up for free — no credit card required. The Starter plan gives you access to recent BTC markets (last 50 for 5m/15m, last 24 for 1h/4h, last 5 for 24h) with 1,000 API calls per day. Upgrade to Pro at $11/month for full historical access to all markets.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polymarket-historical-data-guide">Polymarket Historical Data: Complete Guide</a></li>
+  <li><a href="/p/polymarket-historical-data-api">Polymarket Historical Data API</a></li>
+  <li><a href="/p/polymarket-historical-data-availability">Data Availability</a></li>
+  </ul>`,
 };
 
 export default page;

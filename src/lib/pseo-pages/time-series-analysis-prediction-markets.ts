@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'How to apply time-series analysis techniques to Polymarket historical order book data for trend detection and forecasting.',
   metaTitle: 'Time-Series Analysis for Prediction Markets | PolyHistorical',
   metaDescription: 'Apply time-series analysis to Polymarket historical data. Learn autocorrelation, trend detection, seasonality, and forecasting techniques for prediction markets.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Time-Series Analysis for Prediction Market Data</h1>
-  <h2>Time-Series Analysis for Prediction Markets</h2>
+  ogImage: '/og/market-data.png', createdAt: '', updatedAt: '',
+  content: `<h2>Time-Series Analysis for Prediction Markets</h2>
   <p>Prediction market data from Polymarket is inherently time-series data — prices, order book depth, and spreads all change over time. Applying <strong>time-series analysis techniques</strong> to PolyHistorical order book snapshots reveals patterns, trends, and anomalies that can inform trading strategies.</p>
 
   <h2>Key Time-Series Techniques</h2>
@@ -46,7 +45,14 @@ const page: PseoPageFull = {
   <p>ARIMA models can forecast short-term movements in prediction market metrics. Fit an ARIMA model to historical midpoint prices or spreads from PolyHistorical, then use the forecast to inform entry/exit decisions. Note that prediction market prices are bounded, so consider <strong>logit-transformed ARIMA</strong> for better results near 0 or 1.</p>
 
   <h2>Getting Started</h2>
-  <p>Pull 30 days of order book history from PolyHistorical's API, extract your preferred time series, and apply these techniques using Python libraries like <strong>statsmodels</strong>, <strong>pandas</strong>, and <strong>scipy</strong>. The free tier covers BTC markets for initial analysis.</p>`,
+  <p>Pull 30 days of order book history from PolyHistorical's API, extract your preferred time series, and apply these techniques using Python libraries like <strong>statsmodels</strong>, <strong>pandas</strong>, and <strong>scipy</strong>. The free tier covers BTC, ETH, and SOL markets for initial analysis.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/volatility-modeling-prediction-markets">Volatility Modeling for Prediction Markets</a></li>
+  <li><a href="/p/polymarket-historical-data-api">Polymarket Historical Data API: Full Documentation</a></li>
+  <li><a href="/p/walk-forward-optimization-prediction-markets">Walk-Forward Optimization for Prediction Market Strategies</a></li>
+  </ul>`,
 };
 
 export default page;

@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'How to trade spreads between correlated Polymarket prediction markets using historical order book data.',
   metaTitle: 'Spread Trading in Prediction Markets | PolyHistorical',
   metaDescription: 'Learn spread trading strategies for Polymarket. Trade the relationship between correlated prediction markets using historical order book data from PolyHistorical.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Spread Trading Strategies for Prediction Markets</h1>
-  <h2>What Is Spread Trading?</h2>
+  ogImage: '/og/crypto-trading.png', createdAt: '', updatedAt: '',
+  content: `<h2>What Is Spread Trading?</h2>
   <p>Spread trading involves simultaneously buying one contract and selling a related contract to profit from the <strong>price difference (spread) between them</strong>. In Polymarket prediction markets, multiple related markets create natural spread trading opportunities — particularly between different timeframes and correlated assets.</p>
 
   <h2>Types of Prediction Market Spreads</h2>
@@ -49,7 +48,14 @@ const page: PseoPageFull = {
   </ul>
 
   <h2>Backtesting Spread Strategies</h2>
-  <p>Spread strategies require <strong>multi-market order book data</strong> for accurate backtesting. PolyHistorical Pro at $11/month provides synchronized order book history for all markets, letting you reconstruct historical spread opportunities and test execution assumptions. Start prototyping with the free BTC data tier.</p>`,
+  <p>Spread strategies require <strong>multi-market order book data</strong> for accurate backtesting. PolyHistorical Pro at $11/month provides synchronized order book history for all markets, letting you reconstruct historical spread opportunities and test execution assumptions. Start prototyping with the free BTC data tier.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/understanding-bid-ask-spread-prediction-markets">Understanding Bid-Ask Spread in Prediction Markets</a></li>
+  <li><a href="/p/liquidity-analysis-polymarket">Liquidity Analysis for Polymarket Markets</a></li>
+  <li><a href="/p/mean-reversion-prediction-markets">Mean Reversion Strategies in Prediction Markets</a></li>
+  </ul>`,
 };
 
 export default page;

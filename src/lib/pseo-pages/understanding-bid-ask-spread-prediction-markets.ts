@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'What the bid-ask spread tells you about Polymarket liquidity, efficiency, and trading opportunities.',
   metaTitle: 'Bid-Ask Spread in Prediction Markets Explained | PolyHistorical',
   metaDescription: 'Understand what the bid-ask spread means in Polymarket prediction markets. Learn how spread analysis reveals liquidity, trading costs, and market efficiency.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Understanding Bid-Ask Spread in Prediction Markets</h1>
-  <h2>What Is the Bid-Ask Spread?</h2>
+  ogImage: '/og/market-data.png', createdAt: '', updatedAt: '',
+  content: `<h2>What Is the Bid-Ask Spread?</h2>
   <p>The bid-ask spread is the difference between the highest price a buyer will pay (best bid) and the lowest price a seller will accept (best ask). In Polymarket prediction markets, this spread directly represents the <strong>cost of immediate trading</strong> and reflects market liquidity and efficiency.</p>
 
   <h2>Spread Components in Prediction Markets</h2>
@@ -25,7 +24,7 @@ const page: PseoPageFull = {
   </table>
 
   <h2>Typical Spreads on Polymarket</h2>
-  <p>Polymarket prediction market spreads vary significantly by market type and conditions. <strong>Liquid BTC/ETH 24h markets</strong> often have spreads of $0.01-0.03, while shorter timeframe markets (5m, 15m) may have wider spreads of $0.03-0.08 due to higher uncertainty and faster resolution.</p>
+  <p>Polymarket prediction market spreads vary significantly by market type and conditions. <strong>Liquid BTC/ETH/SOL 24h markets</strong> often have spreads of $0.01-0.03, while shorter timeframe markets (5m, 15m) may have wider spreads of $0.03-0.08 due to higher uncertainty and faster resolution.</p>
 
   <h3>Spread by Market Type</h3>
   <ul>
@@ -48,7 +47,14 @@ const page: PseoPageFull = {
   <p>Understanding spreads helps you optimize execution. <strong>Limit orders</strong> inside the spread let you avoid paying the full spread cost. PolyHistorical data shows you historical spread patterns so you can time orders for periods of tighter spreads, reducing trading costs.</p>
 
   <h2>Analyzing Historical Spreads with PolyHistorical</h2>
-  <p>PolyHistorical captures the full order book at sub-second intervals, giving you precise spread measurements at every point in time. Calculate rolling average spreads, identify time-of-day patterns, and study how spreads react to external events — all from the API's historical data.</p>`,
+  <p>PolyHistorical captures the full order book at sub-second intervals, giving you precise spread measurements at every point in time. Calculate rolling average spreads, identify time-of-day patterns, and study how spreads react to external events — all from the API's historical data.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/how-to-read-prediction-market-order-books">How to Read Prediction Market Order Books</a></li>
+  <li><a href="/p/spread-trading-prediction-markets">Spread Trading Strategies for Prediction Markets</a></li>
+  <li><a href="/p/liquidity-analysis-polymarket">Liquidity Analysis for Polymarket Markets</a></li>
+  </ul>`,
 };
 
 export default page;

@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Applying mean reversion trading strategies to Polymarket Up/Down markets using historical order book data.',
   metaTitle: 'Mean Reversion in Prediction Markets | PolyHistorical',
   metaDescription: 'Learn how to apply mean reversion strategies to Polymarket prediction markets. Use historical order book data to identify overextended prices and trade the reversion.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Mean Reversion Strategies in Prediction Markets</h1>
-  <h2>Mean Reversion in Prediction Markets</h2>
+  ogImage: '/og/crypto-trading.png', createdAt: '', updatedAt: '',
+  content: `<h2>Mean Reversion in Prediction Markets</h2>
   <p>Mean reversion is the tendency of prices to return to their average value after deviating. In prediction markets, this phenomenon is particularly strong because prices represent <strong>probabilities</strong> — and probability estimates tend to oscillate around the true likelihood of an event occurring.</p>
 
   <h2>Why Prediction Markets Mean-Revert</h2>
@@ -53,7 +52,14 @@ const page: PseoPageFull = {
   </ul>
 
   <h2>Backtest Before You Trade</h2>
-  <p>Use PolyHistorical's 30-day rolling history to backtest mean reversion strategies across multiple markets and time periods. The free tier covers BTC markets; Pro at <strong>$11/month</strong> gives you multi-market data to test across the full Polymarket universe.</p>`,
+  <p>Use PolyHistorical's 30-day rolling history to backtest mean reversion strategies across multiple markets and time periods. The free tier covers BTC markets; Pro at <strong>$11/month</strong> gives you multi-market data to test across the full Polymarket universe.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/scalping-strategies-polymarket">Scalping Strategies for Polymarket Prediction Markets</a></li>
+  <li><a href="/p/volatility-modeling-prediction-markets">Volatility Modeling for Prediction Markets</a></li>
+  <li><a href="/p/walk-forward-optimization-prediction-markets">Walk-Forward Optimization for Prediction Market Strategies</a></li>
+  </ul>`,
 };
 
 export default page;

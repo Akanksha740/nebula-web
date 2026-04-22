@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Should you use the Polymarket historical data API or download a static dataset? Compare both approaches with PolyHistorical for your research and trading needs.',
   metaTitle: 'Polymarket Historical Data — API or Dataset? | PolyHistorical',
   metaDescription: 'Compare using the Polymarket historical data API vs downloading a static dataset. Pros, cons, and recommendations for backtesting and research from PolyHistorical.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Polymarket Historical Data API or Dataset: Which Should You Use?</h1>
-  <p>When working with <strong>Polymarket historical data</strong>, you have two main approaches: use the live API or download a static dataset. Both are available for free on PolyHistorical. Here's how to choose.</p>
+  ogImage: '/og/polymarket-historical-data.png', createdAt: '', updatedAt: '',
+  content: `<p>When working with <strong>Polymarket historical data</strong>, you have two main approaches: use the live API or download a static dataset. Both are available for free on PolyHistorical. Here's how to choose.</p>
 
   <h2>Option 1: The API</h2>
   <p>Best for: <strong>ongoing research, automated pipelines, and always-fresh data.</strong></p>
@@ -42,7 +41,14 @@ const page: PseoPageFull = {
   </table>
 
   <h2>Our Recommendation</h2>
-  <p>Start with the <strong>API</strong> for flexibility. If you find yourself querying the same date range repeatedly, download that range as a dataset for faster local access. Both approaches are free on PolyHistorical and use the same underlying data.</p>`,
+  <p>Start with the <strong>API</strong> for flexibility. If you find yourself querying the same date range repeatedly, download that range as a dataset for faster local access. Both approaches are free on PolyHistorical and use the same underlying data.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polymarket-historical-data-download">Download Historical Data</a></li>
+  <li><a href="/p/polymarket-historical-data-api">Polymarket Historical Data API</a></li>
+  <li><a href="/p/bulk-data-export-polymarket-historical">Bulk Data Export Guide</a></li>
+  </ul>`,
 };
 
 export default page;

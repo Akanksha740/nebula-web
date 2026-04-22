@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Build volatility models for Polymarket Up/Down markets using historical order book snapshots from PolyHistorical.',
   metaTitle: 'Volatility Modeling for Prediction Markets | PolyHistorical',
   metaDescription: 'Learn how to model volatility in Polymarket prediction markets using historical order book data. GARCH, realized volatility, and implied vol techniques.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Volatility Modeling for Prediction Markets</h1>
-  <h2>Why Volatility Modeling Matters</h2>
+  ogImage: '/og/use-cases.png', createdAt: '', updatedAt: '',
+  content: `<h2>Why Volatility Modeling Matters</h2>
   <p>Volatility in prediction markets behaves differently from traditional financial markets. Polymarket contracts are bounded between 0 and 1, have binary outcomes, and exhibit <strong>time-dependent behavior</strong> as resolution approaches. Understanding these dynamics using PolyHistorical data gives traders a significant edge.</p>
 
   <h2>Types of Volatility in Prediction Markets</h2>
@@ -50,7 +49,14 @@ const page: PseoPageFull = {
   </ul>
 
   <h2>Start Building Volatility Models</h2>
-  <p>PolyHistorical's free tier provides enough BTC market data to build and validate volatility models. For production systems tracking multiple markets, the Pro plan at <strong>$11/month</strong> gives you the multi-market coverage needed for comprehensive volatility analysis.</p>`,
+  <p>PolyHistorical's free tier provides enough BTC market data to build and validate volatility models. For production systems tracking multiple markets, the Pro plan at <strong>$11/month</strong> gives you the multi-market coverage needed for comprehensive volatility analysis.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/time-series-analysis-prediction-markets">Time-Series Analysis for Prediction Market Data</a></li>
+  <li><a href="/p/monte-carlo-simulation-prediction-markets">Monte Carlo Simulation for Prediction Market Backtests</a></li>
+  <li><a href="/p/portfolio-risk-analysis-polymarket">Portfolio Risk Analysis with Polymarket Historical Data</a></li>
+  </ul>`,
 };
 
 export default page;

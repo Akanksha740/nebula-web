@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'How to clean and prepare Polymarket historical order book data for accurate backtesting and strategy development.',
   metaTitle: 'Data Cleaning for Prediction Market Backtests | PolyHistorical',
   metaDescription: 'Learn how to clean and prepare Polymarket order book data for backtesting. Handle missing data, outliers, and timestamps for accurate prediction market backtests.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Data Cleaning for Prediction Market Backtests</h1>
-  <h2>Why Data Cleaning Matters</h2>
+  ogImage: '/og/backtesting.png', createdAt: '', updatedAt: '',
+  content: `<h2>Why Data Cleaning Matters</h2>
   <p>Raw historical data — even from high-quality sources like PolyHistorical — needs cleaning and preparation before use in backtesting. <strong>Dirty data leads to unreliable backtests</strong>, which leads to strategies that fail in live trading. Investing time in data quality pays dividends in strategy reliability.</p>
 
   <h2>Common Data Issues in Prediction Market Data</h2>
@@ -25,7 +24,7 @@ const page: PseoPageFull = {
   </table>
 
   <h2>Step 1: Handle Missing Data</h2>
-  <p>Check for gaps in your timestamp series. PolyHistorical provides snapshots approximately every 500ms, so gaps longer than a few seconds indicate missing data.</p>
+  <p>Check for gaps in your timestamp series. PolyHistorical provides snapshots approximately every 300ms, so gaps longer than a few seconds indicate missing data.</p>
   <ul>
   <li><strong>Forward fill:</strong> Use the last known order book state for short gaps (&lt; 5 seconds)</li>
   <li><strong>Interpolation:</strong> Interpolate midpoint prices for moderate gaps (&lt; 1 minute)</li>
@@ -61,7 +60,14 @@ const page: PseoPageFull = {
   <p>Automate your data cleaning pipeline with validation checks that run before every backtest. Log warnings for any data anomalies so you can investigate before they corrupt your results. A few hours spent on data cleaning saves days of debugging false backtest results.</p>
 
   <h2>PolyHistorical Data Quality</h2>
-  <p>PolyHistorical maintains high data quality standards, but no data source is perfect. The cleaning steps above ensure your backtesting pipeline is robust regardless of upstream data quality. Start with the free tier to develop your cleaning pipeline, then scale to Pro at <strong>$11/month</strong> for production use.</p>`,
+  <p>PolyHistorical maintains high data quality standards, but no data source is perfect. The cleaning steps above ensure your backtesting pipeline is robust regardless of upstream data quality. Start with the free tier to develop your cleaning pipeline, then scale to Pro at <strong>$11/month</strong> for production use.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polymarket-historical-data-download">Polymarket Historical Data Download: CSV, JSON & Bulk Export</a></li>
+  <li><a href="/p/strategy-evaluation-metrics-prediction-markets">Strategy Evaluation Metrics for Prediction Market Backtests</a></li>
+  <li><a href="/p/polymarket-historical-data-api">Polymarket Historical Data API: Full Documentation</a></li>
+  </ul>`,
 };
 
 export default page;

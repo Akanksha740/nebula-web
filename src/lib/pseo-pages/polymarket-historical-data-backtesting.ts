@@ -4,17 +4,16 @@ const page: PseoPageFull = {
   id: 'b60', categorySlug: 'polymarket-historical-data', categoryName: 'Polymarket Historical Data',
   title: 'Polymarket Historical Data for Backtesting: Free Datasets & Strategies',
   slug: 'polymarket-historical-data-backtesting',
-  excerpt: 'Access free Polymarket historical data for backtesting prediction market strategies. PolyHistorical provides sub-second order book snapshots for BTC markets (ETH coming soon).',
+  excerpt: 'Access free Polymarket historical data for backtesting prediction market strategies. PolyHistorical provides sub-second order book snapshots for BTC, ETH, and SOL markets.',
   metaTitle: 'Polymarket Historical Data Backtesting — Free Datasets & Strategies | PolyHistorical',
   metaDescription: 'Free Polymarket historical data for backtesting. Sub-second order book snapshots, downloadable datasets, and strategy guides from PolyHistorical.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Polymarket Historical Data for Backtesting: Free Datasets & Strategies</h1>
-  <p>Backtesting prediction market strategies requires high-quality historical data — and until PolyHistorical, there was no reliable source of <strong>Polymarket historical data for backtesting</strong>. Now you can access it for free.</p>
+  ogImage: '/og/polymarket-historical-data.png', createdAt: '', updatedAt: '',
+  content: `<p>Backtesting prediction market strategies requires high-quality historical data — and until PolyHistorical, there was no reliable source of <strong>Polymarket historical data for backtesting</strong>. Now you can access it for free.</p>
 
   <h2>What Makes PolyHistorical Different</h2>
   <p>Most crypto data platforms focus on centralized exchanges. PolyHistorical is purpose-built for Polymarket prediction markets, offering:</p>
   <ul>
-  <li><strong>Sub-second order book snapshots</strong> — 500ms resolution for realistic simulation</li>
+  <li><strong>Sub-second order book snapshots</strong> — 300ms resolution for realistic simulation</li>
   <li><strong>Full depth data</strong> — not just top-of-book, but every bid and ask level</li>
   <li><strong>Free BTC market data</strong> — no paywall on the most popular market</li>
   <li><strong>Months of historical coverage</strong> — deep enough for statistically meaningful backtests</li>
@@ -38,7 +37,14 @@ const page: PseoPageFull = {
   </ol>
 
   <h2>Why Free?</h2>
-  <p>We believe every trader and researcher should have access to high-quality prediction market data. The free tier exists so you can build and validate strategies before deciding if Pro ($11/month) makes sense for production trading. No tricks, no trial period — just free data.</p>`,
+  <p>We believe every trader and researcher should have access to high-quality prediction market data. The free tier exists so you can build and validate strategies before deciding if Pro ($11/month) makes sense for production trading. No tricks, no trial period — just free data.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polymarket-historical-data-for-backtesting">Step-by-Step Backtesting Guide</a></li>
+  <li><a href="/p/polymarket-historical-data-api-backtesting">API for Backtesting</a></li>
+  <li><a href="/p/walk-forward-optimization-prediction-markets">Walk-Forward Optimization</a></li>
+  </ul>`,
 };
 
 export default page;

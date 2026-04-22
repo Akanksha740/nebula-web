@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Full API documentation for Polymarket historical data — endpoints, authentication, rate limits, and code examples. Free access via PolyHistorical.',
   metaTitle: 'Polymarket Historical Data API Documentation | PolyHistorical',
   metaDescription: 'Complete API documentation for Polymarket historical data. Endpoints, authentication, rate limits, response formats, and code examples. Free access on PolyHistorical.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Polymarket Historical Data API Documentation: Endpoints, Auth & Examples</h1>
-<p>This is the complete <strong>Polymarket historical data API documentation</strong> for PolyHistorical. Everything you need to start fetching prediction market order book data — for free.</p>
+  ogImage: '/og/polymarket-historical-data.png', createdAt: '', updatedAt: '',
+  content: `<p>This is the complete <strong>Polymarket historical data API documentation</strong> for PolyHistorical. Everything you need to start fetching prediction market order book data — for free.</p>
 
 <h2>Base URL</h2>
 <pre><code>https://api.polyhistorical.com/v1</code></pre>
@@ -80,7 +79,14 @@ const page: PseoPageFull = {
 <p>ETH and SOL markets require a Pro or Enterprise plan. All snapshots within an accessible market are included on every plan — no snapshot limits.</p>
 
 <h2>Get Started</h2>
-<p>Sign up for free, get your API key, and start querying Polymarket historical data in minutes. The free tier has no expiration — use it as long as you need.</p>`,
+<p>Sign up for free, get your API key, and start querying Polymarket historical data in minutes. The free tier has no expiration — use it as long as you need.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polyhistorical-api-authentication-guide">PolyHistorical API Authentication Guide</a></li>
+  <li><a href="/p/rate-limiting-best-practices-polyhistorical">Rate Limiting Best Practices</a></li>
+  <li><a href="/p/polymarket-historical-data-api">Polymarket Historical Data API</a></li>
+  </ul>`,
 };
 
 export default page;

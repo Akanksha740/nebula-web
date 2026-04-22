@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'How to develop and backtest scalping strategies on Polymarket using sub-second order book data from PolyHistorical.',
   metaTitle: 'Scalping Strategies for Polymarket | PolyHistorical',
   metaDescription: 'Learn how to scalp Polymarket prediction markets. Develop and backtest scalping strategies using sub-second order book data from PolyHistorical.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Scalping Strategies for Polymarket Prediction Markets</h1>
-  <h2>What Is Scalping in Prediction Markets?</h2>
+  ogImage: '/og/crypto-trading.png', createdAt: '', updatedAt: '',
+  content: `<h2>What Is Scalping in Prediction Markets?</h2>
   <p>Scalping is a trading strategy focused on profiting from small price movements over very short timeframes. In Polymarket prediction markets, scalpers aim to capture <strong>small edges</strong> in probability pricing — buying at the bid and selling at the ask, or capturing temporary mispricings between related markets.</p>
 
   <h2>Why Prediction Markets Are Scalp-Friendly</h2>
@@ -35,7 +34,7 @@ const page: PseoPageFull = {
   <p>Trade around scheduled events (market resolution times, economic data releases) where prediction market prices move rapidly. Backtest with PolyHistorical to understand historical price behavior around these events.</p>
 
   <h2>Backtesting Scalping Strategies</h2>
-  <p>Scalping strategies require <strong>sub-second data</strong> for realistic backtesting. PolyHistorical's 500ms order book snapshots provide the granularity needed to simulate scalping execution accurately. Key metrics to track:</p>
+  <p>Scalping strategies require <strong>sub-second data</strong> for realistic backtesting. PolyHistorical's 300ms order book snapshots provide the granularity needed to simulate scalping execution accurately. Key metrics to track:</p>
   <ul>
   <li><strong>Win rate:</strong> Scalping strategies need 55%+ win rate to be profitable after costs</li>
   <li><strong>Average profit per trade:</strong> Should exceed transaction costs (gas + fees)</li>
@@ -52,7 +51,14 @@ const page: PseoPageFull = {
   </ul>
 
   <h2>Getting Started</h2>
-  <p>Download historical order book data from PolyHistorical to backtest your scalping ideas before risking real capital. The free tier covers BTC markets — enough to prototype and validate your strategy. Upgrade to Pro at <strong>$11/month</strong> when you need multi-market data for production scalping.</p>`,
+  <p>Download historical order book data from PolyHistorical to backtest your scalping ideas before risking real capital. The free tier covers BTC markets — enough to prototype and validate your strategy. Upgrade to Pro at <strong>$11/month</strong> when you need multi-market data for production scalping.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/mean-reversion-prediction-markets">Mean Reversion Strategies in Prediction Markets</a></li>
+  <li><a href="/p/volume-analysis-polymarket-trading">Volume Analysis for Polymarket Trading</a></li>
+  <li><a href="/p/polymarket-historical-data-api">Polymarket Historical Data API: Full Documentation</a></li>
+  </ul>`,
 };
 
 export default page;

@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'How to analyze trading volume patterns in Polymarket prediction markets to identify opportunities and confirm trends.',
   metaTitle: 'Volume Analysis for Polymarket Trading | PolyHistorical',
   metaDescription: 'Analyze Polymarket trading volume patterns using historical data. Learn volume profile analysis, VWAP, and volume-price confirmation for prediction market trading.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Volume Analysis for Polymarket Trading</h1>
-  <h2>Why Volume Matters in Prediction Markets</h2>
+  ogImage: '/og/crypto-trading.png', createdAt: '', updatedAt: '',
+  content: `<h2>Why Volume Matters in Prediction Markets</h2>
   <p>Trading volume reveals the <strong>intensity of market participation</strong> behind price movements. In Polymarket prediction markets, volume analysis helps distinguish between meaningful probability shifts and noise. PolyHistorical's order book data lets you derive volume metrics that are not available through simple price feeds.</p>
 
   <h2>Volume Metrics for Prediction Markets</h2>
@@ -56,7 +55,14 @@ const page: PseoPageFull = {
   </ul>
 
   <h2>Practical Application</h2>
-  <p>Combine volume analysis with other indicators for stronger trading signals. For example, a mean reversion signal confirmed by <strong>low volume on the deviation</strong> and increasing volume as the price reverts provides higher confidence than the signal alone. Access the data you need through PolyHistorical's free tier for BTC markets or Pro at <strong>$11/month</strong> for full coverage.</p>`,
+  <p>Combine volume analysis with other indicators for stronger trading signals. For example, a mean reversion signal confirmed by <strong>low volume on the deviation</strong> and increasing volume as the price reverts provides higher confidence than the signal alone. Access the data you need through PolyHistorical's free tier for BTC markets or Pro at <strong>$11/month</strong> for full coverage.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/liquidity-analysis-polymarket">Liquidity Analysis for Polymarket Markets</a></li>
+  <li><a href="/p/scalping-strategies-polymarket">Scalping Strategies for Polymarket Prediction Markets</a></li>
+  <li><a href="/p/how-to-read-prediction-market-order-books">How to Read Prediction Market Order Books</a></li>
+  </ul>`,
 };
 
 export default page;

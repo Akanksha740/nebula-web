@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Complete documentation for the Polymarket historical data API. Get started in minutes with free API access to historical order book snapshots from PolyHistorical.',
   metaTitle: 'Polymarket Historical Data API — Free Access & Full Docs | PolyHistorical',
   metaDescription: 'Get free API access to Polymarket historical data. Full documentation, endpoints, authentication, and code examples for the PolyHistorical API.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Polymarket Historical Data API: Full Documentation & Quick Start</h1>
-<p>The <strong>Polymarket historical data API</strong> from PolyHistorical gives you programmatic access to complete order book history from Polymarket prediction markets. It's free to start, fast to integrate, and built for developers and researchers.</p>
+  ogImage: '/og/polymarket-historical-data.png', createdAt: '', updatedAt: '',
+  content: `<p>The <strong>Polymarket historical data API</strong> from PolyHistorical gives you programmatic access to complete order book history from Polymarket prediction markets. It's free to start, fast to integrate, and built for developers and researchers.</p>
 
 <h2>Why You Need a Polymarket Historical Data API</h2>
 <p>Polymarket does not provide historical order book data through its own API. Once a market closes, the data disappears. PolyHistorical fills this gap by archiving every order book snapshot and making it available through a simple REST API.</p>
@@ -64,7 +63,14 @@ print(f"Retrieved {len(data['snapshots'])} snapshots")
 <li>Up to 300 requests/min, 50,000 requests/day (Pro) or custom limits (Enterprise)</li>
 <li>Priority support</li>
 </ul>
-<p>The PolyHistorical API is the easiest way to access Polymarket historical data programmatically. Sign up free and start building today.</p>`,
+<p>The PolyHistorical API is the easiest way to access Polymarket historical data programmatically. Sign up free and start building today.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polymarket-historical-data-api-documentation">Polymarket Historical Data API Documentation</a></li>
+  <li><a href="/p/polyhistorical-api-authentication-guide">PolyHistorical API Authentication Guide</a></li>
+  <li><a href="/p/rate-limiting-best-practices-polyhistorical">Rate Limiting Best Practices</a></li>
+  </ul>`,
 };
 
 export default page;

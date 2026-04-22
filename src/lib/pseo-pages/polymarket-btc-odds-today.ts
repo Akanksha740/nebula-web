@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'How Polymarket BTC odds work — Bitcoin Up/Down prediction markets, how share prices map to probabilities, and how to access historical BTC markets via PolyHistorical.',
   metaTitle: 'Polymarket BTC Odds Today — Bitcoin Up/Down Prediction Markets | PolyHistorical',
   metaDescription: 'How Polymarket BTC odds work. Read live Bitcoin Up/Down prediction markets and access historical BTC market snapshots through the free PolyHistorical API.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Polymarket BTC Odds Today: Live Bitcoin Up/Down Prediction Markets</h1>
-<p>Looking for <strong>Polymarket BTC odds today</strong>? Polymarket runs short-duration Bitcoin Up/Down prediction markets across five timeframes — 5-minute, 15-minute, 1-hour, 4-hour, and 24-hour — that price the live probability of BTC closing higher or lower than its open. PolyHistorical archives every order book snapshot from these markets so you can study them after they resolve.</p>
+  ogImage: '/og/crypto-trading.png', createdAt: '', updatedAt: '',
+  content: `<p>Looking for <strong>Polymarket BTC odds today</strong>? Polymarket runs short-duration Bitcoin Up/Down prediction markets across five timeframes — 5-minute, 15-minute, 1-hour, 4-hour, and 24-hour — that price the live probability of BTC closing higher or lower than its open. PolyHistorical archives every order book snapshot from these markets so you can study them after they resolve.</p>
 
 <h2>What Are Polymarket BTC Odds?</h2>
 <p>Polymarket BTC odds aren't sportsbook lines. Each Bitcoin Up/Down market is a binary prediction market with two outcomes — <strong>Up</strong> and <strong>Down</strong> — and traders buy and sell shares that pay out $1 if their side wins. Because of that payout structure, the share price is directly the implied probability that the market is assigning to each outcome.</p>
@@ -68,7 +67,14 @@ for m in res["markets"]:
 <p>For unlimited BTC history (plus ETH and SOL), upgrade to <a href="/pricing">Pro at $11/month</a>.</p>
 
 <h2>Get Started</h2>
-<p>Sign up free at <a href="/signup">polyhistorical.com/signup</a> to get an API key and start querying Polymarket BTC market data.</p>`,
+<p>Sign up free at <a href="/signup">polyhistorical.com/signup</a> to get an API key and start querying Polymarket BTC market data.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polymarket-crypto-odds-today">Polymarket Crypto Odds Today: BTC, ETH & SOL</a></li>
+  <li><a href="/p/polymarket-historical-data-guide">Polymarket Historical Data: Complete Guide</a></li>
+  <li><a href="/p/how-to-read-prediction-market-order-books">How to Read Prediction Market Order Books</a></li>
+  </ul>`,
 };
 
 export default page;

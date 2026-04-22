@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Apply Monte Carlo simulation methods to stress-test your Polymarket trading strategies using historical order book data.',
   metaTitle: 'Monte Carlo Simulation for Prediction Market Backtests | PolyHistorical',
   metaDescription: 'Stress-test Polymarket trading strategies with Monte Carlo simulation. Learn how to generate synthetic scenarios using historical order book data from PolyHistorical.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Monte Carlo Simulation for Prediction Market Backtests</h1>
-  <h2>What Is Monte Carlo Simulation?</h2>
+  ogImage: '/og/backtesting.png', createdAt: '', updatedAt: '',
+  content: `<h2>What Is Monte Carlo Simulation?</h2>
   <p>Monte Carlo simulation generates thousands of <strong>randomized scenarios</strong> based on historical data to stress-test your trading strategy. Instead of relying on a single backtest path, Monte Carlo shows you the range of possible outcomes — best case, worst case, and everything in between.</p>
 
   <h2>Why Monte Carlo for Prediction Markets</h2>
@@ -53,7 +52,14 @@ const page: PseoPageFull = {
   <p>A robust strategy should show <strong>consistent profitability across most Monte Carlo scenarios</strong>. If your strategy is profitable in the single historical backtest but unprofitable in 30%+ of Monte Carlo simulations, it may be fragile and not suitable for live trading.</p>
 
   <h2>Data Requirements</h2>
-  <p>Monte Carlo simulation requires a sufficient number of historical trades for meaningful resampling. PolyHistorical's 30-day order book history typically provides enough data for active strategies. The free tier covers BTC markets for initial testing; upgrade to Pro at <strong>$11/month</strong> for comprehensive multi-market analysis.</p>`,
+  <p>Monte Carlo simulation requires a sufficient number of historical trades for meaningful resampling. PolyHistorical's 30-day order book history typically provides enough data for active strategies. The free tier covers BTC markets for initial testing; upgrade to Pro at <strong>$11/month</strong> for comprehensive multi-market analysis.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/walk-forward-optimization-prediction-markets">Walk-Forward Optimization for Prediction Market Strategies</a></li>
+  <li><a href="/p/strategy-evaluation-metrics-prediction-markets">Strategy Evaluation Metrics for Prediction Market Backtests</a></li>
+  <li><a href="/p/volatility-modeling-prediction-markets">Volatility Modeling for Prediction Markets</a></li>
+  </ul>`,
 };
 
 export default page;

@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'How to export large datasets of Polymarket historical order book data using the PolyHistorical API.',
   metaTitle: 'Bulk Data Export for Polymarket Historical Data | PolyHistorical',
   metaDescription: 'Download Polymarket historical order book data in bulk using the PolyHistorical API. Pagination, storage, and best practices for large dataset management.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Bulk Data Export Guide: Download Polymarket Historical Data</h1>
-<h2>Why Export in Bulk?</h2>
+  ogImage: '/og/api-developers.png', createdAt: '', updatedAt: '',
+  content: `<h2>Why Export in Bulk?</h2>
 <p>While the PolyHistorical REST API is great for on-demand queries, many use cases require <strong>large historical datasets</strong> stored locally — backtesting frameworks, machine learning pipelines, and academic research all benefit from having complete order book history available offline.</p>
 
 <h2>How Bulk Export Works</h2>
@@ -68,7 +67,14 @@ for market in markets:
 <p>After your initial export, set up an <strong>incremental sync</strong> that fetches only new markets each day. Track the last exported market's start_time and query from that point forward. This keeps your local dataset current without re-downloading everything.</p>
 
 <h2>Rate Limit Considerations</h2>
-<p>The free Starter plan allows 1,000 requests/day (60/min). A full export may take multiple days on the free plan. The Pro plan at <strong>$11/month</strong> gives you 50,000 requests/day (300/min), making bulk exports much faster.</p>`,
+<p>The free Starter plan allows 1,000 requests/day (60/min). A full export may take multiple days on the free plan. The Pro plan at <strong>$11/month</strong> gives you 50,000 requests/day (300/min), making bulk exports much faster.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polymarket-historical-data-download">Polymarket Historical Data Download: CSV, JSON & Bulk Export</a></li>
+  <li><a href="/p/rate-limiting-best-practices-polyhistorical">Rate Limiting Best Practices for PolyHistorical API</a></li>
+  <li><a href="/p/polyhistorical-api-authentication-guide">PolyHistorical API Authentication and Security Guide</a></li>
+  </ul>`,
 };
 
 export default page;

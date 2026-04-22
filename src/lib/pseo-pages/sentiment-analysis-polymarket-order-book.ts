@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'How to derive market sentiment signals from Polymarket order book depth and historical bid-ask patterns.',
   metaTitle: 'Sentiment Analysis with Polymarket Order Book Data | PolyHistorical',
   metaDescription: 'Learn how to extract sentiment signals from Polymarket order books. Use bid-ask imbalance, depth ratios, and order flow to gauge market sentiment.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Sentiment Analysis Using Polymarket Order Book Data</h1>
-  <h2>Order Books as Sentiment Indicators</h2>
+  ogImage: '/og/use-cases.png', createdAt: '', updatedAt: '',
+  content: `<h2>Order Books as Sentiment Indicators</h2>
   <p>Polymarket order books contain rich sentiment information that goes beyond simple price data. By analyzing the <strong>depth, imbalance, and dynamics</strong> of bids and asks, you can extract actionable sentiment signals using historical data from PolyHistorical.</p>
 
   <h2>Key Sentiment Metrics from Order Book Data</h2>
@@ -50,7 +49,14 @@ const page: PseoPageFull = {
   </ul>
 
   <h2>Getting Started with Sentiment Analysis</h2>
-  <p>PolyHistorical's free tier gives you access to BTC market order book history — enough to prototype sentiment analysis models. Upgrade to Pro at <strong>$11/month</strong> for multi-market coverage and build a comprehensive sentiment analysis pipeline across all Polymarket prediction markets.</p>`,
+  <p>PolyHistorical's free tier gives you access to BTC market order book history — enough to prototype sentiment analysis models. Upgrade to Pro at <strong>$11/month</strong> for multi-market coverage and build a comprehensive sentiment analysis pipeline across all Polymarket prediction markets.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/how-to-read-prediction-market-order-books">How to Read Prediction Market Order Books</a></li>
+  <li><a href="/p/volume-analysis-polymarket-trading">Volume Analysis for Polymarket Trading</a></li>
+  <li><a href="/p/polymarket-historical-data-guide">Polymarket Historical Data: Complete Guide</a></li>
+  </ul>`,
 };
 
 export default page;

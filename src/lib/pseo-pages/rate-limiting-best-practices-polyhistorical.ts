@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'How to handle rate limits efficiently when fetching Polymarket historical data from the PolyHistorical API.',
   metaTitle: 'Rate Limiting Best Practices for PolyHistorical API',
   metaDescription: 'Learn how to handle PolyHistorical API rate limits efficiently. Best practices for retry logic, request batching, caching, and avoiding 429 errors.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Rate Limiting Best Practices for PolyHistorical API</h1>
-<h2>Understanding PolyHistorical Rate Limits</h2>
+  ogImage: '/og/api-developers.png', createdAt: '', updatedAt: '',
+  content: `<h2>Understanding PolyHistorical Rate Limits</h2>
 <p>PolyHistorical API applies rate limits to ensure fair usage and platform stability. Understanding these limits and designing your application around them is essential for reliable <strong>Polymarket historical data</strong> retrieval.</p>
 
 <h2>Rate Limit Tiers</h2>
@@ -34,9 +33,9 @@ const page: PseoPageFull = {
 <h2>Best Practice: Implement Exponential Backoff</h2>
 <p>When you receive a <strong>429 Too Many Requests</strong> response, implement exponential backoff with jitter. Check the <code>Retry-After</code> header for how many seconds to wait.</p>
 <ul>
-<li>First retry: wait 1 second + random 0-500ms</li>
-<li>Second retry: wait 2 seconds + random 0-500ms</li>
-<li>Third retry: wait 4 seconds + random 0-500ms</li>
+<li>First retry: wait 1 second + random 0-300ms</li>
+<li>Second retry: wait 2 seconds + random 0-300ms</li>
+<li>Third retry: wait 4 seconds + random 0-300ms</li>
 <li>Max retries: 5 (then log the failure and move on)</li>
 </ul>
 
@@ -55,7 +54,14 @@ const page: PseoPageFull = {
 <li>Do not re-fetch historical data you have already cached</li>
 <li>Do not ignore 429 responses — they will escalate to longer cooldowns</li>
 <li>Do not request order book data when you only need prices</li>
-</ul>`,
+</ul>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polyhistorical-api-authentication-guide">PolyHistorical API Authentication and Security Guide</a></li>
+  <li><a href="/p/bulk-data-export-polymarket-historical">Bulk Data Export Guide: Download Polymarket Historical Data</a></li>
+  <li><a href="/p/polymarket-historical-data-api">Polymarket Historical Data API: Full Documentation</a></li>
+  </ul>`,
 };
 
 export default page;

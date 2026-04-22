@@ -3,26 +3,31 @@
   <!-- Core pages -->
   <url>
     <loc>https://polyhistorical.com/</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/features</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/pricing</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/signup</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/login</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.3</priority>
   </url>
@@ -30,6 +35,7 @@
   <!-- Markets hub -->
   <url>
     <loc>https://polyhistorical.com/markets</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -37,41 +43,49 @@
   <!-- Category pages -->
   <url>
     <loc>https://polyhistorical.com/category</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/category/compare</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/category/use-cases</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/category/market-data</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/category/api-developers</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/category/alternatives</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/category/crypto-trading</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/category/backtesting</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
@@ -79,51 +93,61 @@
   <!-- pSEO pages — Comparisons -->
   <url>
     <loc>https://polyhistorical.com/p/polyhistorical-vs-kaiko</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polyhistorical-vs-cryptocompare</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polyhistorical-vs-amberdata</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polyhistorical-vs-dune-analytics</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-historical-data-free-vs-paid</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polyhistorical-vs-the-graph</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polyhistorical-vs-messari</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polyhistorical-vs-coingecko-api</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polyhistorical-vs-binance-historical-data</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polyhistorical-vs-polygon-io</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -131,41 +155,49 @@
   <!-- pSEO pages — Use Cases -->
   <url>
     <loc>https://polyhistorical.com/p/backtesting-prediction-market-strategies</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/building-polymarket-trading-bot</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/academic-research-polymarket-data</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/market-making-polymarket-order-book</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/portfolio-risk-analysis-polymarket</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/sentiment-analysis-polymarket-order-book</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/volatility-modeling-prediction-markets</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/liquidity-analysis-polymarket</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -173,31 +205,37 @@
   <!-- pSEO pages — Market Data Guides -->
   <url>
     <loc>https://polyhistorical.com/p/what-is-polymarket-order-book-data</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/sub-second-vs-minute-level-market-data</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/how-to-read-prediction-market-order-books</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/understanding-bid-ask-spread-prediction-markets</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/time-series-analysis-prediction-markets</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/market-resolution-data-explained</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -205,36 +243,43 @@
   <!-- pSEO pages — API & Developers -->
   <url>
     <loc>https://polyhistorical.com/p/polymarket-api-vs-polyhistorical-api</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/getting-started-polyhistorical-python</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polyhistorical-api-javascript-quickstart</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/rate-limiting-best-practices-polyhistorical</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/webhook-integration-polymarket-data</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/bulk-data-export-polymarket-historical</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polyhistorical-api-authentication-guide</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -242,31 +287,37 @@
   <!-- pSEO pages — Alternatives -->
   <url>
     <loc>https://polyhistorical.com/p/best-kaiko-alternative-prediction-market</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/affordable-cryptocompare-alternative</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/best-free-polymarket-data-api</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/best-messari-alternative-prediction-market</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/best-coinmarketcap-api-alternative</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/best-prediction-market-data-providers-2025</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -274,63 +325,99 @@
   <!-- pSEO pages — Crypto Trading -->
   <url>
     <loc>https://polyhistorical.com/p/how-to-analyze-polymarket-up-down-markets</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/prediction-market-order-book-dynamics</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/scalping-strategies-polymarket</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/mean-reversion-prediction-markets</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/volume-analysis-polymarket-trading</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/spread-trading-prediction-markets</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://polyhistorical.com/p/polymarket-btc-odds-today</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://polyhistorical.com/p/polymarket-eth-odds-today</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://polyhistorical.com/p/polymarket-sol-odds-today</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://polyhistorical.com/p/polymarket-crypto-odds-today</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <!-- pSEO pages — Backtesting -->
   <url>
     <loc>https://polyhistorical.com/p/backtesting-framework-polymarket-python</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/common-backtesting-mistakes-prediction-markets</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/walk-forward-optimization-prediction-markets</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/monte-carlo-simulation-prediction-markets</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/strategy-evaluation-metrics-prediction-markets</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/data-cleaning-prediction-market-backtests</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -338,98 +425,136 @@
   <!-- pSEO pages — Polymarket Historical Data -->
   <url>
     <loc>https://polyhistorical.com/category/polymarket-historical-data</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-historical-data-guide</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-historical-data-api</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-historical-data-download</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-historical-data-github</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-historical-data-api-backtesting</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-historical-data-for-backtesting</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-historical-data-availability</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-historical-data-api-backtesting-dev</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-historical-data-api-or-dataset</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-historical-data-api-documentation</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-historical-data-backtesting</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/historical-polymarket-data</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-api-historical-data</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-btc-odds-today</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-eth-odds-today</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-sol-odds-today</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://polyhistorical.com/p/polymarket-crypto-odds-today</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://polyhistorical.com/p/polymarket-subsecond-data</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://polyhistorical.com/p/polymarket-l2-order-book</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://polyhistorical.com/p/polymarket-parquet-data</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
   </url>
 
   <!-- Docs -->
   <url>
     <loc>https://docs.polyhistorical.com</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>

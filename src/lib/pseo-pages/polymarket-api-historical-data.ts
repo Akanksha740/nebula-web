@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Learn how to access Polymarket API historical data through PolyHistorical. Get past order book snapshots, price history, and market data via a free REST API.',
   metaTitle: 'Polymarket API Historical Data — Free REST API Access | PolyHistorical',
   metaDescription: 'Access Polymarket API historical data for free. PolyHistorical provides a REST API with past order book snapshots, price history, and market resolution data.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Polymarket API Historical Data: How to Get Past Market Snapshots</h1>
-<p>Polymarket's own API focuses on live markets — it doesn't provide <strong>Polymarket API historical data</strong> for resolved markets. PolyHistorical fills this gap with a dedicated REST API that serves archived order book snapshots for past prediction markets.</p>
+  ogImage: '/og/polymarket-historical-data.png', createdAt: '', updatedAt: '',
+  content: `<p>Polymarket's own API focuses on live markets — it doesn't provide <strong>Polymarket API historical data</strong> for resolved markets. PolyHistorical fills this gap with a dedicated REST API that serves archived order book snapshots for past prediction markets.</p>
 
 <h2>Polymarket API vs PolyHistorical API</h2>
 <table>
@@ -73,7 +72,14 @@ for market in markets:
 <tr><td>Enterprise</td><td>Custom</td><td>Unlimited</td><td>All + custom endpoints</td></tr>
 </tbody>
 </table>
-<p>Sign up for free at PolyHistorical to start accessing Polymarket API historical data today.</p>`,
+<p>Sign up for free at PolyHistorical to start accessing Polymarket API historical data today.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polymarket-historical-data-api-documentation">API Documentation</a></li>
+  <li><a href="/p/polyhistorical-api-authentication-guide">Authentication Guide</a></li>
+  <li><a href="/p/polymarket-historical-data-guide">Complete Guide</a></li>
+  </ul>`,
 };
 
 export default page;

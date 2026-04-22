@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'How Polymarket SOL odds work — Solana Up/Down prediction markets, how share prices map to probabilities, and how to access SOL markets via PolyHistorical Pro.',
   metaTitle: 'Polymarket SOL Odds Today — Solana Up/Down Markets | PolyHistorical',
   metaDescription: 'How Polymarket SOL odds work. Read live Solana Up/Down prediction markets and access SOL market snapshots through the PolyHistorical Pro plan.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Polymarket SOL Odds Today: Live Solana Up/Down Prediction Markets</h1>
-<p>Looking for <strong>Polymarket SOL odds today</strong>? Polymarket runs Solana Up/Down prediction markets across five timeframes — 5-minute, 15-minute, 1-hour, 4-hour, and 24-hour — that price the live probability of SOL closing higher or lower than its open. PolyHistorical now archives every order book snapshot from these SOL markets alongside its existing BTC and ETH coverage.</p>
+  ogImage: '/og/crypto-trading.png', createdAt: '', updatedAt: '',
+  content: `<p>Looking for <strong>Polymarket SOL odds today</strong>? Polymarket runs Solana Up/Down prediction markets across five timeframes — 5-minute, 15-minute, 1-hour, 4-hour, and 24-hour — that price the live probability of SOL closing higher or lower than its open. PolyHistorical now archives every order book snapshot from these SOL markets alongside its existing BTC and ETH coverage.</p>
 
 <h2>What Are Polymarket SOL Odds?</h2>
 <p>Polymarket SOL odds are binary prediction market prices. Each Solana Up/Down market has two outcomes — <strong>Up</strong> and <strong>Down</strong> — and traders buy and sell shares that pay out $1 if their side wins. Because of that payout structure, the share price is directly the implied probability the market is assigning to each outcome.</p>
@@ -66,7 +65,14 @@ for m in res["markets"]:
 <p>See <a href="/pricing">polyhistorical.com/pricing</a> for the full plan comparison.</p>
 
 <h2>Get Started</h2>
-<p>Sign up free at <a href="/signup">polyhistorical.com/signup</a> to get an API key, then upgrade to Pro to unlock Polymarket SOL market data.</p>`,
+<p>Sign up free at <a href="/signup">polyhistorical.com/signup</a> to get an API key, then upgrade to Pro to unlock Polymarket SOL market data.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polymarket-crypto-odds-today">Polymarket Crypto Odds Today: BTC, ETH & SOL</a></li>
+  <li><a href="/p/polymarket-btc-odds-today">Polymarket BTC Odds Today</a></li>
+  <li><a href="/p/polymarket-historical-data-guide">Polymarket Historical Data: Complete Guide</a></li>
+  </ul>`,
 };
 
 export default page;

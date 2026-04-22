@@ -7,12 +7,11 @@ const page: PseoPageFull = {
   excerpt: 'Everything you need to know about accessing Polymarket historical data for free — order book snapshots, API access, and downloadable datasets from PolyHistorical.',
   metaTitle: 'Polymarket Historical Data: Free Order Book History & Downloads | PolyHistorical',
   metaDescription: 'Access complete Polymarket historical data for free. Order book snapshots, downloadable datasets, and API access — all available on PolyHistorical with no credit card required.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Polymarket Historical Data: Complete Guide to Free Order Book History</h1>
-<p>If you're looking for <strong>Polymarket historical data</strong>, you've come to the right place. PolyHistorical is the only platform that gives you complete, historical order book data from Polymarket prediction markets — and you can start using it <strong>completely free</strong>.</p>
+  ogImage: '/og/polymarket-historical-data.png', createdAt: '', updatedAt: '',
+  content: `<p>If you're looking for <strong>Polymarket historical data</strong>, you've come to the right place. PolyHistorical is the only platform that gives you complete, historical order book data from Polymarket prediction markets — and you can start using it <strong>completely free</strong>.</p>
 
 <h2>What Polymarket Historical Data Is Available?</h2>
-<p>PolyHistorical archives every order book snapshot from Polymarket's BTC Up/Down prediction markets (ETH and SOL coming soon). This includes:</p>
+<p>PolyHistorical archives every order book snapshot from Polymarket's BTC, ETH, and SOL Up/Down prediction markets. This includes:</p>
 <ul>
 <li><strong>Full bid and ask depth</strong> — not just top-of-book, but the entire order book at every level</li>
 <li><strong>Sub-second resolution</strong> — snapshots captured at sub-second intervals</li>
@@ -46,7 +45,14 @@ const page: PseoPageFull = {
 <li><strong>Get your API key</strong> from the dashboard</li>
 <li><strong>Start querying</strong> historical order book data immediately via the <code>X-API-Key</code> header</li>
 </ol>
-<p>Whether you're a quant researcher, a prediction market trader, or a developer building tools — PolyHistorical gives you the Polymarket historical data you need, for free.</p>`,
+<p>Whether you're a quant researcher, a prediction market trader, or a developer building tools — PolyHistorical gives you the Polymarket historical data you need, for free.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polymarket-historical-data-api">Polymarket Historical Data API: Full Documentation</a></li>
+  <li><a href="/p/polymarket-historical-data-download">Polymarket Historical Data Download: CSV, JSON & Bulk Export</a></li>
+  <li><a href="/p/polyhistorical-api-authentication-guide">PolyHistorical API Authentication Guide</a></li>
+  </ul>`,
 };
 
 export default page;

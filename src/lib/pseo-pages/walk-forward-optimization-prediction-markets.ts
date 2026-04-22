@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'How to use walk-forward optimization to validate trading strategies on Polymarket historical data and avoid overfitting.',
   metaTitle: 'Walk-Forward Optimization for Prediction Markets | PolyHistorical',
   metaDescription: 'Learn walk-forward optimization for prediction market strategies. Avoid overfitting and validate trading strategies using Polymarket historical order book data.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Walk-Forward Optimization for Prediction Market Strategies</h1>
-  <h2>What Is Walk-Forward Optimization?</h2>
+  ogImage: '/og/backtesting.png', createdAt: '', updatedAt: '',
+  content: `<h2>What Is Walk-Forward Optimization?</h2>
   <p>Walk-forward optimization (WFO) is a technique for validating trading strategies that avoids the <strong>overfitting trap</strong> of traditional backtesting. Instead of optimizing parameters on all historical data at once, WFO divides the data into sequential train/test windows and optimizes on each training window, then tests on the subsequent out-of-sample period.</p>
 
   <h2>Why WFO Matters for Prediction Markets</h2>
@@ -60,6 +59,13 @@ const page: PseoPageFull = {
   <li><strong>Look-ahead bias:</strong> Ensure your training window does not use any future data</li>
   <li><strong>Survivorship bias:</strong> Include markets that have already resolved, not just active ones</li>
   <li><strong>Too short training windows:</strong> Insufficient data for reliable parameter estimation</li>
+  </ul>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/monte-carlo-simulation-prediction-markets">Monte Carlo Simulation for Prediction Market Backtests</a></li>
+  <li><a href="/p/strategy-evaluation-metrics-prediction-markets">Strategy Evaluation Metrics for Prediction Market Backtests</a></li>
+  <li><a href="/p/polymarket-historical-data-for-backtesting">Polymarket Historical Data for Backtesting: Step-by-Step Guide</a></li>
   </ul>`,
 };
 

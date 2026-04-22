@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'How to perform portfolio risk analysis on prediction market positions using historical order book data from PolyHistorical.',
   metaTitle: 'Portfolio Risk Analysis with Polymarket Data | PolyHistorical',
   metaDescription: 'Learn how to measure and manage risk for Polymarket prediction market portfolios using historical order book data. VaR, stress testing, and correlation analysis.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Portfolio Risk Analysis with Polymarket Historical Data</h1>
-  <h2>Why Risk Analysis Matters for Prediction Markets</h2>
+  ogImage: '/og/use-cases.png', createdAt: '', updatedAt: '',
+  content: `<h2>Why Risk Analysis Matters for Prediction Markets</h2>
   <p>Prediction market portfolios carry unique risks compared to traditional crypto holdings. Polymarket contracts have binary outcomes, time decay, and liquidity constraints that require specialized risk analysis. Using <strong>PolyHistorical order book data</strong>, you can quantify these risks before they materialize.</p>
 
   <h2>Key Risk Metrics for Prediction Market Portfolios</h2>
@@ -51,7 +50,14 @@ const page: PseoPageFull = {
   <p>Use historical order book data from past high-volatility events to stress test current positions. PolyHistorical lets you replay how order books behaved during previous market shocks, giving you realistic scenarios for worst-case portfolio outcomes.</p>
 
   <h2>Getting Started</h2>
-  <p>Sign up for a free PolyHistorical account to access BTC market order book history. Upgrade to Pro at <strong>$11/month</strong> for full multi-market data needed for comprehensive portfolio risk analysis across all Polymarket prediction markets.</p>`,
+  <p>Sign up for a free PolyHistorical account to access BTC market order book history. Upgrade to Pro at <strong>$11/month</strong> for full multi-market data needed for comprehensive portfolio risk analysis across all Polymarket prediction markets.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/volatility-modeling-prediction-markets">Volatility Modeling for Prediction Markets</a></li>
+  <li><a href="/p/liquidity-analysis-polymarket">Liquidity Analysis for Polymarket Markets</a></li>
+  <li><a href="/p/strategy-evaluation-metrics-prediction-markets">Strategy Evaluation Metrics for Prediction Market Backtests</a></li>
+  </ul>`,
 };
 
 export default page;

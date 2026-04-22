@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Key performance metrics for evaluating backtested prediction market strategies — Sharpe ratio, drawdown, win rate, and more.',
   metaTitle: 'Strategy Evaluation Metrics for Prediction Markets | PolyHistorical',
   metaDescription: 'Essential metrics for evaluating prediction market trading strategies. Learn Sharpe ratio, max drawdown, profit factor, and more using Polymarket backtest data.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Strategy Evaluation Metrics for Prediction Market Backtests</h1>
-  <h2>Why Metrics Matter</h2>
+  ogImage: '/og/backtesting.png', createdAt: '', updatedAt: '',
+  content: `<h2>Why Metrics Matter</h2>
   <p>A profitable backtest is not enough — you need to evaluate <strong>how</strong> profits are generated and whether the strategy is robust. The right metrics reveal risk-adjusted performance, consistency, and whether your strategy will survive real-world conditions on Polymarket prediction markets.</p>
 
   <h2>Essential Performance Metrics</h2>
@@ -59,7 +58,14 @@ const page: PseoPageFull = {
   </ul>
 
   <h2>Using PolyHistorical for Evaluation</h2>
-  <p>PolyHistorical's sub-second order book data lets you compute these metrics with <strong>realistic execution assumptions</strong>. Account for slippage using actual order book depth at each timestamp, and include Polymarket fee calculations in your return series for accurate metric computation.</p>`,
+  <p>PolyHistorical's sub-second order book data lets you compute these metrics with <strong>realistic execution assumptions</strong>. Account for slippage using actual order book depth at each timestamp, and include Polymarket fee calculations in your return series for accurate metric computation.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/walk-forward-optimization-prediction-markets">Walk-Forward Optimization for Prediction Market Strategies</a></li>
+  <li><a href="/p/monte-carlo-simulation-prediction-markets">Monte Carlo Simulation for Prediction Market Backtests</a></li>
+  <li><a href="/p/data-cleaning-prediction-market-backtests">Data Cleaning for Prediction Market Backtests</a></li>
+  </ul>`,
 };
 
 export default page;

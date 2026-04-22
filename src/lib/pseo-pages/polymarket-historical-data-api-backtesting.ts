@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Use the Polymarket historical data API from PolyHistorical to backtest prediction market trading strategies with real order book data — completely free.',
   metaTitle: 'Polymarket Historical Data API for Backtesting — Free Access | PolyHistorical',
   metaDescription: 'Backtest prediction market trading strategies using the free Polymarket historical data API. Real order book data, sub-second resolution, from PolyHistorical.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Polymarket Historical Data API for Backtesting Trading Strategies</h1>
-<p>Want to backtest trading strategies on Polymarket? The <strong>Polymarket historical data API</strong> from PolyHistorical gives you the real order book data you need — for free.</p>
+  ogImage: '/og/polymarket-historical-data.png', createdAt: '', updatedAt: '',
+  content: `<p>Want to backtest trading strategies on Polymarket? The <strong>Polymarket historical data API</strong> from PolyHistorical gives you the real order book data you need — for free.</p>
 
 <h2>Why Backtest with Real Polymarket Historical Data?</h2>
 <p>Backtesting against synthetic or simulated data gives you false confidence. Real historical order book data reveals how your strategy would have actually performed, including:</p>
@@ -59,7 +58,14 @@ for snap in data["snapshots"]:
 </code></pre>
 
 <h2>Free Tier for Backtesting</h2>
-<p>The Starter plan includes recent BTC market history — enough to build and validate strategies before committing to Pro. No credit card, no trial expiration. Just sign up and start backtesting with real Polymarket historical data.</p>`,
+<p>The Starter plan includes recent BTC market history — enough to build and validate strategies before committing to Pro. No credit card, no trial expiration. Just sign up and start backtesting with real Polymarket historical data.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polymarket-historical-data-for-backtesting">Polymarket Historical Data for Backtesting: Step-by-Step Guide</a></li>
+  <li><a href="/p/walk-forward-optimization-prediction-markets">Walk-Forward Optimization</a></li>
+  <li><a href="/p/polymarket-historical-data-api">Polymarket Historical Data API</a></li>
+  </ul>`,
 };
 
 export default page;

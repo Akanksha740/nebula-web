@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Comparing PolyHistorical order book snapshots with Binance historical data downloads for trading research.',
   metaTitle: 'PolyHistorical vs Binance Historical Data: Order Book Comparison',
   metaDescription: 'Compare PolyHistorical prediction market order books with Binance historical data exports. Different data types for different trading research needs.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>PolyHistorical vs Binance Historical Data Exports</h1>
-  <h2>Overview</h2>
+  ogImage: '/og/compare.png', createdAt: '', updatedAt: '',
+  content: `<h2>Overview</h2>
   <p>Binance provides historical market data through its data portal including kline/candlestick data, aggregate trades, and order book snapshots for spot and futures markets. PolyHistorical provides <strong>Polymarket prediction market order book history</strong> with sub-second granularity — a completely different asset class.</p>
 
   <h2>Data Comparison</h2>
@@ -17,7 +16,7 @@ const page: PseoPageFull = {
   <thead><tr><th>Feature</th><th>PolyHistorical</th><th>Binance Historical Data</th></tr></thead>
   <tbody>
   <tr><td>Asset Type</td><td>Prediction market contracts</td><td>Spot &amp; futures crypto pairs</td></tr>
-  <tr><td>Order Book History</td><td>&#10003; 500ms snapshots, full depth</td><td>&#10003; Daily snapshots only</td></tr>
+  <tr><td>Order Book History</td><td>&#10003; 300ms snapshots, full depth</td><td>&#10003; Daily snapshots only</td></tr>
   <tr><td>Delivery Format</td><td>REST API (JSON)</td><td>Bulk CSV downloads</td></tr>
   <tr><td>Real-Time Streaming</td><td>Coming soon</td><td>&#10003; WebSocket feeds</td></tr>
   <tr><td>Prediction Markets</td><td>&#10003; BTC/ETH/SOL Up/Down</td><td>&#10007; Not available</td></tr>
@@ -43,7 +42,14 @@ const page: PseoPageFull = {
   <p>Many quantitative traders use both data sources together. Binance spot/futures data provides the underlying asset price, while PolyHistorical provides the prediction market order book. This combination enables powerful cross-market analysis — for example, tracking how Polymarket BTC Up/Down order books react to BTC price movements on Binance.</p>
 
   <h2>Bottom Line</h2>
-  <p>Binance historical data covers traditional crypto exchange trading. PolyHistorical covers prediction market order books. If you are researching or trading Polymarket markets, PolyHistorical provides data that Binance simply does not have.</p>`,
+  <p>Binance historical data covers traditional crypto exchange trading. PolyHistorical covers prediction market order books. If you are researching or trading Polymarket markets, PolyHistorical provides data that Binance simply does not have.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polyhistorical-vs-polygon-io">PolyHistorical vs Polygon.io for Market Data APIs</a></li>
+  <li><a href="/p/polymarket-historical-data-download">Polymarket Historical Data Download: CSV, JSON & Bulk Export</a></li>
+  <li><a href="/p/bulk-data-export-polymarket-historical">Bulk Data Export Guide: Download Polymarket Historical Data</a></li>
+  </ul>`,
 };
 
 export default page;

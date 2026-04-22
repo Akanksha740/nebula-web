@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'How PolyHistorical compares to Polygon.io for market data APIs — prediction markets vs equities and crypto.',
   metaTitle: 'PolyHistorical vs Polygon.io: Market Data API Comparison',
   metaDescription: 'Compare PolyHistorical and Polygon.io for market data APIs. Prediction market order books vs stocks, options, and crypto exchange data.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>PolyHistorical vs Polygon.io for Market Data APIs</h1>
-  <h2>Overview</h2>
+  ogImage: '/og/compare.png', createdAt: '', updatedAt: '',
+  content: `<h2>Overview</h2>
   <p>Polygon.io is a popular market data API covering US stocks, options, forex, and crypto. PolyHistorical specializes in <strong>Polymarket prediction market order book data</strong>. Despite similar-sounding names, these are very different products serving different data needs.</p>
 
   <h2>Feature Comparison</h2>
@@ -49,7 +48,14 @@ const page: PseoPageFull = {
   <p>An interesting use case combines both APIs: use Polygon.io for underlying asset prices (BTC, ETH via their crypto endpoints) and PolyHistorical for the prediction market order books. This lets you analyze how prediction market liquidity and pricing respond to spot market movements — a powerful research angle for quantitative traders.</p>
 
   <h2>Who Should Choose Which</h2>
-  <p>Choose <strong>Polygon.io</strong> if you need stocks, options, forex, or broad crypto exchange data. Choose <strong>PolyHistorical</strong> if you need Polymarket prediction market order book history for backtesting, market making, or academic research. The two APIs complement each other well for cross-market analysis.</p>`,
+  <p>Choose <strong>Polygon.io</strong> if you need stocks, options, forex, or broad crypto exchange data. Choose <strong>PolyHistorical</strong> if you need Polymarket prediction market order book history for backtesting, market making, or academic research. The two APIs complement each other well for cross-market analysis.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polyhistorical-vs-binance-historical-data">PolyHistorical vs Binance Historical Data Exports</a></li>
+  <li><a href="/p/polymarket-historical-data-api-documentation">Polymarket Historical Data API Documentation</a></li>
+  <li><a href="/p/rate-limiting-best-practices-polyhistorical">Rate Limiting Best Practices for PolyHistorical API</a></li>
+  </ul>`,
 };
 
 export default page;

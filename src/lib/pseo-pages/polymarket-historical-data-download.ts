@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Download Polymarket historical data in CSV and JSON formats. PolyHistorical offers free API access to historical order book snapshots for offline analysis.',
   metaTitle: 'Polymarket Historical Data Download — Free API Access | PolyHistorical',
   metaDescription: 'Download Polymarket historical data for free via the PolyHistorical API. Fetch order book snapshots and save them locally for backtesting and research.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Polymarket Historical Data Download: CSV, JSON & Bulk Export</h1>
-<p>Need to <strong>download Polymarket historical data</strong> for offline analysis? PolyHistorical's API lets you fetch complete order book history and save it locally in any format you need.</p>
+  ogImage: '/og/polymarket-historical-data.png', createdAt: '', updatedAt: '',
+  content: `<p>Need to <strong>download Polymarket historical data</strong> for offline analysis? PolyHistorical's API lets you fetch complete order book history and save it locally in any format you need.</p>
 
 <h2>How to Download Data</h2>
 <p>PolyHistorical provides a REST API that returns JSON responses. You can fetch data programmatically and convert it to your preferred format:</p>
@@ -62,7 +61,14 @@ df.to_csv("snapshots.csv", index=False)
 </ol>
 
 <h2>Free Tier Access</h2>
-<p>The Starter (free) plan gives you access to recent BTC markets — last 50 for 5m/15m, last 24 for 1h/4h, and last 5 for 24h. All snapshots within those markets are included. Upgrade to Pro at <strong>$11/month</strong> for full historical access to all BTC markets.</p>`,
+<p>The Starter (free) plan gives you access to recent BTC markets — last 50 for 5m/15m, last 24 for 1h/4h, and last 5 for 24h. All snapshots within those markets are included. Upgrade to Pro at <strong>$11/month</strong> for full historical access to all BTC markets.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/bulk-data-export-polymarket-historical">Bulk Data Export Guide</a></li>
+  <li><a href="/p/polymarket-historical-data-api">Polymarket Historical Data API</a></li>
+  <li><a href="/p/polymarket-historical-data-github">Polymarket Historical Data on GitHub</a></li>
+  </ul>`,
 };
 
 export default page;

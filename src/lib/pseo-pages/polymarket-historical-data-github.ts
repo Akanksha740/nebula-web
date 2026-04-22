@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Looking for Polymarket historical data on GitHub? Learn how to use the PolyHistorical REST API with open-source languages and tools to build your own data pipelines.',
   metaTitle: 'Polymarket Historical Data GitHub — Tools & Code Examples | PolyHistorical',
   metaDescription: 'Access Polymarket historical data using the PolyHistorical REST API. Code examples in Python and JavaScript to build your own tools, pipelines, and backtesting scripts.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Polymarket Historical Data on GitHub: Open-Source Tools & Libraries</h1>
-<p>Looking for <strong>Polymarket historical data on GitHub</strong>? While there isn't a dedicated open-source SDK yet, the PolyHistorical REST API is simple enough to integrate directly into any project using standard HTTP libraries.</p>
+  ogImage: '/og/polymarket-historical-data.png', createdAt: '', updatedAt: '',
+  content: `<p>Looking for <strong>Polymarket historical data on GitHub</strong>? While there isn't a dedicated open-source SDK yet, the PolyHistorical REST API is simple enough to integrate directly into any project using standard HTTP libraries.</p>
 
 <h2>No SDK Needed — Just a REST API</h2>
 <p>PolyHistorical's API uses standard REST conventions with JSON responses. You can call it from any language with an HTTP client — no special library required. Authentication is a single <code>X-API-Key</code> header.</p>
@@ -66,7 +65,14 @@ console.log(\`Loaded \${snapshots.length} snapshots\`);
 </ul>
 
 <h2>Getting Started</h2>
-<p>All you need is a free PolyHistorical API key. Sign up at no cost, grab your key from the dashboard, and start building with real Polymarket historical data using any language or framework you prefer.</p>`,
+<p>All you need is a free PolyHistorical API key. Sign up at no cost, grab your key from the dashboard, and start building with real Polymarket historical data using any language or framework you prefer.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polymarket-historical-data-download">Polymarket Historical Data Download</a></li>
+  <li><a href="/p/polymarket-historical-data-api-backtesting-dev">Developer Guide to Backtesting API</a></li>
+  <li><a href="/p/polymarket-historical-data-guide">Polymarket Historical Data: Complete Guide</a></li>
+  </ul>`,
 };
 
 export default page;

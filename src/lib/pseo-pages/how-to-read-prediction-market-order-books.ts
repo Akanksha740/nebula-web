@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'A beginner-friendly guide to reading and interpreting order books in Polymarket prediction markets.',
   metaTitle: 'How to Read Prediction Market Order Books | PolyHistorical',
   metaDescription: 'Learn how to read and interpret Polymarket prediction market order books. Understand bids, asks, depth, spread, and what they tell you about market sentiment.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>How to Read Prediction Market Order Books</h1>
-  <h2>What Is a Prediction Market Order Book?</h2>
+  ogImage: '/og/market-data.png', createdAt: '', updatedAt: '',
+  content: `<h2>What Is a Prediction Market Order Book?</h2>
   <p>An order book is a real-time list of outstanding buy orders (bids) and sell orders (asks) for a prediction market contract. On Polymarket, each <strong>BTC, ETH, or SOL Up/Down market</strong> has its own order book showing the prices and quantities at which traders are willing to buy or sell outcome shares.</p>
 
   <h2>Anatomy of a Polymarket Order Book</h2>
@@ -50,7 +49,14 @@ const page: PseoPageFull = {
   </ul>
 
   <h2>Using PolyHistorical to Study Order Books</h2>
-  <p>PolyHistorical captures <strong>sub-second order book snapshots</strong> for every Polymarket BTC, ETH, and SOL Up/Down market. This lets you study how order books evolve over time — watch bids build before events, observe how the spread tightens as consensus forms, and analyze depth changes around market resolution. Start with the free tier to explore BTC market order books today.</p>`,
+  <p>PolyHistorical captures <strong>sub-second order book snapshots</strong> for every Polymarket BTC, ETH, and SOL Up/Down market. This lets you study how order books evolve over time — watch bids build before events, observe how the spread tightens as consensus forms, and analyze depth changes around market resolution. Start with the free tier to explore BTC, ETH, and SOL market order books today.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/understanding-bid-ask-spread-prediction-markets">Understanding Bid-Ask Spread in Prediction Markets</a></li>
+  <li><a href="/p/liquidity-analysis-polymarket">Liquidity Analysis for Polymarket Markets</a></li>
+  <li><a href="/p/polymarket-historical-data-guide">Polymarket Historical Data: Complete Guide</a></li>
+  </ul>`,
 };
 
 export default page;

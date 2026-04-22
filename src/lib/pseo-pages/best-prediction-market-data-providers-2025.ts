@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'A comprehensive ranking of the best prediction market data providers including PolyHistorical, Polymarket API, and more.',
   metaTitle: 'Best Prediction Market Data Providers 2025 | Ranked & Compared',
   metaDescription: 'Comprehensive ranking of the best prediction market data providers in 2025. Compare PolyHistorical, Polymarket API, Dune Analytics, and The Graph for prediction market data.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Best Prediction Market Data Providers in 2025</h1>
-  <h2>The Growing Need for Prediction Market Data</h2>
+  ogImage: '/og/alternatives.png', createdAt: '', updatedAt: '',
+  content: `<h2>The Growing Need for Prediction Market Data</h2>
   <p>As prediction markets grow in volume and sophistication, the demand for reliable <strong>historical data APIs</strong> has surged. Traders, researchers, and developers need high-quality data to build strategies, conduct research, and develop applications. Here is our ranking of the best prediction market data providers in 2025.</p>
 
   <h2>Provider Rankings</h2>
@@ -25,9 +24,9 @@ const page: PseoPageFull = {
   </table>
 
   <h2>1. PolyHistorical — Best for Historical Order Book Data</h2>
-  <p>PolyHistorical is the leading provider of <strong>Polymarket historical order book data</strong>. It captures sub-second order book snapshots for all BTC Up/Down markets (ETH coming soon), providing the granular data needed for backtesting, market making, and quantitative research.</p>
+  <p>PolyHistorical is the leading provider of <strong>Polymarket historical order book data</strong>. It captures sub-second order book snapshots for all BTC, ETH, and SOL Up/Down markets, providing the granular data needed for backtesting, market making, and quantitative research.</p>
   <ul>
-  <li>Sub-second (500ms) order book snapshots</li>
+  <li>Sub-second (300ms) order book snapshots</li>
   <li>Full bid/ask depth for every snapshot</li>
   <li>30-day rolling history</li>
   <li>REST API with JSON, CSV, and Parquet export</li>
@@ -52,7 +51,14 @@ const page: PseoPageFull = {
   </ul>
 
   <h2>Why PolyHistorical Ranks First</h2>
-  <p>No other provider offers sub-second historical order book data for Polymarket prediction markets. This data is essential for serious quantitative work — and PolyHistorical makes it accessible with a generous free tier and affordable Pro plan at just <strong>$11/month</strong>.</p>`,
+  <p>No other provider offers sub-second historical order book data for Polymarket prediction markets. This data is essential for serious quantitative work — and PolyHistorical makes it accessible with a generous free tier and affordable Pro plan at just <strong>$11/month</strong>.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polyhistorical-vs-kaiko">PolyHistorical vs Kaiko: Prediction Market Data Compared</a></li>
+  <li><a href="/p/best-messari-alternative-prediction-market">Best Messari Alternative for Prediction Market Research</a></li>
+  <li><a href="/p/polymarket-historical-data-guide">Polymarket Historical Data: Complete Guide</a></li>
+  </ul>`,
 };
 
 export default page;

@@ -10,12 +10,14 @@ interface PaymentMethodModalProps {
 export function PaymentMethodModal({ open, onClose }: PaymentMethodModalProps) {
   const [loading, setLoading] = useState<'usd' | 'crypto' | null>(null);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   if (!open) return null;
 
   const handlePayment = async (method: 'usd' | 'crypto') => {
     setLoading(method);
     setError('');
+    setSuccess('');
     try {
       const res = method === 'usd'
         ? await api.createCheckout('PRO')
@@ -23,6 +25,9 @@ export function PaymentMethodModal({ open, onClose }: PaymentMethodModalProps) {
       const checkoutUrl = res?.data?.checkoutUrl;
       if (checkoutUrl) {
         window.location.href = checkoutUrl;
+      } else if (res?.data?.message) {
+        setSuccess(res.data.message);
+        setLoading(null);
       }
     } catch (err: any) {
       setError(err?.response?.data?.error?.message || 'Failed to start checkout. Please try again.');
@@ -82,7 +87,7 @@ export function PaymentMethodModal({ open, onClose }: PaymentMethodModalProps) {
             </div>
             <div className="flex-1">
               <div className="font-semibold text-sm flex items-center gap-2">
-                {loading === 'crypto' ? 'Redirecting...' : 'Cryptocurrency'}
+                {loading === 'crypto' ? 'Processing...' : 'Cryptocurrency'}
               </div>
               <div className="text-text-muted text-xs mt-0.5">
                 $22 for 2 months &middot; BTC, ETH, USDT, and more
@@ -91,6 +96,9 @@ export function PaymentMethodModal({ open, onClose }: PaymentMethodModalProps) {
           </button>
         </div>
 
+        {success && (
+          <p className="text-green-400 text-sm mt-4 text-center">{success}</p>
+        )}
         {error && (
           <p className="text-red-400 text-sm mt-4 text-center">{error}</p>
         )}

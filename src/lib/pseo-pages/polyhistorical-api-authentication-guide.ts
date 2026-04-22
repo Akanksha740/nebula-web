@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Complete guide to API key management, authentication flows, and security best practices for PolyHistorical.',
   metaTitle: 'PolyHistorical API Authentication Guide | Developer Docs',
   metaDescription: 'Learn how to authenticate with the PolyHistorical API. API key management, security best practices, and common authentication patterns for Polymarket data access.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>PolyHistorical API Authentication and Security Guide</h1>
-<h2>Authentication Overview</h2>
+  ogImage: '/og/api-developers.png', createdAt: '', updatedAt: '',
+  content: `<h2>Authentication Overview</h2>
 <p>The PolyHistorical API uses <strong>API key authentication</strong> via the <code>X-API-Key</code> header. Every request must include your API key. This guide covers how to generate, manage, and securely use your API keys for accessing Polymarket historical order book data.</p>
 
 <h2>Getting Your API Key</h2>
@@ -72,7 +71,14 @@ response = requests.get(
 <tr><td>403</td><td>TIER_ACCESS_DENIED</td><td>Feature requires a higher plan</td></tr>
 <tr><td>429</td><td>RATE_LIMIT_EXCEEDED</td><td>Too many requests — implement backoff</td></tr>
 </tbody>
-</table>`,
+</table>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/rate-limiting-best-practices-polyhistorical">Rate Limiting Best Practices for PolyHistorical API</a></li>
+  <li><a href="/p/polymarket-historical-data-api-documentation">Polymarket Historical Data API Documentation</a></li>
+  <li><a href="/p/bulk-data-export-polymarket-historical">Bulk Data Export Guide: Download Polymarket Historical Data</a></li>
+  </ul>`,
 };
 
 export default page;

@@ -7,9 +7,8 @@ const page: PseoPageFull = {
   excerpt: 'Full breakdown of Polymarket historical data availability — which markets are covered, how far back the data goes, and snapshot granularity on PolyHistorical.',
   metaTitle: 'Polymarket Historical Data Availability — Coverage & Depth | PolyHistorical',
   metaDescription: 'Find out exactly what Polymarket historical data is available on PolyHistorical — markets covered, date ranges, snapshot frequency, and data depth.',
-  ogImage: null, createdAt: '', updatedAt: '',
-  content: `<h1>Polymarket Historical Data Availability: What Data Exists & How Far Back</h1>
-<p>One of the most common questions we get: <em>"How much Polymarket historical data do you actually have?"</em> Here's the complete breakdown of <strong>Polymarket historical data availability</strong> on PolyHistorical.</p>
+  ogImage: '/og/polymarket-historical-data.png', createdAt: '', updatedAt: '',
+  content: `<p>One of the most common questions we get: <em>"How much Polymarket historical data do you actually have?"</em> Here's the complete breakdown of <strong>Polymarket historical data availability</strong> on PolyHistorical.</p>
 
 <h2>Markets Covered</h2>
 <table>
@@ -52,7 +51,14 @@ const page: PseoPageFull = {
 </ul>
 
 <h2>Free Access</h2>
-<p>Start with the free Starter plan — no credit card required. Access recent BTC markets immediately. Upgrade to Pro at $11/month for full historical access to all markets.</p>`,
+<p>Start with the free Starter plan — no credit card required. Access recent BTC markets immediately. Upgrade to Pro at $11/month for full historical access to all markets.</p>
+
+  <h2>Related Resources</h2>
+  <ul>
+  <li><a href="/p/polymarket-historical-data-guide">Polymarket Historical Data: Complete Guide</a></li>
+  <li><a href="/p/polymarket-historical-data-api">Polymarket Historical Data API</a></li>
+  <li><a href="/p/polymarket-historical-data-download">Download Historical Data</a></li>
+  </ul>`,
 };
 
 export default page;

@@ -48,6 +48,28 @@ import page_volatility_modeling_prediction_markets from './pseo-pages/volatility
 import page_volume_analysis_polymarket_trading from './pseo-pages/volume-analysis-polymarket-trading';
 import page_walk_forward_optimization_prediction_markets from './pseo-pages/walk-forward-optimization-prediction-markets';
 import page_webhook_integration_polymarket_data from './pseo-pages/webhook-integration-polymarket-data';
+import page_polyhistorical_vs_dune_analytics from './pseo-pages/polyhistorical-vs-dune-analytics';
+import page_polymarket_historical_data_free_vs_paid from './pseo-pages/polymarket-historical-data-free-vs-paid';
+import page_polyhistorical_vs_the_graph from './pseo-pages/polyhistorical-vs-the-graph';
+import page_backtesting_prediction_market_strategies from './pseo-pages/backtesting-prediction-market-strategies';
+import page_building_polymarket_trading_bot from './pseo-pages/building-polymarket-trading-bot';
+import page_academic_research_polymarket_data from './pseo-pages/academic-research-polymarket-data';
+import page_market_making_polymarket_order_book from './pseo-pages/market-making-polymarket-order-book';
+import page_what_is_polymarket_order_book_data from './pseo-pages/what-is-polymarket-order-book-data';
+import page_sub_second_vs_minute_level_market_data from './pseo-pages/sub-second-vs-minute-level-market-data';
+import page_polymarket_api_vs_polyhistorical_api from './pseo-pages/polymarket-api-vs-polyhistorical-api';
+import page_getting_started_polyhistorical_python from './pseo-pages/getting-started-polyhistorical-python';
+import page_polyhistorical_api_javascript_quickstart from './pseo-pages/polyhistorical-api-javascript-quickstart';
+import page_best_kaiko_alternative_prediction_market from './pseo-pages/best-kaiko-alternative-prediction-market';
+import page_affordable_cryptocompare_alternative from './pseo-pages/affordable-cryptocompare-alternative';
+import page_best_free_polymarket_data_api from './pseo-pages/best-free-polymarket-data-api';
+import page_how_to_analyze_polymarket_up_down_markets from './pseo-pages/how-to-analyze-polymarket-up-down-markets';
+import page_prediction_market_order_book_dynamics from './pseo-pages/prediction-market-order-book-dynamics';
+import page_backtesting_framework_polymarket_python from './pseo-pages/backtesting-framework-polymarket-python';
+import page_common_backtesting_mistakes_prediction_markets from './pseo-pages/common-backtesting-mistakes-prediction-markets';
+import page_polymarket_subsecond_data from './pseo-pages/polymarket-subsecond-data';
+import page_polymarket_l2_order_book from './pseo-pages/polymarket-l2-order-book';
+import page_polymarket_parquet_data from './pseo-pages/polymarket-parquet-data';
 
 // ── Static seed data — used as fallback when API is unavailable ──
 
@@ -144,7 +166,7 @@ export const CATEGORIES: CategoryItem[] = [
     metaTitle: 'Polymarket Historical Data — Free API, Downloads & Backtesting | PolyHistorical',
     metaDescription: 'Access Polymarket historical data for free. Download datasets, use the API for backtesting, explore GitHub resources, and read full documentation at PolyHistorical.',
     displayOrder: 8,
-    pageCount: 13,
+    pageCount: 16,
     createdAt: '',
     updatedAt: '',
   },
@@ -234,6 +256,9 @@ const PAGES_MAP: Record<string, PseoPageSummary[]> = {
     { id: 'b60', title: 'Polymarket Historical Data for Backtesting: Free Datasets & Strategies', slug: 'polymarket-historical-data-backtesting', excerpt: 'Access free Polymarket historical data for backtesting prediction market strategies. PolyHistorical provides sub-second order book snapshots for BTC and ETH markets.', categorySlug: 'polymarket-historical-data', categoryName: 'Polymarket Historical Data' },
     { id: 'b61', title: 'Historical Polymarket Data: Free Access to Past Order Book Snapshots', slug: 'historical-polymarket-data', excerpt: 'Get free access to historical Polymarket data. PolyHistorical archives every order book snapshot from Polymarket prediction markets so you can analyze past market behavior.', categorySlug: 'polymarket-historical-data', categoryName: 'Polymarket Historical Data' },
     { id: 'b62', title: 'Polymarket API Historical Data: How to Get Past Market Snapshots', slug: 'polymarket-api-historical-data', excerpt: 'Learn how to access Polymarket API historical data through PolyHistorical. Get past order book snapshots, price history, and market data via a free REST API.', categorySlug: 'polymarket-historical-data', categoryName: 'Polymarket Historical Data' },
+    { id: 'b67', title: 'Polymarket Subsecond Data: 300ms Order Book Snapshots', slug: 'polymarket-subsecond-data', excerpt: 'Access Polymarket subsecond data with 300ms order book snapshots. PolyHistorical captures full bid/ask depth at sub-second intervals for BTC, ETH, and SOL Up/Down markets.', categorySlug: 'polymarket-historical-data', categoryName: 'Polymarket Historical Data' },
+    { id: 'b68', title: 'Polymarket L2 Order Book: Full Depth Historical Data', slug: 'polymarket-l2-order-book', excerpt: 'Access Polymarket L2 order book data — full depth bid/ask snapshots at 300ms intervals for BTC, ETH, and SOL Up/Down markets.', categorySlug: 'polymarket-historical-data', categoryName: 'Polymarket Historical Data' },
+    { id: 'b69', title: 'Polymarket Parquet Data: Download Order Book History in Parquet Format', slug: 'polymarket-parquet-data', excerpt: 'Download Polymarket historical order book data in Parquet format. Columnar exports optimized for pandas, Spark, and DuckDB analysis.', categorySlug: 'polymarket-historical-data', categoryName: 'Polymarket Historical Data' },
   ],
 };
 
@@ -287,6 +312,28 @@ const FULL_PAGES: Record<string, PseoPageFull> = {
   'polymarket-eth-odds-today': page_polymarket_eth_odds_today,
   'polymarket-sol-odds-today': page_polymarket_sol_odds_today,
   'polymarket-crypto-odds-today': page_polymarket_crypto_odds_today,
+  'polyhistorical-vs-dune-analytics': page_polyhistorical_vs_dune_analytics,
+  'polymarket-historical-data-free-vs-paid': page_polymarket_historical_data_free_vs_paid,
+  'polyhistorical-vs-the-graph': page_polyhistorical_vs_the_graph,
+  'backtesting-prediction-market-strategies': page_backtesting_prediction_market_strategies,
+  'building-polymarket-trading-bot': page_building_polymarket_trading_bot,
+  'academic-research-polymarket-data': page_academic_research_polymarket_data,
+  'market-making-polymarket-order-book': page_market_making_polymarket_order_book,
+  'what-is-polymarket-order-book-data': page_what_is_polymarket_order_book_data,
+  'sub-second-vs-minute-level-market-data': page_sub_second_vs_minute_level_market_data,
+  'polymarket-api-vs-polyhistorical-api': page_polymarket_api_vs_polyhistorical_api,
+  'getting-started-polyhistorical-python': page_getting_started_polyhistorical_python,
+  'polyhistorical-api-javascript-quickstart': page_polyhistorical_api_javascript_quickstart,
+  'best-kaiko-alternative-prediction-market': page_best_kaiko_alternative_prediction_market,
+  'affordable-cryptocompare-alternative': page_affordable_cryptocompare_alternative,
+  'best-free-polymarket-data-api': page_best_free_polymarket_data_api,
+  'how-to-analyze-polymarket-up-down-markets': page_how_to_analyze_polymarket_up_down_markets,
+  'prediction-market-order-book-dynamics': page_prediction_market_order_book_dynamics,
+  'backtesting-framework-polymarket-python': page_backtesting_framework_polymarket_python,
+  'common-backtesting-mistakes-prediction-markets': page_common_backtesting_mistakes_prediction_markets,
+  'polymarket-subsecond-data': page_polymarket_subsecond_data,
+  'polymarket-l2-order-book': page_polymarket_l2_order_book,
+  'polymarket-parquet-data': page_polymarket_parquet_data,
 };
 
 // ── Helper functions ──
@@ -318,7 +365,7 @@ export function getPageBySlug(slug: string): PseoPageFull | undefined {
 
   return {
     ...summary,
-    content: `<h1>${summary.title}</h1><p>${summary.excerpt || ''}</p>`,
+    content: `<p>${summary.excerpt || ''}</p>`,
     metaTitle: summary.title,
     metaDescription: summary.excerpt || '',
     ogImage: null,
