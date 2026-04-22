@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Home,
@@ -110,6 +110,7 @@ export function Dashboard() {
   const [passwordSuccess, setPasswordSuccess] = useState('');
   const [showPlansModal, setShowPlansModal] = useState(false);
   const [showPaymentMethodModal, setShowPaymentMethodModal] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement>(null);
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [cancelLoading, setCancelLoading] = useState(false);
   const [cancelError, setCancelError] = useState('');
@@ -176,6 +177,16 @@ export function Dashboard() {
       fetchApiKeys();
     }
   }, [activeNav, fetchApiKeys, fetchUsageStats]);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (userMenuOpen && userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [userMenuOpen]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -865,7 +876,7 @@ export function Dashboard() {
           </div>
         )}
 
-        <div className="px-3 pb-4 relative">
+        <div className="px-3 pb-4 relative" ref={userMenuRef}>
           <button
             onClick={() => setUserMenuOpen(!userMenuOpen)}
             className="w-full flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-white/5 transition-colors"

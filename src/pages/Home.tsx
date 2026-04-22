@@ -12,6 +12,7 @@ import { PricingCards } from '../components/PricingCards';
 import { LiveMarketSection } from '../components/LiveMarketSection';
 import { PersonaCards } from '../components/PersonaCards';
 import { MarketLifecycle } from '../components/MarketLifecycle';
+import { HeroTerminal } from '../components/HeroTerminal';
 import { useState } from 'react';
 
 const faqs = [
@@ -126,53 +127,29 @@ export function Home() {
               </div>
             </div>
 
-            {/* Terminal preview */}
+            {/* Animated terminal */}
             <div className="hidden lg:block">
-              <div className="bg-surface-card rounded-xl border border-border overflow-hidden shadow-2xl shadow-primary/5">
-                <div className="flex items-center gap-2 px-4 py-3 bg-surface-dark border-b border-border">
-                  <div className="w-3 h-3 rounded-full bg-accent-red/70" />
-                  <div className="w-3 h-3 rounded-full bg-accent-yellow/70" />
-                  <div className="w-3 h-3 rounded-full bg-accent-green/70" />
-                  <span className="text-xs text-text-dim ml-2 font-mono">curl - polyhistorical.com</span>
-                </div>
-                <pre className="p-5 text-[13px] leading-relaxed overflow-x-auto font-mono">
-<code className="text-text-muted"><span className="text-text-dim">$ </span><span className="text-primary">curl</span> api.polyhistorical.com/v1/markets/bitcoin-up-or-down-on-march-28-2026/snapshots?coin=btc&limit=1
-</code>
-<code className="text-text-muted">{`
-{
-  "market": {
-    "slug": "bitcoin-up-or-down-on-march-28-2026",
-    "coin": "BTC",
-    "marketType": "24h"
-  },
-  "snapshots": [{
-    "time": "2026-03-21T14:30:01.203Z",
-    "btc_price": `}<span className="text-accent-yellow">69914</span>{`,
-    "price_up": `}<span className="text-accent-green">0.57</span>{`,
-    "price_down": `}<span className="text-accent-red">0.43</span>{`,
-    "orderbook_up": { "bids": [...], "asks": [...] }
-  }],
-  "total": `}<span className="text-text-primary">67568</span>{`
-}`}</code></pre>
-              </div>
+              <HeroTerminal />
             </div>
           </div>
         </div>
       </section>
 
       {/* ── Stats strip ── */}
-      <section className="border-y border-border">
+      <section className="border-y border-border bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(16,185,129,0.03),transparent)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-border">
             {[
-              { value: '60M+', label: 'Snapshots and counting' },
-              { value: '13,000+', label: 'Resolved markets' },
-              { value: '300ms', label: 'Faster than any alternative' },
-              { value: '<50ms', label: 'Built for speed' },
+              { value: '60M+', label: 'Snapshots captured', accent: true },
+              { value: '13,000+', label: 'Resolved markets', accent: true },
+              { value: '300ms', label: 'Snapshot resolution', accent: false },
+              { value: '<50ms', label: 'API response time', accent: false },
             ].map((s) => (
-              <div key={s.label} className="py-8 px-4 text-center">
-                <div className="text-2xl md:text-3xl font-bold text-primary mb-1">{s.value}</div>
-                <div className="text-text-muted text-sm">{s.label}</div>
+              <div key={s.label} className="py-10 px-4 text-center group">
+                <div className={`text-2xl md:text-3xl font-bold mb-1.5 ${s.accent ? 'text-primary' : 'text-text-primary'}`}>
+                  {s.value}
+                </div>
+                <div className="text-text-dim text-xs uppercase tracking-wider font-medium">{s.label}</div>
               </div>
             ))}
           </div>
@@ -186,12 +163,15 @@ export function Home() {
       <MarketLifecycle />
 
       {/* ── The bot builder's edge — comparison ── */}
-      <section className="py-16">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-surface-card/50 mb-6">
+              <span className="text-xs font-medium text-text-muted">Why order book data?</span>
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">The unfair advantage</h2>
             <p className="text-text-muted text-lg">
-              Your strategy is only as good as the data behind it.
+              Candle data tells you what happened. Order book data shows you <span className="text-text-primary font-medium">why</span>.
             </p>
           </div>
 
@@ -199,18 +179,21 @@ export function Home() {
             <div className="rounded-xl border border-border overflow-hidden">
               <div className="grid grid-cols-3 bg-surface-dark">
                 <div className="p-4 text-sm font-semibold text-text-dim border-r border-border"></div>
-                <div className="p-4 text-sm font-semibold text-text-muted text-center border-r border-border">Candle Data</div>
-                <div className="p-4 text-sm font-semibold text-primary text-center">PolyHistorical</div>
+                <div className="p-4 text-sm font-semibold text-text-dim text-center border-r border-border">Candle / OHLC</div>
+                <div className="p-4 text-sm font-semibold text-center border-r-0 border-border">
+                  <span className="text-primary">PolyHistorical</span>
+                </div>
               </div>
               {[
-                { label: 'Resolution', candle: '1 min+', poly: '300ms' },
-                { label: 'Depth', candle: 'OHLC only', poly: 'Full bid/ask ladder' },
-                { label: 'Fill simulation', candle: 'Guesswork', poly: 'Real order book' },
-                { label: 'Slippage modeling', candle: 'Not possible', poly: 'Every price level' },
-                { label: 'Cost', candle: 'Free', poly: 'Free tier available' },
+                { label: 'Resolution', candle: '1 min+', poly: '300ms', icon: '~' },
+                { label: 'Market depth', candle: 'OHLC only', poly: 'Full bid/ask ladder', icon: '~' },
+                { label: 'Fill simulation', candle: 'Guesswork', poly: 'Real order book', icon: '~' },
+                { label: 'Slippage modeling', candle: 'Not possible', poly: 'Every price level', icon: '~' },
+                { label: 'Coins', candle: 'Varies', poly: 'BTC, ETH, SOL', icon: '~' },
+                { label: 'Cost', candle: 'Free', poly: 'Free tier included', icon: '~' },
               ].map((row, i) => (
-                <div key={row.label} className={`grid grid-cols-3 ${i % 2 === 0 ? 'bg-surface-card/30' : ''}`}>
-                  <div className="p-4 text-sm font-medium border-r border-border">{row.label}</div>
+                <div key={row.label} className={`grid grid-cols-3 border-t border-border ${i % 2 === 0 ? 'bg-surface-card/20' : ''}`}>
+                  <div className="p-4 text-sm font-medium border-r border-border text-text-secondary">{row.label}</div>
                   <div className="p-4 text-sm text-text-dim text-center border-r border-border">{row.candle}</div>
                   <div className="p-4 text-sm text-primary text-center font-medium">{row.poly}</div>
                 </div>
@@ -334,22 +317,34 @@ export function Home() {
       </section>
 
       {/* ── Bottom CTA ── */}
-      <section className="py-16 border-t border-border">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 border-t border-border relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_100%,rgba(16,185,129,0.08),transparent)]" />
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Your edge starts with better data.
           </h2>
-          <p className="text-text-muted mb-8 text-lg max-w-xl mx-auto">
+          <p className="text-text-muted mb-10 text-lg max-w-xl mx-auto">
             Start free. No credit card. First API call in under two minutes.
           </p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            <Link to="/signup" className="btn-primary text-base py-3 px-6">
+          <div className="flex flex-wrap gap-3 justify-center mb-8">
+            <Link to="/signup" className="btn-primary text-base py-3.5 px-8">
               Get your API key
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <a href="https://docs.polyhistorical.com/" target="_blank" rel="noopener noreferrer" className="btn-secondary text-base py-3 px-6">
+            <a href="https://docs.polyhistorical.com/" target="_blank" rel="noopener noreferrer" className="btn-secondary text-base py-3.5 px-8">
               Explore the API
             </a>
+          </div>
+          <div className="flex items-center justify-center gap-6 text-xs text-text-dim">
+            <span className="flex items-center gap-1.5">
+              <Check className="w-3.5 h-3.5 text-primary" /> Free tier
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Check className="w-3.5 h-3.5 text-primary" /> No credit card
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Check className="w-3.5 h-3.5 text-primary" /> Cancel anytime
+            </span>
           </div>
         </div>
       </section>
