@@ -890,15 +890,6 @@ export function Dashboard() {
                 <Settings className="w-4 h-4" />
                 Profile
               </button>
-              {user?.tier === 'PRO' && (
-                <button
-                  onClick={() => { setShowCancelModal(true); setUserMenuOpen(false); }}
-                  className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-text-muted hover:text-accent-red hover:bg-white/5 transition-colors"
-                >
-                  <X className="w-4 h-4" />
-                  Manage Subscription
-                </button>
-              )}
               <button
                 onClick={handleLogout}
                 className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-accent-red hover:bg-white/5 transition-colors"
@@ -979,11 +970,20 @@ export function Dashboard() {
                 </div>
               </div>
 
-              {/* Invoice History */}
-              <div className="card p-6">
-                <span className="text-xs font-semibold tracking-wider text-text-muted uppercase">Invoice History</span>
-                <p className="text-text-muted text-sm mt-4">No invoices yet.</p>
-              </div>
+              {/* Manage Subscription */}
+              {user?.tier === 'PRO' && (
+                <div className="mt-6 pt-6 border-t border-border/50">
+                  <p className="text-xs text-text-dim">
+                    Need to make changes?{' '}
+                    <button
+                      onClick={() => setShowCancelModal(true)}
+                      className="text-text-muted hover:text-text-primary underline underline-offset-2 transition-colors"
+                    >
+                      Manage subscription
+                    </button>
+                  </p>
+                </div>
+              )}
 
               {/* Choose Your Plan Modal */}
               {showPlansModal && (

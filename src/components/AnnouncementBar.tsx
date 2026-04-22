@@ -12,7 +12,7 @@ export function AnnouncementBar() {
           {Array.from({ length: 4 }).map((_, i) => (
             <span key={i} className="flex items-center gap-2 text-xs font-medium text-primary">
               <Bitcoin className="w-3.5 h-3.5 text-[#F7931A]" />
-              Now accepting crypto. Pay with BTC, ETH, USDT & 200+ coins. 2 months Pro for $22
+              Now accepting crypto. Pay with BTC, ETH, USDT & 200+ coins.
               <ArrowRight className="w-3 h-3" />
             </span>
           ))}
