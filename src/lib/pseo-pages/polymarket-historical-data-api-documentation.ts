@@ -68,12 +68,8 @@ const page: PseoPageFull = {
 <tr><td>BTC 5m &amp; 15m</td><td>Last 50 markets</td><td>All</td></tr>
 <tr><td>BTC 1h &amp; 4h</td><td>Last 24 markets</td><td>All</td></tr>
 <tr><td>BTC 24h</td><td>Last 5 markets</td><td>All</td></tr>
-<tr><td>ETH 5m &amp; 15m</td><td>—</td><td>All</td></tr>
-<tr><td>ETH 1h &amp; 4h</td><td>—</td><td>All</td></tr>
-<tr><td>ETH 24h</td><td>—</td><td>All</td></tr>
-<tr><td>SOL 5m &amp; 15m</td><td>—</td><td>All</td></tr>
-<tr><td>SOL 1h &amp; 4h</td><td>—</td><td>All</td></tr>
-<tr><td>SOL 24h</td><td>—</td><td>All</td></tr>
+<tr><td>ETH 5m, 15m &amp; 1h</td><td>—</td><td>All</td></tr>
+<tr><td>SOL 5m, 15m &amp; 1h</td><td>—</td><td>All</td></tr>
 </tbody>
 </table>
 <p>ETH and SOL markets require a Pro or Enterprise plan. All snapshots within an accessible market are included on every plan — no snapshot limits.</p>

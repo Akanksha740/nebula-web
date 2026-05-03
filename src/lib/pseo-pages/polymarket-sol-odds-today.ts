@@ -28,13 +28,11 @@ const page: PseoPageFull = {
 <p>Formulas: <code>implied_probability = price</code> and <code>decimal_odds = 1 / price</code>.</p>
 
 <h2>SOL Market Timeframes Covered</h2>
-<p>Polymarket runs five Solana Up/Down timeframes in parallel — the same set offered for BTC and ETH:</p>
+<p>Polymarket runs three Solana Up/Down timeframes in parallel:</p>
 <ul>
 <li><strong>5-minute (5m)</strong></li>
 <li><strong>15-minute (15m)</strong></li>
 <li><strong>1-hour (1h)</strong></li>
-<li><strong>4-hour (4h)</strong></li>
-<li><strong>24-hour (24h)</strong></li>
 </ul>
 <p>Browse live and resolved SOL markets at <a href="/markets/sol">polyhistorical.com/markets/sol</a> — every market lists its open time, resolution status, and full snapshot history.</p>
 

@@ -15,8 +15,8 @@ const page: PseoPageFull = {
 <thead><tr><th>Coin</th><th>Timeframes</th><th>Direction</th><th>Status</th></tr></thead>
 <tbody>
 <tr><td>BTC</td><td>5m, 15m, 1hr, 4hr, 24hr</td><td>Up &amp; Down</td><td>Active</td></tr>
-<tr><td>ETH</td><td>5m, 15m, 1hr, 4hr, 24hr</td><td>Up &amp; Down</td><td>Coming soon</td></tr>
-<tr><td>SOL</td><td>5m, 15m, 1hr, 4hr, 24hr</td><td>Up &amp; Down</td><td>Coming soon</td></tr>
+<tr><td>ETH</td><td>5m, 15m, 1hr</td><td>Up &amp; Down</td><td>Coming soon</td></tr>
+<tr><td>SOL</td><td>5m, 15m, 1hr</td><td>Up &amp; Down</td><td>Coming soon</td></tr>
 </tbody>
 </table>
 

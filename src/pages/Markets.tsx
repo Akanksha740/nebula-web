@@ -16,6 +16,11 @@ import { SEO } from '../components/SEO';
 
 const validCoins = ['btc', 'eth', 'sol'];
 const validTimeframes = ['5m', '15m', '1h', '4h', '24h'];
+const coinTimeframes: Record<string, string[]> = {
+  BTC: ['5m', '15m', '1h', '4h', '24h'],
+  ETH: ['5m', '15m', '1h'],
+  SOL: ['5m', '15m', '1h'],
+};
 
 function buildSeoTitle(coin?: string, timeframe?: string) {
   const c = coin?.toUpperCase() || 'BTC, ETH & SOL';
@@ -62,7 +67,9 @@ export function Markets() {
   const handleCoinChange = (c: string) => {
     setCoin(c);
     setPage(0);
-    const tf = timeframe !== 'All' ? `/${timeframe}` : '';
+    const allowed = coinTimeframes[c] || validTimeframes;
+    const tf = timeframe !== 'All' && allowed.includes(timeframe) ? `/${timeframe}` : '';
+    if (timeframe !== 'All' && !allowed.includes(timeframe)) setTimeframe('All');
     navigate(`/markets/${c.toLowerCase()}${tf}`);
   };
 
@@ -181,7 +188,7 @@ export function Markets() {
             <div className="flex items-center gap-2">
               <span className="text-sm text-text-muted">Timeframe:</span>
               <div className="flex rounded-lg bg-surface-card p-1">
-                {['All', '5m', '15m', '1h', '4h', '24h'].map((tf) => (
+                {['All', ...(coinTimeframes[coin] || validTimeframes)].map((tf) => (
                   <button
                     key={tf}
                     onClick={() => handleTimeframeChange(tf)}
@@ -261,7 +268,7 @@ export function Markets() {
         {/* Internal links for SEO */}
         <div className="mb-6 flex flex-wrap gap-2 text-sm">
           {['btc', 'eth', 'sol'].map((c) =>
-            validTimeframes.map((tf) => (
+            (coinTimeframes[c.toUpperCase()] || validTimeframes).map((tf) => (
               <Link
                 key={`${c}-${tf}`}
                 to={`/markets/${c}/${tf}`}

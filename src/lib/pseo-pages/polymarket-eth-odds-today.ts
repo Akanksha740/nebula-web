@@ -28,13 +28,11 @@ const page: PseoPageFull = {
 <p>Formulas: <code>implied_probability = price</code> and <code>decimal_odds = 1 / price</code>.</p>
 
 <h2>ETH Market Timeframes Covered</h2>
-<p>Polymarket runs five Ethereum Up/Down timeframes in parallel. PolyHistorical captures all of them:</p>
+<p>Polymarket runs three Ethereum Up/Down timeframes in parallel. PolyHistorical captures all of them:</p>
 <ul>
 <li><strong>5-minute (5m)</strong></li>
 <li><strong>15-minute (15m)</strong></li>
 <li><strong>1-hour (1h)</strong></li>
-<li><strong>4-hour (4h)</strong></li>
-<li><strong>24-hour (24h)</strong></li>
 </ul>
 <p>Browse live and resolved ETH markets at <a href="/markets/eth">polyhistorical.com/markets/eth</a> — every market lists its open time, resolution status, and full snapshot history.</p>
 
