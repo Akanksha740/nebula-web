@@ -51,6 +51,7 @@ const capabilities = [
 ];
 
 const timeframes = ['5m', '15m', '1h', '4h', '24h'];
+const btcOnlyTimeframes = ['4h', '24h'];
 
 const useCases = [
   {
@@ -98,7 +99,9 @@ export function Features() {
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-text-muted text-sm">Timeframes:</span>
                 {timeframes.map((tf) => (
-                  <span key={tf} className="px-2.5 py-1 bg-primary/10 text-primary rounded text-sm font-medium">{tf}</span>
+                  <span key={tf} className="px-2.5 py-1 bg-primary/10 text-primary rounded text-sm font-medium">
+                    {tf}{btcOnlyTimeframes.includes(tf) ? ' (BTC)' : ''}
+                  </span>
                 ))}
               </div>
             </div>

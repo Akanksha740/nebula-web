@@ -24,7 +24,7 @@ const page: PseoPageFull = {
   </table>
 
   <h2>Typical Spreads on Polymarket</h2>
-  <p>Polymarket prediction market spreads vary significantly by market type and conditions. <strong>Liquid BTC/ETH/SOL 24h markets</strong> often have spreads of $0.01-0.03, while shorter timeframe markets (5m, 15m) may have wider spreads of $0.03-0.08 due to higher uncertainty and faster resolution.</p>
+  <p>Polymarket prediction market spreads vary significantly by market type and conditions. <strong>Liquid BTC 24h and 1h markets</strong> often have spreads of $0.01-0.03, while shorter timeframe markets (5m, 15m) may have wider spreads of $0.03-0.08 due to higher uncertainty and faster resolution.</p>
 
   <h3>Spread by Market Type</h3>
   <ul>

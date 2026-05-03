@@ -30,7 +30,7 @@ const faqs = [
   },
   {
     question: 'What markets are supported?',
-    answer: 'BTC, ETH, and SOL Up/Down prediction markets across 5m, 15m, 1h, 4h, and 24h timeframes. Each market includes complete order book history from open to resolution.',
+    answer: 'BTC Up/Down prediction markets across 5m, 15m, 1h, 4h, and 24h timeframes, plus ETH and SOL across 5m, 15m, and 1h timeframes. Each market includes complete order book history from open to resolution.',
   },
   {
     question: 'How is this different from candle/OHLC data?',

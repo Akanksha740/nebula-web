@@ -193,13 +193,13 @@ function ArchiveExplorerViz() {
     return () => clearInterval(interval);
   }, []);
 
-  const tfSeconds: Record<string, number> = { '5m': 300, '15m': 900, '1h': 3600, '4h': 14400 };
-  const tfSnaps: Record<string, number> = { '5m': 1000, '15m': 3000, '1h': 12000, '4h': 48000 };
+  const tfSeconds: Record<string, number> = { '5m': 300, '15m': 900, '1h': 3600 };
+  const tfSnaps: Record<string, number> = { '5m': 1000, '15m': 3000, '1h': 12000 };
 
   const generateMarkets = (coin: string, seed: number) => {
     // Base epoch: ~April 18, 2026 00:00 UTC
     const baseEpoch = 1776489600;
-    const tfs = ['5m', '15m', '1h', '4h'];
+    const tfs = ['5m', '15m', '1h'];
     return tfs.map((tf, i) => {
       const offset = (seed + i) * tfSeconds[tf];
       const epoch = baseEpoch - offset;
@@ -207,7 +207,7 @@ function ArchiveExplorerViz() {
       // Deterministic pseudo-random from seed + index
       const hash = ((seed * 7 + i * 13 + coin.charCodeAt(0)) % 100);
       const winner = hash > 45 ? 'UP' : 'DOWN';
-      const volBase = { '5m': 5, '15m': 15, '1h': 25, '4h': 40 }[tf]!;
+      const volBase = { '5m': 5, '15m': 15, '1h': 25 }[tf]!;
       const vol = (volBase + (hash % 20)).toFixed(1);
       const snaps = tfSnaps[tf] + (hash * 11);
       return { slug, tf, winner, vol: `$${vol}k`, snaps: snaps.toLocaleString() };
