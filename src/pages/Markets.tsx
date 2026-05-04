@@ -358,12 +358,12 @@ export function Markets() {
                             {formatDate(market.end_time)}
                           </td>
                           <td className="py-4 px-4">
-                            {market.resolved ? (
+                            {market.is_resolved ? (
                               <span className="flex items-center gap-1.5 text-accent-green text-sm">
                                 <CheckCircle className="w-4 h-4" />
                                 Resolved
                               </span>
-                            ) : market.active ? (
+                            ) : new Date(market.end_time) > new Date() ? (
                               <span className="flex items-center gap-1.5 text-accent-yellow text-sm">
                                 <Circle className="w-4 h-4 fill-current" />
                                 Active

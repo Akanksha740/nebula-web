@@ -163,11 +163,11 @@ export function MarketDetail() {
                 <span className="px-2 py-1 bg-primary/10 text-primary rounded text-sm">
                   {market.market_type}
                 </span>
-                {market.resolved ? (
+                {market.is_resolved ? (
                   <span className="px-2 py-1 bg-accent-green/20 text-accent-green rounded text-sm">
                     Resolved
                   </span>
-                ) : market.active ? (
+                ) : new Date(market.end_time) > new Date() ? (
                   <span className="px-2 py-1 bg-accent-yellow/20 text-accent-yellow rounded text-sm">
                     Active
                   </span>
@@ -216,7 +216,7 @@ export function MarketDetail() {
             </div>
             <div className="bg-surface-dark rounded-lg p-4">
               <div className="text-sm text-text-muted mb-1">Coin Price Start</div>
-              <div className="font-medium">{formatPrice(market.btc_price_start)}</div>
+              <div className="font-medium">{formatPrice(market.coin_price_start)}</div>
             </div>
             <div className="bg-surface-dark rounded-lg p-4">
               <div className="text-sm text-text-muted mb-1">Market ID</div>
@@ -302,7 +302,7 @@ export function MarketDetail() {
                         {formatDate(snapshot.time)}
                       </td>
                       <td className="py-3 px-4 text-right text-sm font-mono">
-                        {snapshot.btc_price ? formatPrice(snapshot.btc_price) : '-'}
+                        {snapshot.coin_price ? formatPrice(snapshot.coin_price) : '-'}
                       </td>
                       <td className="py-3 px-4 text-right text-sm font-mono text-accent-green">
                         {snapshot.price_up?.toFixed(4) || '-'}
@@ -369,7 +369,7 @@ function OrderbookPreview({
   orderbook,
   side,
 }: {
-  orderbook: { bids: Array<{ price: string; size: string }>; asks: Array<{ price: string; size: string }> };
+  orderbook: { bids: Array<{ price: number; size: number }>; asks: Array<{ price: number; size: number }> };
   side: 'up' | 'down';
 }) {
   const topBids = orderbook.bids?.slice(0, 3) || [];

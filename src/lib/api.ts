@@ -10,6 +10,10 @@ authClient.interceptors.request.use((config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
+  const apiKey = import.meta.env.VITE_API_KEY;
+  if (apiKey) {
+    config.headers['X-API-Key'] = apiKey;
+  }
   return config;
 });
 
@@ -32,31 +36,34 @@ export interface Market {
   market_type: string;
   market_id: string;
   event_id: string;
-  active: boolean;
-  resolved: boolean;
+  is_resolved: boolean;
   start_time: string;
   end_time: string;
-  btc_price_start: number | null;
+  coin_price_start: number | null;
+  coin_price_end: number | null;
   winner: string | null;
   final_volume: number | null;
+  final_liquidity: number | null;
   resolved_at: string | null;
   condition_id?: string;
   clob_token_up?: string;
   clob_token_down?: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface Snapshot {
   time: string;
-  btc_price: number;
+  coin_price: number;
   price_up: number;
   price_down: number;
   orderbook_up?: {
-    bids: Array<{ price: string; size: string }>;
-    asks: Array<{ price: string; size: string }>;
+    bids: Array<{ price: number; size: number }>;
+    asks: Array<{ price: number; size: number }>;
   };
   orderbook_down?: {
-    bids: Array<{ price: string; size: string }>;
-    asks: Array<{ price: string; size: string }>;
+    bids: Array<{ price: number; size: number }>;
+    asks: Array<{ price: number; size: number }>;
   };
 }
 
@@ -206,6 +213,26 @@ export const api = {
     const { data } = await authClient.get(`${API_BASE}/markets/${slug}`, {
       params: { coin }
     });
+    return data;
+  },
+
+  replayStrategy: async (params: {
+    marketSlug: string;
+    side: string;
+    entryConditions: Array<{ field: string; operator: string; value: number }>;
+    exitConditions: Array<{ field: string; operator: string; value: number }>;
+    positionSize: number;
+    maxLossPercent?: number;
+    orderType?: string;
+  }): Promise<any> => {
+    const { data } = await authClient.post(`${API_BASE}/replay`, params);
+    return data;
+  },
+
+  getResolvedMarkets: async (coin: string, limit = 50, market_type?: string): Promise<MarketsResponse> => {
+    const params: any = { coin, resolved: true, limit };
+    if (market_type) params.market_type = market_type;
+    const { data } = await authClient.get(`${API_BASE}/markets`, { params });
     return data;
   },
 
