@@ -22,6 +22,10 @@ const faqs = [
     q: 'What happens if I exceed rate limits?',
     a: 'The API returns 429 with a Retry-After header. Upgrade to Pro or Enterprise for higher limits.',
   },
+  {
+    q: 'What is Strategy Replay?',
+    a: 'A no-code feature included with Pro and Enterprise. Pick any resolved market, define entry/exit conditions in dropdowns, and watch that market replay tick-by-tick with your strategy applied. Get PnL, win rate, max drawdown, and slippage from real fills on the actual order book.',
+  },
 ];
 
 export function Pricing() {

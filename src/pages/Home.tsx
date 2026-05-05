@@ -7,6 +7,10 @@ import {
   Bitcoin,
   Globe,
   ShieldCheck,
+  PlayCircle,
+  SlidersHorizontal,
+  BarChart3,
+  Zap,
 } from 'lucide-react';
 import { PricingCards } from '../components/PricingCards';
 import { LiveMarketSection } from '../components/LiveMarketSection';
@@ -39,6 +43,10 @@ const faqs = [
   {
     question: 'Can I try before paying?',
     answer: 'Yes, the free tier gives you access to recent BTC markets with full order book depth and 300ms resolution. No credit card required.',
+  },
+  {
+    question: 'Can I see how my strategy would have played out on a past market?',
+    answer: 'Yes. Pro includes Strategy Replay. Pick any resolved market, define entry/exit rules with dropdowns, and watch that market replay tick-by-tick with your strategy applied. PnL, drawdown, slippage, and win rate are computed from real fills on the actual order book, not estimates.',
   },
 ];
 
@@ -198,6 +206,119 @@ export function Home() {
                   <div className="p-4 text-sm text-primary text-center font-medium">{row.poly}</div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Strategy Replay — no-code backtesting (Pro) ── */}
+      <section className="py-20 border-t border-border relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_50%,rgba(16,185,129,0.06),transparent)]" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/5 mb-6">
+                <PlayCircle className="w-3.5 h-3.5 text-primary" />
+                <span className="text-xs font-medium text-primary">Strategy Replay · Pro</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+                Replay any market with{' '}
+                <span className="gradient-text">your own strategy</span>
+              </h2>
+              <p className="text-text-muted text-lg mb-8 leading-relaxed max-w-lg">
+                Pick a resolved market. Define entry and exit rules with dropdowns.
+                Watch the market replay tick-by-tick with your strategy applied, against the actual order book and with realistic slippage.
+              </p>
+
+              <div className="space-y-5 mb-10">
+                {[
+                  { icon: SlidersHorizontal, title: 'No code, no setup', desc: 'Build conditions like “UP Price < 0.40” in the UI. No Python, notebooks, or data pipelines.' },
+                  { icon: BarChart3, title: 'Real fills, not estimates', desc: 'Walks the actual order book at every tick. See exactly what would have filled and at what price.' },
+                  { icon: Zap, title: 'See the what-if, instantly', desc: 'Watch the replay stream on a single market and get PnL, drawdown, slippage, and win rate from real fills.' },
+                ].map((item) => (
+                  <div key={item.title} className="flex gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                      <item.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <div className="font-semibold mb-0.5">{item.title}</div>
+                      <div className="text-text-muted text-sm leading-relaxed">{item.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <Link to="/signup?plan=pro" className="btn-primary text-base py-3 px-6">
+                  Try Strategy Replay
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link to="/pricing" className="btn-secondary text-base py-3 px-6">
+                  See Pro plan
+                </Link>
+              </div>
+            </div>
+
+            {/* Right: stylized replay preview */}
+            <div className="relative">
+              <div className="absolute -inset-8 bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(16,185,129,0.18),transparent)] blur-2xl pointer-events-none" />
+              <div className="relative card p-6 space-y-5">
+                {/* Strategy mock */}
+                <div>
+                  <div className="text-[10px] uppercase tracking-wider text-text-dim mb-2">Strategy</div>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-1.5 text-xs">
+                      <span className="px-2 py-1 rounded bg-surface-dark border border-border flex-1">UP Price</span>
+                      <span className="px-2 py-1 rounded bg-surface-dark border border-border w-10 text-center">{'<'}</span>
+                      <span className="px-2 py-1 rounded bg-surface-dark border border-border w-14 text-center font-mono">0.40</span>
+                      <span className="px-1.5 py-0.5 rounded bg-accent-green/15 text-accent-green text-[9px] font-bold">ENTRY</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs">
+                      <span className="px-2 py-1 rounded bg-surface-dark border border-border flex-1">UP Price</span>
+                      <span className="px-2 py-1 rounded bg-surface-dark border border-border w-10 text-center">{'>='}</span>
+                      <span className="px-2 py-1 rounded bg-surface-dark border border-border w-14 text-center font-mono">0.60</span>
+                      <span className="px-1.5 py-0.5 rounded bg-accent-red/15 text-accent-red text-[9px] font-bold">EXIT</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mini chart */}
+                <div className="border-t border-border pt-4">
+                  <div className="text-[10px] uppercase tracking-wider text-text-dim mb-2">Replay</div>
+                  <svg viewBox="0 0 320 110" className="w-full h-auto">
+                    {/* Gridlines */}
+                    <line x1="0" y1="55" x2="320" y2="55" stroke="rgba(255,255,255,0.06)" strokeDasharray="2,3" />
+                    <line x1="0" y1="80" x2="320" y2="80" stroke="rgba(255,255,255,0.06)" strokeDasharray="2,3" />
+                    {/* In-position shading */}
+                    <rect x="120" y="10" width="140" height="90" fill="var(--color-accent-green)" fillOpacity="0.07" />
+                    {/* Probability line */}
+                    <path d="M 0 75 L 30 80 L 60 70 L 90 78 L 120 70 L 150 60 L 180 50 L 210 38 L 240 30 L 270 22 L 320 18"
+                          fill="none" stroke="var(--color-accent-green)" strokeWidth="1.75" />
+                    {/* Entry marker @ (120, 70) */}
+                    <circle cx="120" cy="70" r="3.5" fill="var(--color-accent-green)" stroke="var(--color-surface-dark)" strokeWidth="1.5" />
+                    <path d="M 120 76 L 114 86 L 126 86 Z" fill="var(--color-accent-green)" stroke="var(--color-surface-dark)" strokeWidth="1.25" />
+                    {/* Exit marker @ (270, 22) */}
+                    <circle cx="270" cy="22" r="3.5" fill="var(--color-accent-red)" stroke="var(--color-surface-dark)" strokeWidth="1.5" />
+                    <path d="M 270 16 L 264 6 L 276 6 Z" fill="var(--color-accent-red)" stroke="var(--color-surface-dark)" strokeWidth="1.25" />
+                  </svg>
+                </div>
+
+                {/* Verdict */}
+                <div className="border-t border-border pt-4 flex items-center justify-between">
+                  <div>
+                    <div className="text-[10px] uppercase tracking-wider text-text-dim mb-0.5">Total PnL</div>
+                    <div className="text-2xl font-bold font-mono text-accent-green leading-none">+37.66</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-[10px] uppercase tracking-wider text-text-dim mb-0.5">Win Rate</div>
+                    <div className="text-xl font-bold font-mono">100%</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-[10px] uppercase tracking-wider text-text-dim mb-0.5">Slippage</div>
+                    <div className="text-xl font-bold font-mono text-text-muted">0.003</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

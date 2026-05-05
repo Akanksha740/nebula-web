@@ -59,6 +59,7 @@ export const tierConfigs: TierConfig[] = [
       { text: 'ETH markets' },
       { text: 'SOL markets' },
       { text: 'Unlimited history' },
+      { text: 'No-code Strategy Replay' },
       { text: 'Priority support' },
     ],
     dashboardFeatures: [
@@ -91,6 +92,7 @@ export const tierConfigs: TierConfig[] = [
       { text: 'Everything in Starter' },
       { text: 'Unlimited market history' },
       { text: 'ETH & SOL market data' },
+      { text: 'No-code Strategy Replay' },
       { text: 'Priority support' },
     ],
     dashboardFeatures: [
@@ -100,6 +102,7 @@ export const tierConfigs: TierConfig[] = [
       'ETH 5m, 15m & 1h — All',
       'SOL 5m, 15m & 1h — All',
       'Complete history',
+      'No-code Strategy Replay',
       'Priority support',
     ],
     rateLimit: { reqPerMin: '300', reqPerDay: '50,000' },
@@ -125,6 +128,7 @@ export const tierConfigs: TierConfig[] = [
       { text: 'Everything in Starter' },
       { text: 'Unlimited market history' },
       { text: 'ETH & SOL market data' },
+      { text: 'No-code Strategy Replay' },
       { text: 'Priority support' },
     ],
     dashboardFeatures: [
@@ -134,6 +138,7 @@ export const tierConfigs: TierConfig[] = [
       'ETH 5m, 15m & 1h — All',
       'SOL 5m, 15m & 1h — All',
       'Complete history',
+      'No-code Strategy Replay',
       'Priority support',
     ],
     rateLimit: { reqPerMin: '300', reqPerDay: '50,000' },
@@ -159,6 +164,7 @@ export const tierConfigs: TierConfig[] = [
       { text: 'Custom endpoints' },
       { text: 'Dedicated infra' },
       { text: 'Flexible rate limits' },
+      { text: 'No-code Strategy Replay' },
       { text: 'Hands-on onboarding' },
     ],
     dashboardFeatures: [
@@ -170,6 +176,7 @@ export const tierConfigs: TierConfig[] = [
       'Custom endpoints',
       'Dedicated infra',
       'Flexible rate limits',
+      'No-code Strategy Replay',
     ],
     rateLimit: { reqPerMin: 'Custom', reqPerDay: 'Unlimited' },
     maxApiKeys: 33,

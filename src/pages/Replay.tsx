@@ -505,9 +505,9 @@ export function ReplayContent() {
         <p className="text-text-muted text-sm">Define a strategy, pick a resolved market, and watch it play out tick-by-tick against real order book data.</p>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-6">
-          {/* ── Left: Strategy Builder ── */}
-          <div className="lg:col-span-1 space-y-4">
+      <div className="grid lg:grid-cols-3 gap-6 items-start">
+          {/* ── Left: Strategy Builder (sticky on desktop) ── */}
+          <div className="lg:col-span-1 space-y-4 lg:sticky lg:top-28">
             {/* Market Picker */}
             <div className="card p-5">
               <h3 className="font-semibold mb-3">Select Market</h3>
@@ -603,30 +603,32 @@ export function ReplayContent() {
             </div>
 
             {/* Speed & Run */}
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs text-text-dim">Playback Speed</span>
-              <div className="flex items-center gap-1">
-                {[10, 20, 50].map(speed => (
-                  <button key={speed} onClick={() => setStreamSpeed(speed)}
-                    className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${streamSpeed === speed ? 'bg-primary/20 text-primary border border-primary/40' : 'bg-surface-dark text-text-muted border border-border hover:border-primary/30'}`}
-                  >{speed === 10 ? '0.5x' : speed === 20 ? '1x' : '2.5x'}</button>
-                ))}
+            <div className="card p-5 space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-text-dim">Playback Speed</span>
+                <div className="flex items-center gap-1">
+                  {[10, 20, 50].map(speed => (
+                    <button key={speed} onClick={() => setStreamSpeed(speed)}
+                      className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${streamSpeed === speed ? 'bg-primary/20 text-primary border border-primary/40' : 'bg-surface-dark text-text-muted border border-border hover:border-primary/30'}`}
+                    >{speed === 10 ? '0.5x' : speed === 20 ? '1x' : '2.5x'}</button>
+                  ))}
+                </div>
               </div>
+              <button
+                onClick={handleReplay}
+                disabled={replaying || !selectedMarket}
+                className="btn-primary w-full py-3 justify-center text-sm"
+              >
+                {replaying ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-surface-dark border-t-transparent rounded-full animate-spin" />
+                    Replaying...
+                  </>
+                ) : (
+                  <><Play className="w-4 h-4" /> Run Replay</>
+                )}
+              </button>
             </div>
-            <button
-              onClick={handleReplay}
-              disabled={replaying || !selectedMarket}
-              className="btn-primary w-full py-3 justify-center text-sm"
-            >
-              {replaying ? (
-                <>
-                  <div className="w-4 h-4 border-2 border-surface-dark border-t-transparent rounded-full animate-spin" />
-                  Replaying...
-                </>
-              ) : (
-                <><Play className="w-4 h-4" /> Run Replay</>
-              )}
-            </button>
 
             {error && (
               <div className="flex items-start gap-2 p-3 rounded-lg bg-accent-red/10 border border-accent-red/20">
@@ -681,16 +683,18 @@ function ConditionList({ conditions, type, onChange, onRemove }: {
       {conditions.map((c, i) => (
         <div key={i} className="flex items-center gap-1.5">
           <select value={c.field} onChange={e => onChange(type, i, 'field', e.target.value)}
-            className="flex-1 bg-surface-dark border border-border rounded px-2 py-1.5 text-xs focus:border-primary/50 focus:outline-none">
+            className="flex-1 min-w-0 h-8 bg-surface-dark border border-border rounded px-2 text-xs focus:border-primary/50 focus:outline-none">
             {FIELDS.map(f => <option key={f.value} value={f.value}>{f.label}</option>)}
           </select>
           <select value={c.operator} onChange={e => onChange(type, i, 'operator', e.target.value)}
-            className="w-20 bg-surface-dark border border-border rounded px-2 py-1.5 text-xs focus:border-primary/50 focus:outline-none">
+            className="w-16 shrink-0 h-8 bg-surface-dark border border-border rounded px-2 text-xs focus:border-primary/50 focus:outline-none">
             {OPERATORS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
           </select>
           <input type="number" step="any" value={c.value} onChange={e => onChange(type, i, 'value', e.target.value)}
-            className="w-20 bg-surface-dark border border-border rounded px-2 py-1.5 text-xs focus:border-primary/50 focus:outline-none" />
-          <button onClick={() => onRemove(type, i)} className="text-text-dim hover:text-accent-red shrink-0">
+            className="w-16 shrink-0 h-8 bg-surface-dark border border-border rounded px-2 text-xs focus:border-primary/50 focus:outline-none" />
+          <button onClick={() => onRemove(type, i)}
+            aria-label="Remove condition"
+            className="shrink-0 w-8 h-8 flex items-center justify-center rounded border border-border bg-surface-dark text-text-dim hover:text-accent-red hover:border-accent-red/40 hover:bg-accent-red/10 transition-colors">
             <Trash2 className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -705,86 +709,92 @@ function ReplayResults({ result }: { result: ReplayResult }) {
 
   return (
     <div className="space-y-4">
-      {/* Performance Summary */}
-      <div className="card p-5">
-        <h3 className="font-semibold mb-4">Performance Summary</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <StatCard label="Total PnL" value={`${isProfit ? '+' : ''}${p.total_pnl.toFixed(4)}`}
-            sub={`${isProfit ? '+' : ''}${p.total_pnl_percent.toFixed(2)}%`} positive={isProfit} />
-          <StatCard label="Win Rate" value={`${p.win_rate.toFixed(1)}%`}
-            sub={`${p.winning_trades}W / ${p.losing_trades}L`} positive={p.win_rate >= 50} />
-          <StatCard label="Max Drawdown" value={p.max_drawdown.toFixed(4)}
-            sub={`${p.max_drawdown_percent.toFixed(2)}%`} positive={false} />
-          <StatCard label="Trades" value={String(p.total_trades)}
-            sub={`${p.time_in_position_pct.toFixed(1)}% time in market`} />
+      {/* ── Hero: Total PnL + Market Info + KPIs ── */}
+      <div className={`card p-6 border ${isProfit ? 'border-accent-green/30' : 'border-accent-red/30'}`}>
+        <div className="flex items-start justify-between gap-6 flex-wrap mb-5">
+          <div className="min-w-0">
+            <div className="text-text-dim text-[10px] uppercase tracking-wider mb-1">Total PnL</div>
+            <div className={`text-4xl font-bold font-mono leading-none ${isProfit ? 'text-accent-green' : 'text-accent-red'}`}>
+              {isProfit ? '+' : ''}{p.total_pnl.toFixed(4)}
+            </div>
+            <div className={`text-sm font-mono mt-1.5 ${isProfit ? 'text-accent-green' : 'text-accent-red'}`}>
+              {isProfit ? '+' : ''}{p.total_pnl_percent.toFixed(2)}% return
+            </div>
+          </div>
+          <div className="text-right text-xs space-y-1 shrink-0">
+            <div className="flex items-center gap-2 justify-end">
+              <span className="text-text-dim text-[10px] uppercase tracking-wider">Market</span>
+              <span className="font-mono text-text-primary truncate max-w-[280px]">{result.market.slug}</span>
+            </div>
+            <div className="flex items-center gap-2 justify-end">
+              <span className="text-text-dim text-[10px] uppercase tracking-wider">Resolved</span>
+              <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${p.final_market_outcome === 'UP' ? 'bg-accent-green/20 text-accent-green' : 'bg-accent-red/20 text-accent-red'}`}>
+                {p.final_market_outcome}
+              </span>
+            </div>
+            <div className="flex items-center gap-2 justify-end text-text-dim">
+              <span>{result.total_snapshots.toLocaleString()} snapshots</span>
+            </div>
+          </div>
         </div>
-        <div className="grid grid-cols-3 gap-4 mt-4">
-          <StatCard label="Best Trade" value={`${p.best_trade >= 0 ? '+' : ''}${p.best_trade.toFixed(4)}`} positive={p.best_trade >= 0} />
-          <StatCard label="Worst Trade" value={p.worst_trade.toFixed(4)} positive={false} />
-          <StatCard label="Avg Trade" value={p.avg_trade_pnl.toFixed(4)} positive={p.avg_trade_pnl >= 0} />
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-5 border-t border-border">
+          <KpiCell label="Win Rate" value={`${p.win_rate.toFixed(0)}%`}
+            sub={`${p.winning_trades}W · ${p.losing_trades}L`} tone={p.win_rate >= 50 ? 'pos' : 'neg'} />
+          <KpiCell label="Trades" value={String(p.total_trades)}
+            sub={`${p.time_in_position_pct.toFixed(0)}% in market`} />
+          <KpiCell label="Max Drawdown"
+            value={`-${p.max_drawdown.toFixed(2)}`}
+            sub={`${p.max_drawdown_percent.toFixed(1)}%`} tone="neg" />
+          <KpiCell label="Avg Trade"
+            value={`${p.avg_trade_pnl >= 0 ? '+' : ''}${p.avg_trade_pnl.toFixed(2)}`}
+            tone={p.avg_trade_pnl >= 0 ? 'pos' : 'neg'} />
         </div>
       </div>
 
-      {/* Market Price Chart */}
+      {/* ── Market Replay Chart ── */}
       {result.pnl_curve.length > 1 && (
         <div className="card p-5">
-          <h3 className="font-semibold mb-4">Market Replay</h3>
+          <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+            <h3 className="font-semibold">Market Replay</h3>
+            <div className="flex items-center gap-4 text-[11px]">
+              <span className="text-text-dim">
+                Best <span className="font-mono font-semibold text-accent-green ml-1">+{p.best_trade.toFixed(2)}</span>
+              </span>
+              <span className="text-text-dim">
+                Worst <span className="font-mono font-semibold text-accent-red ml-1">{p.worst_trade.toFixed(2)}</span>
+              </span>
+            </div>
+          </div>
           <MarketChart data={result.pnl_curve} trades={result.trades} side={result.strategy?.side || 'UP'} />
         </div>
       )}
 
-
-
-      {/* Trade Alerts */}
+      {/* ── Trade Log ── */}
       {result.trades.length > 0 && (
         <div className="card p-5">
-          <h3 className="font-semibold mb-3">Trade Alerts</h3>
-          <div className="space-y-2">
-            {result.trades.map((t, i) => (
-              <div key={i} className={`flex items-center gap-3 px-3 py-2 rounded-lg border text-xs ${
-                t.type === 'ENTRY'
-                  ? 'bg-accent-green/5 border-accent-green/20'
-                  : 'bg-accent-red/5 border-accent-red/20'
-              }`}>
-                <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
-                  t.type === 'ENTRY' ? 'bg-accent-green/20 text-accent-green' : 'bg-accent-red/20 text-accent-red'
-                }`}>{t.type}</span>
-                <span className="text-text-muted">{new Date(t.time).toLocaleTimeString()}</span>
-                <span className="font-mono text-text-primary">@ {t.fill_price.toFixed(4)}</span>
-                <span className="text-text-dim">{t.reason}</span>
-                {t.type === 'EXIT' && (
-                  <span className={`ml-auto font-mono font-semibold ${t.position_pnl >= 0 ? 'text-accent-green' : 'text-accent-red'}`}>
-                    {t.position_pnl >= 0 ? '+' : ''}{t.position_pnl.toFixed(4)}
-                  </span>
-                )}
-              </div>
-            ))}
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold">Trades</h3>
+            <span className="text-text-dim text-xs">{result.trades.length} {result.trades.length === 1 ? 'event' : 'events'}</span>
           </div>
-        </div>
-      )}
-
-      {/* Trade Log */}
-      {result.trades.length > 0 && (
-        <div className="card p-5">
-          <h3 className="font-semibold mb-4">Trade Log</h3>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
                 <tr className="text-text-dim border-b border-border">
-                  <th className="text-left py-2 pr-3">Time</th>
-                  <th className="text-left py-2 pr-3">Type</th>
-                  <th className="text-left py-2 pr-3">Reason</th>
-                  <th className="text-right py-2 pr-3">Price</th>
-                  <th className="text-right py-2 pr-3">Fill</th>
-                  <th className="text-right py-2 pr-3">Slippage</th>
-                  <th className="text-right py-2 pr-3">Trade PnL</th>
-                  <th className="text-right py-2">Cumulative</th>
+                  <th className="text-left py-2 pr-3 font-medium">Time</th>
+                  <th className="text-left py-2 pr-3 font-medium">Type</th>
+                  <th className="text-left py-2 pr-3 font-medium">Reason</th>
+                  <th className="text-right py-2 pr-3 font-medium">Price</th>
+                  <th className="text-right py-2 pr-3 font-medium">Fill</th>
+                  <th className="text-right py-2 pr-3 font-medium">Slip</th>
+                  <th className="text-right py-2 pr-3 font-medium">Trade PnL</th>
+                  <th className="text-right py-2 font-medium">Cumulative</th>
                 </tr>
               </thead>
               <tbody>
                 {result.trades.map((t, i) => (
-                  <tr key={i} className="border-b border-border/50 hover:bg-surface-card/50">
-                    <td className="py-2 pr-3 text-text-muted">{new Date(t.time).toLocaleTimeString()}</td>
+                  <tr key={i} className="border-b border-border/50 hover:bg-surface-card/50 transition-colors">
+                    <td className="py-2 pr-3 text-text-muted font-mono">{new Date(t.time).toLocaleTimeString()}</td>
                     <td className="py-2 pr-3">
                       <span className={`px-1.5 py-0.5 rounded text-[10px] font-semibold ${t.type === 'ENTRY' ? 'bg-accent-green/20 text-accent-green' : 'bg-accent-red/20 text-accent-red'}`}>
                         {t.type}
@@ -795,7 +805,7 @@ function ReplayResults({ result }: { result: ReplayResult }) {
                     <td className="py-2 pr-3 text-right font-mono">{t.fill_price.toFixed(4)}</td>
                     <td className="py-2 pr-3 text-right font-mono text-text-dim">{t.slippage.toFixed(6)}</td>
                     <td className={`py-2 pr-3 text-right font-mono ${t.position_pnl > 0 ? 'text-accent-green' : t.position_pnl < 0 ? 'text-accent-red' : 'text-text-muted'}`}>
-                      {t.type === 'EXIT' ? (t.position_pnl >= 0 ? '+' : '') + t.position_pnl.toFixed(4) : '-'}
+                      {t.type === 'EXIT' ? (t.position_pnl >= 0 ? '+' : '') + t.position_pnl.toFixed(4) : '—'}
                     </td>
                     <td className={`py-2 text-right font-mono ${t.cumulative_pnl >= 0 ? 'text-accent-green' : 'text-accent-red'}`}>
                       {(t.cumulative_pnl >= 0 ? '+' : '') + t.cumulative_pnl.toFixed(4)}
@@ -807,24 +817,15 @@ function ReplayResults({ result }: { result: ReplayResult }) {
           </div>
         </div>
       )}
-
-      {/* Market Info */}
-      <div className="card p-5">
-        <div className="flex items-center justify-between text-sm">
-          <span className="text-text-muted">Market: <span className="text-text-primary font-mono">{result.market.slug}</span></span>
-          <span className="text-text-muted">Outcome: <span className={`font-semibold ${p.final_market_outcome === 'UP' ? 'text-accent-green' : 'text-accent-red'}`}>{p.final_market_outcome}</span></span>
-          <span className="text-text-muted">Snapshots: <span className="text-text-primary">{result.total_snapshots.toLocaleString()}</span></span>
-        </div>
-      </div>
     </div>
   );
 }
 
-function StatCard({ label, value, sub, positive }: { label: string; value: string; sub?: string; positive?: boolean }) {
+function KpiCell({ label, value, sub, tone }: { label: string; value: string; sub?: string; tone?: 'pos' | 'neg' }) {
   return (
-    <div className="bg-surface-dark rounded-lg p-3 border border-border">
+    <div>
       <div className="text-text-dim text-[10px] uppercase tracking-wider mb-1">{label}</div>
-      <div className={`text-lg font-bold font-mono ${positive === true ? 'text-accent-green' : positive === false ? 'text-accent-red' : 'text-text-primary'}`}>
+      <div className={`text-xl font-bold font-mono leading-tight ${tone === 'pos' ? 'text-accent-green' : tone === 'neg' ? 'text-accent-red' : 'text-text-primary'}`}>
         {value}
       </div>
       {sub && <div className="text-text-dim text-[10px] mt-0.5">{sub}</div>}
@@ -833,39 +834,66 @@ function StatCard({ label, value, sub, positive }: { label: string; value: strin
 }
 
 function MarketChart({ data, trades, side }: { data: ReplayResult['pnl_curve']; trades: ReplayResult['trades']; side: string }) {
+  const svgRef = useRef<SVGSVGElement | null>(null);
+  const [hoverIdx, setHoverIdx] = useState<number | null>(null);
+
   if (data.length < 2) return null;
 
   const width = 800;
-  const height = 280;
-  const padding = { top: 15, right: 55, bottom: 25, left: 60 };
-  const chartW = width - padding.left - padding.right;
-  const chartH = height - padding.top - padding.bottom;
+  const height = 400;
+  const xPad = { left: 60, right: 18 };
+  const chartW = width - xPad.left - xPad.right;
 
-  // Coin price (left axis)
+  // Three stacked panels sharing the same x (time) axis
+  const panels = {
+    prob: { top: 18, height: 160 },
+    coin: { top: 196, height: 70 },
+    pnl:  { top: 286, height: 70 },
+  };
+  const panelsBottom = panels.pnl.top + panels.pnl.height;
+
+  const toX = (i: number) => xPad.left + (i / (data.length - 1)) * chartW;
+
+  // Probability scale (auto-padded, clamped to [0,1])
+  const posPrices = data.map(d => d.price);
+  const pMinRaw = Math.min(...posPrices);
+  const pMaxRaw = Math.max(...posPrices);
+  const pPad = (pMaxRaw - pMinRaw) * 0.15 || 0.05;
+  const posMin = Math.max(0, pMinRaw - pPad);
+  const posMax = Math.min(1, pMaxRaw + pPad);
+  const posRange = posMax - posMin || 1;
+  const toProbY = (v: number) => panels.prob.top + panels.prob.height - ((v - posMin) / posRange) * panels.prob.height;
+
+  // Coin price scale
   const coinPrices = data.map(d => d.coin_price);
   const coinMin = Math.min(...coinPrices);
   const coinMax = Math.max(...coinPrices);
   const coinRange = coinMax - coinMin || 1;
+  const toCoinY = (v: number) => panels.coin.top + panels.coin.height - ((v - coinMin) / coinRange) * panels.coin.height;
 
-  // Position price (right axis)
-  const posPrices = data.map(d => d.price);
-  const posMin = Math.min(...posPrices);
-  const posMax = Math.max(...posPrices);
-  const posRange = posMax - posMin || 0.01;
+  // Equity curve (realized + unrealized PnL); always include zero in range
+  const equity = data.map(d => d.pnl + d.unrealized_pnl);
+  const eMinRaw = Math.min(0, ...equity);
+  const eMaxRaw = Math.max(0, ...equity);
+  const ePad = (eMaxRaw - eMinRaw) * 0.15 || 0.01;
+  const eqMin = eMinRaw - ePad;
+  const eqMax = eMaxRaw + ePad;
+  const eqRange = eqMax - eqMin || 1;
+  const toPnlY = (v: number) => panels.pnl.top + panels.pnl.height - ((v - eqMin) / eqRange) * panels.pnl.height;
+  const zeroY = toPnlY(0);
 
-  const toX = (i: number) => padding.left + (i / (data.length - 1)) * chartW;
-  const toCoinY = (v: number) => padding.top + chartH - ((v - coinMin) / coinRange) * chartH;
-  const toPosY = (v: number) => padding.top + chartH - ((v - posMin) / posRange) * chartH;
+  const buildPath = (mapY: (v: number) => number, vals: number[]) => {
+    let p = `M ${toX(0)} ${mapY(vals[0])}`;
+    for (let i = 1; i < vals.length; i++) p += ` L ${toX(i)} ${mapY(vals[i])}`;
+    return p;
+  };
+  const probPath = buildPath(toProbY, posPrices);
+  const coinPath = buildPath(toCoinY, coinPrices);
+  const pnlPath  = buildPath(toPnlY,  equity);
+  const finalEq = equity[equity.length - 1];
+  const pnlAreaPath = `${pnlPath} L ${toX(data.length - 1)} ${zeroY} L ${toX(0)} ${zeroY} Z`;
 
-  // Coin price path
-  let coinPath = `M ${toX(0)} ${toCoinY(coinPrices[0])}`;
-  for (let i = 1; i < data.length; i++) coinPath += ` L ${toX(i)} ${toCoinY(coinPrices[i])}`;
-
-  // Position price path
-  let posPath = `M ${toX(0)} ${toPosY(posPrices[0])}`;
-  for (let i = 1; i < data.length; i++) posPath += ` L ${toX(i)} ${toPosY(posPrices[i])}`;
-
-  // In-position shaded regions
+  // In-position regions (shown on probability panel only)
   const regions: Array<{ start: number; end: number }> = [];
   let regionStart: number | null = null;
   for (let i = 0; i < data.length; i++) {
@@ -874,63 +902,186 @@ function MarketChart({ data, trades, side }: { data: ReplayResult['pnl_curve']; 
   }
   if (regionStart !== null) regions.push({ start: regionStart, end: data.length - 1 });
 
-  // Map trade times to x positions using exact time match
+  // Trade markers (anchored on probability panel at fill price)
   const tradeMarkers = trades.map(t => {
-    // Find the closest data point by time
+    const tradeTime = new Date(t.time).getTime();
     let bestIdx = 0;
     let bestDiff = Infinity;
-    const tradeTime = new Date(t.time).getTime();
     for (let i = 0; i < data.length; i++) {
       const diff = Math.abs(new Date(data[i].time).getTime() - tradeTime);
       if (diff < bestDiff) { bestDiff = diff; bestIdx = i; }
     }
-    return { x: toX(bestIdx), y: toPosY(t.fill_price), type: t.type, pnl: t.position_pnl };
+    return { idx: bestIdx, x: toX(bestIdx), y: toProbY(t.fill_price), type: t.type, pnl: t.position_pnl, time: t.time, fill: t.fill_price, reason: t.reason };
   });
 
-  const posLabel = side === 'UP' ? 'UP Price' : 'DOWN Price';
+  const posLabel = side === 'UP' ? 'UP Probability' : 'DOWN Probability';
   const posColor = side === 'UP' ? 'var(--color-accent-green)' : 'var(--color-accent-red)';
+  const probGrid = [0.25, 0.5, 0.75].filter(g => g >= posMin && g <= posMax);
+
+  const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
+    const svg = svgRef.current;
+    if (!svg) return;
+    const rect = svg.getBoundingClientRect();
+    const vbX = ((e.clientX - rect.left) / rect.width) * width;
+    if (vbX < xPad.left || vbX > width - xPad.right) { setHoverIdx(null); return; }
+    const ratio = (vbX - xPad.left) / chartW;
+    const idx = Math.max(0, Math.min(data.length - 1, Math.round(ratio * (data.length - 1))));
+    setHoverIdx(idx);
+  };
+
+  const fmtTime = (s: string) => new Date(s).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  const fmtDate = (s: string) => new Date(s).toLocaleDateString([], { month: 'short', day: 'numeric' });
+
+  const hp = hoverIdx !== null ? data[hoverIdx] : null;
+  const hoveredTrade = hoverIdx !== null ? tradeMarkers.find(m => Math.abs(m.idx - hoverIdx) <= 1) : undefined;
+  const midIdx = Math.floor(data.length / 2);
+  const pnlColor = finalEq >= 0 ? 'var(--color-accent-green)' : 'var(--color-accent-red)';
 
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
-      {/* In-position shading */}
-      {regions.map((r, i) => (
-        <rect key={i} x={toX(r.start)} y={padding.top} width={toX(r.end) - toX(r.start)} height={chartH}
-          fill={posColor} fillOpacity="0.06" />
-      ))}
+    <div className="relative">
+      <svg
+        ref={svgRef}
+        viewBox={`0 0 ${width} ${height}`}
+        className="w-full h-auto cursor-crosshair select-none"
+        preserveAspectRatio="xMidYMid meet"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={() => setHoverIdx(null)}
+      >
+        {/* ── Panel 1: Probability ── */}
+        <text x={xPad.left} y={panels.prob.top - 4} className="fill-text-muted text-[10px] font-semibold uppercase tracking-wider">{posLabel}</text>
+        {regions.map((r, i) => (
+          <rect key={i} x={toX(r.start)} y={panels.prob.top}
+            width={Math.max(1, toX(r.end) - toX(r.start))} height={panels.prob.height}
+            fill={posColor} fillOpacity="0.05" />
+        ))}
+        {probGrid.map(g => (
+          <g key={g}>
+            <line x1={xPad.left} y1={toProbY(g)} x2={width - xPad.right} y2={toProbY(g)}
+              stroke="rgba(255,255,255,0.06)" strokeWidth="1" strokeDasharray="2,3" />
+            <text x={xPad.left - 6} y={toProbY(g) + 3} textAnchor="end" className="fill-text-dim text-[9px] font-mono">{g.toFixed(2)}</text>
+          </g>
+        ))}
+        <text x={xPad.left - 6} y={toProbY(posMax) + 3} textAnchor="end" className="text-[9px] font-mono font-semibold" fill={posColor}>{posMax.toFixed(2)}</text>
+        <text x={xPad.left - 6} y={toProbY(posMin) + 3} textAnchor="end" className="text-[9px] font-mono font-semibold" fill={posColor}>{posMin.toFixed(2)}</text>
+        <path d={probPath} fill="none" stroke={posColor} strokeWidth="1.75" />
+        {tradeMarkers.map((m, i) => {
+          const isEntry = m.type === 'ENTRY';
+          const color = isEntry ? 'var(--color-accent-green)' : 'var(--color-accent-red)';
+          const gap = 4;
+          const w = 6;
+          const h = 10;
+          const path = isEntry
+            ? `M ${m.x} ${m.y + gap} L ${m.x - w} ${m.y + gap + h} L ${m.x + w} ${m.y + gap + h} Z`
+            : `M ${m.x} ${m.y - gap} L ${m.x - w} ${m.y - gap - h} L ${m.x + w} ${m.y - gap - h} Z`;
+          return (
+            <g key={i}>
+              {/* Anchor dot on the price line */}
+              <circle cx={m.x} cy={m.y} r="3.5" fill={color} stroke="var(--color-surface-dark)" strokeWidth="1.5" />
+              {/* Triangle pointer offset from the line */}
+              <path d={path} fill={color} stroke="var(--color-surface-dark)" strokeWidth="1.25" />
+            </g>
+          );
+        })}
 
-      {/* Coin price line */}
-      <path d={coinPath} fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1" />
+        {/* ── Panel 2: Coin Price ── */}
+        <text x={xPad.left} y={panels.coin.top - 4} className="fill-text-muted text-[10px] font-semibold uppercase tracking-wider">Coin Price</text>
+        <text x={xPad.left - 6} y={toCoinY(coinMax) + 3} textAnchor="end" className="fill-text-dim text-[9px] font-mono">${coinMax.toFixed(0)}</text>
+        <text x={xPad.left - 6} y={toCoinY(coinMin) + 3} textAnchor="end" className="fill-text-dim text-[9px] font-mono">${coinMin.toFixed(0)}</text>
+        <path d={coinPath} fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="1.25" />
 
-      {/* Position price line */}
-      <path d={posPath} fill="none" stroke={posColor} strokeWidth="1.5" />
+        {/* ── Panel 3: Cumulative PnL ── */}
+        <text x={xPad.left} y={panels.pnl.top - 4} className="fill-text-muted text-[10px] font-semibold uppercase tracking-wider">Cumulative PnL</text>
+        <line x1={xPad.left} y1={zeroY} x2={width - xPad.right} y2={zeroY}
+          stroke="rgba(255,255,255,0.18)" strokeWidth="1" strokeDasharray="2,3" />
+        <text x={xPad.left - 6} y={zeroY + 3} textAnchor="end" className="fill-text-dim text-[9px] font-mono">0</text>
+        {Math.abs(eqMax) > 0.0001 && (
+          <text x={xPad.left - 6} y={toPnlY(eqMax) + 3} textAnchor="end" className="fill-accent-green text-[9px] font-mono font-semibold">+{eqMax.toFixed(2)}</text>
+        )}
+        {eqMin < -0.0001 && (
+          <text x={xPad.left - 6} y={toPnlY(eqMin) + 3} textAnchor="end" className="fill-accent-red text-[9px] font-mono font-semibold">{eqMin.toFixed(2)}</text>
+        )}
+        <path d={pnlAreaPath} fill={pnlColor} fillOpacity="0.18" />
+        <path d={pnlPath} fill="none" stroke={pnlColor} strokeWidth="1.75" />
 
-      {/* Entry/Exit markers */}
-      {tradeMarkers.map((m, i) => (
-        <g key={i}>
-          <circle cx={m.x} cy={m.y} r="4"
-            fill={m.type === 'ENTRY' ? 'var(--color-accent-green)' : 'var(--color-accent-red)'}
-            stroke="var(--color-surface-dark)" strokeWidth="1.5" />
-          <text x={m.x} y={m.y - 8} textAnchor="middle"
-            className={`text-[8px] font-bold ${m.type === 'ENTRY' ? 'fill-accent-green' : 'fill-accent-red'}`}>
-            {m.type === 'ENTRY' ? '▲ BUY' : '▼ SELL'}
-          </text>
+        {/* ── Shared crosshair across all panels ── */}
+        {hoverIdx !== null && (
+          <g pointerEvents="none">
+            <line x1={toX(hoverIdx)} y1={panels.prob.top} x2={toX(hoverIdx)} y2={panelsBottom}
+              stroke="rgba(255,255,255,0.25)" strokeWidth="1" strokeDasharray="2,2" />
+            <circle cx={toX(hoverIdx)} cy={toProbY(data[hoverIdx].price)} r="3.5" fill={posColor} stroke="white" strokeWidth="1.5" />
+            <circle cx={toX(hoverIdx)} cy={toCoinY(data[hoverIdx].coin_price)} r="3" fill="white" stroke="rgba(0,0,0,0.4)" strokeWidth="0.5" />
+            <circle cx={toX(hoverIdx)} cy={toPnlY(equity[hoverIdx])} r="3"
+              fill={equity[hoverIdx] >= 0 ? 'var(--color-accent-green)' : 'var(--color-accent-red)'}
+              stroke="white" strokeWidth="1.25" />
+          </g>
+        )}
+
+        {/* ── Time axis ── */}
+        <text x={xPad.left} y={panelsBottom + 16} className="fill-text-dim text-[9px]">{fmtDate(data[0].time)} {fmtTime(data[0].time)}</text>
+        <text x={xPad.left + chartW / 2} y={panelsBottom + 16} textAnchor="middle" className="fill-text-dim text-[9px]">{fmtTime(data[midIdx].time)}</text>
+        <text x={width - xPad.right} y={panelsBottom + 16} textAnchor="end" className="fill-text-dim text-[9px]">{fmtTime(data[data.length - 1].time)}</text>
+
+        {/* ── Legend ── */}
+        <g transform={`translate(${xPad.left}, ${height - 8})`}>
+          <path d="M 0 -4 L -4 3 L 4 3 Z" fill="var(--color-accent-green)" transform="translate(4, 0)" />
+          <text x="14" y="3" className="fill-accent-green text-[9px]">Entry</text>
+          <path d="M 0 3 L -4 -4 L 4 -4 Z" fill="var(--color-accent-red)" transform="translate(56, 0)" />
+          <text x="66" y="3" className="fill-accent-red text-[9px]">Exit</text>
+          <rect x="106" y="-5" width="14" height="8" fill={posColor} fillOpacity="0.2" />
+          <text x="124" y="3" className="fill-text-dim text-[9px]">In Position</text>
         </g>
-      ))}
+      </svg>
 
-      {/* Left axis labels (coin price) */}
-      <text x={padding.left - 5} y={toCoinY(coinMax)} textAnchor="end" className="fill-text-dim text-[9px]">${coinMax.toFixed(0)}</text>
-      <text x={padding.left - 5} y={toCoinY(coinMin)} textAnchor="end" className="fill-text-dim text-[9px]">${coinMin.toFixed(0)}</text>
-
-      {/* Right axis labels (position price) */}
-      <text x={width - padding.right + 5} y={toPosY(posMax)} textAnchor="start" className="text-[9px]" fill={posColor}>{posMax.toFixed(2)}</text>
-      <text x={width - padding.right + 5} y={toPosY(posMin)} textAnchor="start" className="text-[9px]" fill={posColor}>{posMin.toFixed(2)}</text>
-
-      {/* Legend */}
-      <line x1={padding.left} y1={height - 5} x2={padding.left + 20} y2={height - 5} stroke="rgba(255,255,255,0.5)" strokeWidth="1" />
-      <text x={padding.left + 24} y={height - 2} className="fill-text-dim text-[9px]">Coin Price</text>
-      <line x1={padding.left + 90} y1={height - 5} x2={padding.left + 110} y2={height - 5} stroke={posColor} strokeWidth="1.5" />
-      <text x={padding.left + 114} y={height - 2} className="text-[9px]" fill={posColor}>{posLabel}</text>
-    </svg>
+      {/* Hover tooltip — pinned to top, follows crosshair x */}
+      {hp && hoverIdx !== null && (
+        <div
+          className="absolute pointer-events-none bg-surface-dark/95 backdrop-blur-sm border border-border rounded-lg px-3 py-2 text-xs shadow-xl z-10 min-w-[180px]"
+          style={{
+            left: `${(toX(hoverIdx) / width) * 100}%`,
+            top: '8px',
+            transform: hoverIdx > data.length / 2 ? 'translateX(calc(-100% - 12px))' : 'translateX(12px)',
+          }}
+        >
+          <div className="text-text-dim text-[10px] mb-1.5">{fmtDate(hp.time)} · {fmtTime(hp.time)}</div>
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-text-muted text-[10px]">{posLabel}</span>
+            <span className="font-mono font-semibold" style={{ color: posColor }}>{hp.price.toFixed(4)}</span>
+          </div>
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-text-muted text-[10px]">Coin Price</span>
+            <span className="font-mono">${hp.coin_price.toFixed(2)}</span>
+          </div>
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-text-muted text-[10px]">PnL</span>
+            <span className={`font-mono font-semibold ${equity[hoverIdx] >= 0 ? 'text-accent-green' : 'text-accent-red'}`}>
+              {equity[hoverIdx] >= 0 ? '+' : ''}{equity[hoverIdx].toFixed(4)}
+            </span>
+          </div>
+          <div className="flex items-center justify-between gap-3 mt-0.5">
+            <span className="text-text-muted text-[10px]">Status</span>
+            <span className={`text-[10px] font-semibold ${hp.in_position ? 'text-accent-green' : 'text-text-dim'}`}>
+              {hp.in_position ? 'IN POSITION' : 'flat'}
+            </span>
+          </div>
+          {hoveredTrade && (
+            <div className="pt-2 mt-2 border-t border-border">
+              <div className="flex items-center gap-2 mb-1">
+                <span className={`px-1.5 py-0.5 rounded text-[9px] font-bold ${hoveredTrade.type === 'ENTRY' ? 'bg-accent-green/20 text-accent-green' : 'bg-accent-red/20 text-accent-red'}`}>
+                  {hoveredTrade.type}
+                </span>
+                <span className="font-mono text-[10px]">@ {hoveredTrade.fill.toFixed(4)}</span>
+              </div>
+              <div className="text-text-dim text-[10px]">{hoveredTrade.reason}</div>
+              {hoveredTrade.type === 'EXIT' && (
+                <div className={`text-[10px] font-mono mt-0.5 font-semibold ${hoveredTrade.pnl >= 0 ? 'text-accent-green' : 'text-accent-red'}`}>
+                  Trade PnL: {hoveredTrade.pnl >= 0 ? '+' : ''}{hoveredTrade.pnl.toFixed(4)}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 

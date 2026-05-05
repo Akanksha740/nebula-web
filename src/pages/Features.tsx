@@ -7,11 +7,19 @@ import {
   Server,
   BookOpen,
   BarChart3,
+  PlayCircle,
   ArrowRight,
   Check,
 } from 'lucide-react';
 
 const capabilities = [
+  {
+    icon: PlayCircle,
+    title: 'Strategy Replay',
+    desc: 'Pick a resolved market, define entry and exit rules in dropdowns, and watch the market replay tick-by-tick with your strategy applied.',
+    bullets: ['No-code condition builder', 'Tick-by-tick playback', 'Real fills + slippage', 'PnL, drawdown, win rate'],
+    badge: 'Pro',
+  },
   {
     icon: Database,
     title: 'Order Book Depth',
@@ -115,7 +123,14 @@ export function Features() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {capabilities.map((cap) => (
               <div key={cap.title} className="p-6 rounded-xl bg-surface-dark border border-border hover:border-primary/20 transition-colors">
-                <cap.icon className="w-6 h-6 text-primary mb-4" />
+                <div className="flex items-start justify-between mb-4">
+                  <cap.icon className="w-6 h-6 text-primary" />
+                  {cap.badge && (
+                    <span className="px-2 py-0.5 rounded-full bg-primary/15 text-primary text-[10px] font-bold uppercase tracking-wider">
+                      {cap.badge}
+                    </span>
+                  )}
+                </div>
                 <h3 className="text-lg font-semibold mb-2">{cap.title}</h3>
                 <p className="text-text-muted text-sm mb-4 leading-relaxed">{cap.desc}</p>
                 <ul className="space-y-1.5">
