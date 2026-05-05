@@ -1,0 +1,65 @@
+# PolyHistorical
+
+> PolyHistorical is an independent historical-data API for Polymarket prediction markets. It captures the full Level-2 order book (every bid, every ask, every price level) at 300ms resolution for every BTC, ETH, and SOL Up/Down market, from market open through resolution. Built for quants, algorithmic traders, market makers, and researchers who need realistic backtests with actual fills, slippage, and depth — not summarized OHLC candles.
+
+PolyHistorical is not affiliated with, endorsed by, or connected to Polymarket. The product is a REST API (sub-50ms responses, pagination, filtering, rate limits) plus a browser-based Strategy Replay tool that re-runs a user-defined strategy tick-by-tick against the real historical order book. Coverage: BTC Up/Down at 5m, 15m, 1h, 4h, and 24h timeframes; ETH and SOL at 5m, 15m, and 1h. Reference prices are sourced from Binance and Chainlink. Over 13,000 resolved markets are available. Free tier requires no credit card.
+
+## Core pages
+
+- [Home](https://polyhistorical.com/): Product overview, hero demo, supported markets, pricing summary, FAQ
+- [Features](https://polyhistorical.com/features): Full order book depth, 300ms snapshots, REST API capabilities, Strategy Replay
+- [Pricing](https://polyhistorical.com/pricing): Free, Pro, and Enterprise tiers; per-tier rate limits and market access
+- [Markets](https://polyhistorical.com/markets): Browseable index of every covered market with order book history
+- [Sign up](https://polyhistorical.com/signup): Create an account and obtain an API key (free tier, no card)
+
+## Documentation
+
+- [Docs (docs.polyhistorical.com)](https://docs.polyhistorical.com): API reference, endpoints, authentication, response schemas, code examples
+- [Sitemap](https://polyhistorical.com/sitemap.xml): Machine-readable index of every public page
+
+## Category hubs
+
+Each hub indexes the long-form guides, comparisons, and pSEO pages under that topic.
+
+- [All resources](https://polyhistorical.com/category): Top-level index of every category below
+- [Comparisons](https://polyhistorical.com/category/compare): PolyHistorical vs Kaiko, CryptoCompare, Amberdata, Dune, The Graph, Messari, CoinGecko, Polygon.io, Binance historical data
+- [Use cases](https://polyhistorical.com/category/use-cases): Backtesting, trading bots, academic research, market making, portfolio risk, sentiment analysis, volatility modeling, liquidity analysis
+- [Market data guides](https://polyhistorical.com/category/market-data): Order book fundamentals, sub-second vs minute-level data, bid/ask spreads, time-series analysis, market resolution
+- [API & developers](https://polyhistorical.com/category/api-developers): Python and JavaScript quickstarts, authentication, rate limiting, webhooks, bulk export
+- [Alternatives](https://polyhistorical.com/category/alternatives): Cheaper or more focused alternatives to general crypto data providers
+- [Crypto trading](https://polyhistorical.com/category/crypto-trading): Up/Down market mechanics, order book dynamics, scalping, mean reversion, spread trading, volume analysis
+- [Backtesting](https://polyhistorical.com/category/backtesting): Frameworks, common mistakes, walk-forward optimization, Monte Carlo, evaluation metrics, data cleaning
+- [Polymarket historical data](https://polyhistorical.com/category/polymarket-historical-data): Free API access, downloads, GitHub resources, backtesting datasets, documentation pointers
+
+## Highlighted guides
+
+- [What is Polymarket order book data](https://polyhistorical.com/p/what-is-polymarket-order-book-data): Definition, structure, and why it differs from candle data
+- [Sub-second vs minute-level market data](https://polyhistorical.com/p/sub-second-vs-minute-level-market-data): When 300ms resolution matters and when it doesn't
+- [How to analyze Polymarket Up/Down markets](https://polyhistorical.com/p/how-to-analyze-polymarket-up-down-markets): Mechanics of Up/Down resolution, tick behavior, and analysis approaches
+- [Backtesting framework for Polymarket in Python](https://polyhistorical.com/p/backtesting-framework-polymarket-python): End-to-end backtest using PolyHistorical snapshots
+- [Common backtesting mistakes in prediction markets](https://polyhistorical.com/p/common-backtesting-mistakes-prediction-markets): Look-ahead bias, survivorship, fill assumptions
+- [Polymarket historical data guide](https://polyhistorical.com/p/polymarket-historical-data-guide): Canonical overview for users new to Polymarket data
+
+## Highlighted comparisons
+
+- [PolyHistorical vs Polymarket's own API](https://polyhistorical.com/p/polymarket-api-vs-polyhistorical-api): What Polymarket exposes natively vs what PolyHistorical adds
+- [PolyHistorical vs Kaiko](https://polyhistorical.com/p/polyhistorical-vs-kaiko): Prediction-market-specific data vs broad crypto coverage
+- [PolyHistorical vs Dune Analytics](https://polyhistorical.com/p/polyhistorical-vs-dune-analytics): On-chain queries vs reconstructed order book snapshots
+- [PolyHistorical vs The Graph](https://polyhistorical.com/p/polyhistorical-vs-the-graph): Subgraphs vs purpose-built historical API
+- [Best free Polymarket data API](https://polyhistorical.com/p/best-free-polymarket-data-api): Free-tier comparison across providers
+- [Best prediction market data providers 2025](https://polyhistorical.com/p/best-prediction-market-data-providers-2025): Roundup of the active vendors in this niche
+
+## Live odds pages
+
+- [Polymarket BTC odds today](https://polyhistorical.com/p/polymarket-btc-odds-today)
+- [Polymarket ETH odds today](https://polyhistorical.com/p/polymarket-eth-odds-today)
+- [Polymarket SOL odds today](https://polyhistorical.com/p/polymarket-sol-odds-today)
+- [Polymarket crypto odds today](https://polyhistorical.com/p/polymarket-crypto-odds-today)
+
+## Optional
+
+- [Strategy Replay (Pro)](https://polyhistorical.com/replay): Tick-by-tick replay of a resolved market with user-defined entry/exit rules; PnL, drawdown, slippage, and win rate computed from real fills
+- [Contact](https://polyhistorical.com/contact): Sales and support
+- [Privacy policy](https://polyhistorical.com/privacy)
+- [Terms of service](https://polyhistorical.com/terms)
+- [Login](https://polyhistorical.com/login)

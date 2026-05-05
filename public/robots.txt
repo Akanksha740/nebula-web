@@ -1,3 +1,4 @@
+# Default — allow general crawling, block authenticated/transactional pages.
 User-agent: *
 Allow: /
 Disallow: /dashboard
@@ -6,4 +7,148 @@ Disallow: /verify-email
 Disallow: /forgot-password
 Disallow: /reset-password
 
+# ─── AI crawlers (citation-capable) ───
+# These bots can cite us back to users. Explicitly allow the same paths the
+# default policy allows; block the same authenticated/transactional ones.
+
+# OpenAI — ChatGPT, search, training
+User-agent: GPTBot
+Allow: /
+Disallow: /dashboard
+Disallow: /check-email
+Disallow: /verify-email
+Disallow: /forgot-password
+Disallow: /reset-password
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /dashboard
+Disallow: /check-email
+Disallow: /verify-email
+Disallow: /forgot-password
+Disallow: /reset-password
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /dashboard
+Disallow: /check-email
+Disallow: /verify-email
+Disallow: /forgot-password
+Disallow: /reset-password
+
+# Anthropic — Claude
+User-agent: ClaudeBot
+Allow: /
+Disallow: /dashboard
+Disallow: /check-email
+Disallow: /verify-email
+Disallow: /forgot-password
+Disallow: /reset-password
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /dashboard
+Disallow: /check-email
+Disallow: /verify-email
+Disallow: /forgot-password
+Disallow: /reset-password
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /dashboard
+Disallow: /check-email
+Disallow: /verify-email
+Disallow: /forgot-password
+Disallow: /reset-password
+
+User-agent: Claude-User
+Allow: /
+Disallow: /dashboard
+Disallow: /check-email
+Disallow: /verify-email
+Disallow: /forgot-password
+Disallow: /reset-password
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+Disallow: /dashboard
+Disallow: /check-email
+Disallow: /verify-email
+Disallow: /forgot-password
+Disallow: /reset-password
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /dashboard
+Disallow: /check-email
+Disallow: /verify-email
+Disallow: /forgot-password
+Disallow: /reset-password
+
+# Google — Gemini training and AI Overviews
+User-agent: Google-Extended
+Allow: /
+Disallow: /dashboard
+Disallow: /check-email
+Disallow: /verify-email
+Disallow: /forgot-password
+Disallow: /reset-password
+
+User-agent: GoogleOther
+Allow: /
+Disallow: /dashboard
+Disallow: /check-email
+Disallow: /verify-email
+Disallow: /forgot-password
+Disallow: /reset-password
+
+# Apple
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /dashboard
+Disallow: /check-email
+Disallow: /verify-email
+Disallow: /forgot-password
+Disallow: /reset-password
+
+# Meta
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /dashboard
+Disallow: /check-email
+Disallow: /verify-email
+Disallow: /forgot-password
+Disallow: /reset-password
+
+User-agent: FacebookBot
+Allow: /
+Disallow: /dashboard
+Disallow: /check-email
+Disallow: /verify-email
+Disallow: /forgot-password
+Disallow: /reset-password
+
+# ByteDance
+User-agent: Bytespider
+Allow: /
+Disallow: /dashboard
+Disallow: /check-email
+Disallow: /verify-email
+Disallow: /forgot-password
+Disallow: /reset-password
+
+# Common Crawl (used by many model trainers)
+User-agent: CCBot
+Allow: /
+Disallow: /dashboard
+Disallow: /check-email
+Disallow: /verify-email
+Disallow: /forgot-password
+Disallow: /reset-password
+
 Sitemap: https://polyhistorical.com/sitemap.xml
+
+# AI ingestion entry points (RFC-style hints; ignored by classic crawlers)
+# https://polyhistorical.com/llms.txt
+# https://polyhistorical.com/llms-full.txt

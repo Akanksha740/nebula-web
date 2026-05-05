@@ -249,7 +249,7 @@ export function Home() {
               </div>
 
               <div className="flex flex-wrap gap-3">
-                <Link to="/signup?plan=pro" className="btn-primary text-base py-3 px-6">
+                <Link to="/replay" className="btn-primary text-base py-3 px-6">
                   Try Strategy Replay
                   <ArrowRight className="w-4 h-4" />
                 </Link>

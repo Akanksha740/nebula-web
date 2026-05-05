@@ -604,13 +604,15 @@ export function Dashboard() {
             </div>
 
             <div className="flex gap-3 mt-6">
-              <Link
-                to="/pricing"
-                className="btn-primary text-sm py-2.5 px-5 flex items-center gap-2"
-              >
-                <Zap className="w-4 h-4" />
-                Upgrade To Pro
-              </Link>
+              {user?.tier !== 'PRO' && user?.tier !== 'ENTERPRISE' && (
+                <Link
+                  to="/pricing"
+                  className="btn-primary text-sm py-2.5 px-5 flex items-center gap-2"
+                >
+                  <Zap className="w-4 h-4" />
+                  Upgrade To Pro
+                </Link>
+              )}
               <button
                 onClick={() => handleNavClick('billing')}
                 className="text-sm py-2.5 px-5 rounded-lg border border-border hover:bg-white/5 transition-colors font-medium"
